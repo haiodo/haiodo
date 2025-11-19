@@ -26,5 +26,3 @@ How to find me:
 3. github: https://github.com/haiodo
 4. Если вы из России, то можете купить мне кофе тут: https://boosty.to/haiodo
 
-
-![Haiodo GitHub stats](https://github-readme-stats.vercel.app/api?username=haiodo&show_icons=true&theme=transparent)
