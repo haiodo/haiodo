@@ -1,11 +1,9 @@
 import { defineConfig } from "astro/config";
 import starlight from "@astrojs/starlight";
 import icon from "astro-icon";
-import umami from "@yeskunall/astro-umami";
 
 export default defineConfig({
   site: "https://haiodo.github.io",
-
   integrations: [
     starlight({
       customCss: ["./src/styles.css"],
@@ -65,7 +63,6 @@ export default defineConfig({
     }),
     ,
     icon(),
-    umami({ id: "ffd113e3-c2e8-42aa-9782-4c29f45d4ec1" }),
   ],
   image: {
     service: {
