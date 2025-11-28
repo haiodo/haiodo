@@ -10,7 +10,6 @@
     "astro": "astro"
   },
   "devDependencies": {
-    "sharp": "^0.32.6",
     "@astrojs/check": "^0.5.10",
     "@astrojs/mdx": "^2.3.1",
     "@astrojs/starlight": "^0.21.5",
@@ -18,7 +17,8 @@
     "astro": "^4.3.5",
     "astro-embed": "^0.9.1",
     "astro-icon": "^1.1.5",
-    "typescript": "^5.9.3"
-  },
-  "dependencies": {}
+    "sharp": "^0.32.6",
+    "typescript": "^5.9.3",
+    "@yeskunall/astro-umami": "^0.0.7"
+  }
 }
