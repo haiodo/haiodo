@@ -24,5 +24,3 @@ How to find me:
 1. email: haiodo@gmail.com
 2. telegram: https://t.me/dev_haiodo
 3. github: https://github.com/haiodo
-4. Если вы из России, то можете купить мне кофе тут: https://boosty.to/haiodo
-
