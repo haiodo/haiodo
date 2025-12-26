@@ -1,0 +1,266 @@
+---
+title: "Слепить - но не выкинуть. Смена контекста."
+description: "Когда переключение не доводит до добра."
+sidebar:
+  order: 7
+  badge:
+    text: Новое
+    variant: tip   
+hero:
+  # tagline: Андрей Соболев
+  image: 
+    file: ../../../assets/010/hero.png
+---
+
+import { Icon } from 'astro-icon/components';
+import { Image } from 'astro:assets';
+
+import freeformImg from '../../../assets/009/free-form.png';
+import freeform2Img from '../../../assets/009/focus-power.png';
+import tenn1Img from '../../../assets/009/map_0.png'
+
+import img001 from '../../../assets/010/001.png';
+import img002 from '../../../assets/010/002.png';
+import img003 from '../../../assets/010/003.png';
+import img003_2 from '../../../assets/010/003_2.png';
+import img004 from '../../../assets/010/004.png';
+
+# Почему что All-in-One — это направление верного пути?
+
+Мы все там были. У тебя открыт Slack для общения, Jira/Linear/YourTrack/etc для задач, Notion/Obsidian/Confluence для доков, Zoom/Meet/Telemost/Pachka для созвонов и Apple/Google Calendar/etc, чтобы не пропустить эти самые созвоны. Ты разработчик или менеджер, и твой день — это бесконечный Command+Tab (Alt+Tab).
+
+Это называется **Context Switching**, и это убивает не только твою продуктивность но и тебя.
+
+Исследования говорят, что мы переключаемся между приложениями около 1200 раз в день. Каждый раз, когда ты уходишь из IDE в Slack ответить на вопрос, твоему мозгу нужно ~23 минуты, чтобы вернуть тот же уровень фокуса. Если посчитать честно, мы теряем до 9% рабочего года просто на перефокусировку.
+
+<Image src={img001} alt='001' />
+
+## 1200 переключений в день
+
+Эта цифра происходит из масштабного исследования, опубликованного в Harvard Business Review в августе 2022 года. Авторы Рохан Нараяна Мурти, Сандип Дадлани и Раджат Б. Дас из компании Scout изучали паттерны работы 137 сотрудников в 20 командах трех компаний из списка Fortune 500 на протяжении пяти недель.
+
+Исследователи обнаружили, что в среднем работники переключались между приложениями и веб-сайтами почти 1200 раз каждый день. При этом средняя стоимость одного переключения составляла чуть более двух секунд. Это означает, что сотрудники тратили почти четыре часа в неделю просто на переориентацию после переключения на новое приложение. За год это складывается в пять рабочих недель, или 9% годового рабочего времени
+
+## 23 минуты на восстановление фокуса
+
+Эта цифра требует более тщательного анализа. Она часто приписывается исследованиям Глории Марк из Калифорнийского университета в Ирвайне (UCI). Однако детальное изучение научных публикаций показывает интересную картину.
+
+В оригинальном исследовании Марк, Гонсалес и Харрис 2005 года "No Task Left Behind?" говорится, что работники проводили в среднем 11 минут 4 секунды в одной рабочей сфере до переключения. В более поздней работе 2015 года упоминается, что "людям требуется в среднем около 23 минут, чтобы вернуться к прерванной задаче", но точная формулировка "23 минуты 15 секунд" появляется в интервью Глории Марк журналистам, а не в рецензируемых научных статьях.
+
+Независимо от точной цифры, множество исследований подтверждают, что восстановление фокуса после прерывания занимает значительное время. Разные исследования дают разные оценки:
+
+* Qatalog и Cornell University (2021): 9.5 минут для возврата к продуктивному рабочему процессу после переключения между цифровыми приложениями
+* Средний диапазон составляет от 8 до 25 минут в зависимости от сложности задачи
+* Даже короткие прерывания (2.8-4.4 секунды) могут удвоить или утроить количество ошибок при возврате к исходной задаче
+
+## 40% потери продуктивности
+
+Эта оценка основана на исследовании Американской психологической ассоциации (APA), опубликованном Джошуа Рубинстайном, Джеффри Эвансом и Дэвидом Мейером в 2001 году в Journal of Experimental Psychology.
+
+
+Исследователи изучали паттерны времени, потерянного при повторном переключении между двумя задачами различной сложности и знакомости. В четырех экспериментах молодые взрослые переключались между различными задачами, такими как решение математических задач или классификация геометрических объектов.
+
+Дэвид Мейер заявил, что "даже короткие ментальные блокировки, создаваемые переключением между задачами, могут стоить до 40 процентов продуктивного времени человека". Исследование выявило двухступенчатый процесс исполнительного контроля: "смещение цели" ("я хочу делать это вместо того") и "активацию правил" ("я отключаю правила для того и включаю правила для этого").
+
+
+## Феномен "остаточного внимания"
+
+Одно из самых важных открытий в понимании стоимости переключения контекста — концепция "остаточного внимания" (attention residue), введенная доктором Софи Лерой из Университета Вашингтона в Ботелле в 2009 году.
+
+Лерой определяет остаточное внимание как "сохранение когнитивной активности о Задаче А, даже когда человек перестал работать над Задачей А и в настоящее время выполняет Задачу Б". Другими словами, когда мы переключаемся от одной задачи к другой, часть нашего внимания остается с предыдущей задачей вместо полного переноса на следующую.
+
+В своем оригинальном исследовании, опубликованном в журнале Organizational Behavior and Human Decision Processes, Лерой обнаружила, что люди демонстрируют снижение производительности при переходе от одной задачи к другой, в первую очередь из-за того, что мысли о предыдущей задаче продолжают присутствовать в сознании.
+
+Остаточное внимание особенно сильно проявляется в следующих ситуациях:
+
+* Когда мы оставляем задачи незавершенными
+* Когда нас прерывают
+* Когда мы предполагаем, что после возврата к незавершенной работе придется торопиться
+
+Исследование 2018 года показало, что создание "плана готовности к возобновлению" (ready-to-resume plan) — даже минутная заметка о том, где вы остановились и что осталось сделать — может значительно уменьшить остаточное внимание и улучшить производительность на прерывающей задаче.
+
+<Image src={img002} alt='002' />
+
+## Масштаб проблемы в современной рабочей среде
+Исследование Qatalog в партнерстве с Ellis Idea Lab Корнельского университета в 2021 году опросило 1000 работников и обнаружило тревожные тенденции:
+
+* 45% работников сообщили, что переключение контекста при перепрыгивании между цифровыми инструментами снижает их продуктивность
+* 44% работников заявили, что разрозненные цифровые инструменты затрудняют определение дублирования работы
+* 43% работников считают, что переключение между задачами вызывает усталость
+
+Почти половина сказали, что неспособность отслеживать работу приводит к ошибкам на работе
+Работники сообщают, что тратят почти один час в день на поиск информации между приложениями для совместной работы, хранения и обмена сообщениями
+
+## Платформа и небольшой шаг к решению проблемы
+
+Мы создали **Платформу** не просто чтобы сэкономить на подписках, а чтобы починить сам флоу работы. Ну и сделать удобный и правильный инструмент для себя, и для всех кому он понравиться.
+
+## Архитектура "Всё рядом"
+
+<Image src={img003_2} alt='003' />
+
+Идея проста: данные должны жить там же, где идет работа. Не "интеграция" через вебхуки, которая вечно ломается, а нативная связность.
+
+Вот как мы это реализовали в Платформе:
+
+### 1. Documents: Не просто текст, а база действий
+
+Мы сделали вики, которая живет одной жизнью с проектом.
+*   **Collaboration & Markdown:** Стандарт индустрии.
+*   **Action Items:** Ты пишешь спеку, ставишь чекбокс — и он автоматически становится задачей. Никакого "перенеси это в джиру".
+*   **Mermaid диаграммы:** Рисуем архитектуру прямо в доке кодом.
+
+### 2. Chat: Контекст вместо флуда
+Чат не должен быть отдельной помойкой сообщений.
+*   В Foundation чат знает про твои Issues и Pull Requests.
+*   **Julia AI:** Наш встроенный ассистент не просто "болталка". Она транскрибирует созвоны и сама вытаскивает из них Action Items.
+*   Обсуждение привязано к объектам. Коммент к задаче — это часть чата, а не отдельная сущность.
+
+### 3. Tracker + Planner: Святая связность
+Классическая проблема: задача в трекере висит "In Progress", а разработчик уехал в отпуск.
+*   У нас **Planner** (календарь) и **Tracker** (задачи) синхронизированы.
+*   Берешь Issue, кидаешь в календарь (WorkSlot) — статус меняется сам.
+*   Двусторонняя синхра с GitHub: PR закрылся — задача уехала в Done.
+
+### 4. Office: Виртуальное присутствие
+Зачем платить за Zoom, если видеосвязь нужна для обсуждения *этих же* задач?
+*   Комнаты, шеринг экрана, запись встреч — всё внутри.
+*   Запись встречи сразу падает в **Drive** проекта. Не нужно искать ссылку в почте.
+
+## Экономика вопроса (Для тех, кто считает бюджет)
+
+Давайте честно: "зоопарк" SaaS-сервисов — это дорого.
+Средняя команда использует ~17 разных тулов. CRM, таск-трекер, мессенджер, CI/CD, документация...
+
+**С Платформой математика проще:**
+1.  **Прямая экономия:** Вместо $50-70 за юзера в месяц (Slack + Jira + Notion + Zoom) вы получаете всё в одной подписке. Экономия бюджета — **50-70%**.
+2.  **Скрытая экономия:** Нет затрат на поддержку интеграций (Zapier и прочие "костыли").
+3.  **Безопасность:** Меньше вендоров = меньше дыр. Данные лежат в одном контуре, права доступа управляются централизованно. Взломать одну крепость сложнее, чем 17 палаток.
+
+<Image src={img004} alt='004' />
+
+## Итог
+
+Мы верим, что будущее не за "Best of Breed" (куча разных утилит), а за **Unified Platforms**.
+Платформа — это попытка вернуть контроль над своим временем. Мы убрали лишнее, чтобы вы могли просто работать.
+
+Меньше переключений. Больше кода.
+
+### PS: Кому интересны источники
+
+[1](https://www.cannelevate.com.au/article/context-switching-productivity-hidden-cost-modern-work/)
+[2](https://www.kaimesh.com/blog-posts/the-cost-switching-tax-how-modern-teams-lose-9-of-their-work-hours)
+[3](https://niftypm.com/blog/toggle-tax/)
+[4](https://omgcenter.org/articles/context-switching-is-hard-on-your-brain/)
+[5](https://early.app/blog/context-switching/)
+[6](https://www.basicops.com/blog/the-hidden-cost-of-context-switching)
+[7](https://www.linkedin.com/pulse/toggling-between-apps-necessary-evil-opportunity-ioanna-papakanderaki)
+[8](https://www.linkedin.com/pulse/exposed-23-minute-focus-recovery-rule-explains-why-you-corey-duchemin-dhs5e)
+[9](https://www.informatics.uci.edu/forbes-brain-based-tips-for-sharpening-your-focus-gloria-mark-cited/)
+[10](https://blog.oberien.de/2023/11/05/23-minutes-15-seconds.html)
+[11](https://www.microsoft.com/en-us/research/wp-content/uploads/2016/10/p903-mark.pdf)
+[12](https://www.ics.uci.edu/~gmark/CHI2005.pdf)
+[13](https://www.produce8.com/resources/key-to-thriving-digital-workplace)
+[14](https://cmscritic.com/fight-the-cognitive-overload-brightspot-lights-the-way-to-productivity-with-its-evolutionary-cms-release)
+[15](https://www.esker.com/blog/customer-service/avoiding-toggle-tax-how-reduce-context-switching-revitalize-your-productivity/)
+[16](https://hr.berkeley.edu/grow/grow-your-community/wisdom-caf%C3%A9-wednesday/impact-interruptions)
+[17](https://www.activtrak.com/blog/how-interruptions-affect-productivity/)
+[18](https://www.apa.org/topics/research/multitasking)
+[19](https://www.newswise.com/articles/is-multitasking-more-efficient)
+[20](https://www.semanticscholar.org/paper/Executive-control-of-cognitive-processes-in-task-Rubinstein-Meyer/6bb2917ea86c89be66679cbef06570756ea19d71)
+[21](https://sarahmerron.com/multitasking-makes-you-40-less-productive/)
+[22](https://www.mindspacex.com/post/copy-of-context-switching-the-hidden-productivity-killer-how-to-avoid-it)
+[23](https://blog.melapus.com/articles-in-english/item/135-multitasking-switching-costs)
+[24](https://www.blog.theteamw.com/2011/09/06/true-cost-of-multitasking-2/)
+[25](https://pmc.ncbi.nlm.nih.gov/articles/PMC6665449/)
+[26](https://news.mit.edu/2018/cognitive-flexibility-thalamus-1119)
+[27](https://www.uwb.edu/business/faculty/sophie-leroy/attention-residue)
+[28](https://www.braintreenutrition.com/blogs/discover/overcoming-attention-residue-a-key-to-enhanced-productivity)
+[29](https://www.sahilbloom.com/newsletter/attention-residue-the-silent-productivity-killer)
+[30](https://www.todoist.com/inspiration/focused-teamwork)
+[31](https://www.sciencedirect.com/science/article/abs/pii/S0749597809000399)
+[32](https://www.scribd.com/document/856551539/c-Coek-Info-Why-is-It-So-Hard-to-Do-My-Work-the-Challenge-of-a-1)
+[33](https://www.sciencedirect.com/science/article/pii/S0749597809000399)
+[34](https://phys.org/news/2018-01-strategy-recover.html)
+[35](https://www.hrdive.com/news/app-switching-enterprise-productivity-software-qatalog/602281/)
+[36](https://www.ciodive.com/news/app-switching-enterprise-productivity-software-qatalog/602082/)
+[37](https://www.forecast.app/blog/context-switching)
+[38](https://workjoy.co/blog/scientific-research-notifications-and-interruptions-negatively-affect-work)
+[39](https://www.ciodive.com/news/app-switching-enterprise-asana-report/594233/)
+[40](https://www.cio.com/article/191598/app-switching-is-killing-your-team-s-productivity-here-s-what-leaders-can-do-about-it.html)
+[41](https://thesector.com.au/2024/02/06/new-research-busts-the-myth-of-multitasking-showing-drop-of-10-iq-points/)
+[42](https://www.todoist.com/inspiration/context-switching)
+[43](https://lound.ai/blog/context-switching-costing-40-percent-productivity-voice-solution/)
+[44](https://conclude.io/blog/context-switching-is-killing-your-productivity/)
+[45](https://slack.com/blog/transformation/the-app-era-is-here)
+[46](https://liminary.io/blog/fragmented-knowledge)
+[47](https://www.hailperin.ch/en/post/the-lost-work-time-how-fragmentation-and-ineffective-meetings-could-enable-the-4-day-week)
+[48](https://trepo.tuni.fi/bitstream/handle/10024/116398/work_fragmentation_2019.pdf?sequence=2)
+[49](https://www.reddit.com/r/aspergirls/comments/10cixqa/why_switching_directionstasks_is_so_hard/)
+[50](https://xedieukhientuxa.com/po-kakoj-prichine-znachimo-perekljuchatsja-mezhdu-zadachami/)
+[51](https://t.me/s/one_IT_day?before=130)
+[52](https://tonsky.livejournal.com/category/%D0%BA%D0%BE%D0%BC%D0%BF%D1%8C%D1%8E%D1%82%D0%B5%D1%80%D1%8B)
+[53](https://dou.ua/lenta/articles/how-i-work-korol/)
+[54](https://dou.ua/forums/topic/41774/)
+[55](https://tresorit.com/blog/how-context-switching-hurts-productivity-and-puts-your-data-at-risk)
+[56](https://tctecinnovation.com/blogs/daily-blog/every-distraction-costs-you-23-minutes)
+[57](https://mstimes.co.in/2025/11/25/pochemu-znachimo-perekljuchatsja-mezhdu-zadachami/)
+[58](https://burai.com/blog/the-hidden-cost-of-context-switching-how-many-software-tools-tech-professionals-use-daily--and-what-its-costing-us)
+[59](https://revenuebreakthrough.com/it-takes-our-brains-23-minutes-to-regain-focus-after-a-distraction/)
+[60](https://addyo.substack.com/p/it-takes-23-mins-to-recover-after)
+[61](https://pieces.app/blog/cost-of-context-switching)
+[62](https://www.nature.com/articles/s41598-024-56836-2)
+[63](https://www.physicianleaders.org/articles/how-much-time-and-energy-do-we-waste-toggling-between-applications)
+[64](https://www.themuse.com/advice/this-is-nuts-it-takes-nearly-30-minutes-to-refocus-after-you-get-distracted)
+[65](https://www.insightful.io/blog/too-many-unproductive-apps-wasting-resources)
+[66](https://wiki.brianturchyn.net/productivity/context-switching/)
+[67](https://www.cxtoday.com/workforce-engagement-management/toggle-tax-the-silent-agent-engagement-killer-here/)
+[68](https://www.linkedin.com/pulse/silent-productivity-killer-how-context-switching-our-mba-safe-6-spc-r7phc)
+[69](https://venturebeat.com/business/qatalog-people-waste-59-minutes-every-day-trying-to-find-data-in-apps)
+[70](https://www.forbes.com/sites/terdawn-deboe/2025/12/25/ai-agent-sprawl-is-the-new-problem-small-businesses-face/)
+[71](https://www.reworked.co/collaboration-productivity/too-many-collaboration-apps-are-bogging-employees-down/)
+[72](https://www.ics.uci.edu/~gmark/chi08-mark.pdf)
+[73](https://today.duke.edu/2021/11/3-ways-bounce-back-after-work-interruption)
+[74](https://digitalcommons.sacredheart.edu/cgi/viewcontent.cgi?article=1000&context=wcob_wp)
+[75](https://www.interruptions.net/literature/Trafton-Reviews_HFE-3.pdf)
+[76](https://pmc.ncbi.nlm.nih.gov/articles/PMC10940645/)
+[77](https://www.monitask.com/en/business-glossary/task-switching-cost)
+[78](https://www.whitakertraining.co.uk/post/the-myth-of-multitasking-research-backed-reasons-to-simplify-your-work-approach)
+[79](https://news.wfu.edu/2024/04/16/the-switch-cost-of-multitasking/)
+[80](https://centerforbrainhealth.org/article/single-tasking)
+[81](https://www.sciencedirect.com/science/article/abs/pii/S2352154623000967)
+[82](https://zenexmachina.com/multitasking-is-ruining-your-productivity-when-youre-working-remotely/)
+[83](https://pmc.ncbi.nlm.nih.gov/articles/PMC11807033/)
+[84](https://publications.essex.ac.uk/esj/article/id/283/)
+[85](https://www.parallelprojecttraining.com/blog/the-multi-tasking-myth-in-project-management-why-single-tasking-is-the-key-to-productivity/)
+[86](http://dr-hatfield.com/educ216/Multitasking%20The%20Cognitive%20Costs%20of%20Multitasking.pdf)
+[87](https://www.linkedin.com/posts/laurathompson888_research-from-the-american-psychological-activity-7340463305204912129-sWOO)
+[88](https://scirp.org/reference/referencespapers)
+[89](https://www.cnn.com/2001/CAREER/trends/08/05/multitasking.study/index.html)
+[90](https://www.grapevinesoftware.io/untangledvines/chat-fatigue-in-modern-workplaces-challenges-and-a-new-approach)
+[91](https://www.youtube.com/shorts/ietjqGUbQhg)
+[92](https://fiomedia.co.za/blog/the-productivity-paradox-why-more-apps-dont-always-mean-more-output/)
+[93](https://workplaceinsight.net/microsoft-research-lays-bare-the-rise-of-the-infinite-workday/)
+[94](https://circuitloops.com/the-hidden-costs-of-workplace-context-switching/)
+[95](https://www.linkedin.com/posts/rohan-murty-844695b2_whats-lost-when-data-systems-dont-communicate-activity-7117895028538052608-yqhw)
+[96](https://trychaser.com/blog/stop-app-toggling-how-context-switching-is-draining-your-productivity)
+[97](https://smruthiorganics.com/wp-content/uploads/2022/06/Form_MGT_7-ANNUAL-RETURN_.pdf)
+[98](https://www.hawkinscookers.com/download/Form_MGT-7_2020-21.pdf)
+[99](https://glances.com/blog/toggle-tax-reigning-terror-on-your-business)
+[100](https://www.instagram.com/p/Ch-m_hbNCmI/)
+[101](https://www.scribd.com/doc/91975543/TR-Affiliate-Directory)
+[102](https://hbr.org/2022/08/how-much-time-and-energy-do-we-waste-toggling-between-applications)
+[103](https://www.holistic.it/blog/productivity-software-overload-is-killing-workers-productivity/)
+[104](https://www.hrmonline.com.au/employee-wellbeing/making-it-hard-for-employees-to-be-productive/)
+[105](https://www.unleash.ai/hr-technology/qatalog-tech-killing-productivity-remote-workers/)
+[106](https://www.nature.com/articles/s41386-021-01132-0)
+[107](https://www.beynex.com/blogs/the-hidden-cost-of-multitasking-on-the-brain)
+[108](https://magazine.washington.edu/theres-no-such-thing-as-multitasking-according-to-business-expert-sophie-leroy/)
+[109](https://www.sciencedirect.com/science/article/pii/S1053811925001624)
+[110](https://www.frontiersin.org/journals/human-neuroscience/articles/10.3389/neuro.09.002.2007/full)
+[111](https://careerminds.com/blog/workplace-interruptions-impact)
+[112](https://businesschief.com/leadership-and-strategy/impact-interruption)
+[113](https://www.linkedin.com/pulse/attention-residue-silent-productivity-killer-how-d7rrf)
+[114](https://pmc.ncbi.nlm.nih.gov/articles/PMC8589093/)
+[115](https://academic.oup.com/joh/article/65/1/e12408/7479297)
+[116](https://ideas.repec.org/a/eee/jobhdp/v109y2009i2p168-181.html)
