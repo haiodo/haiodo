@@ -11,11 +11,12 @@ Started with Java,
 Continued with Go:
   * [NetworkServiceMesh](https://github.com/networkservicemesh)
 
-And finally, I'm a co-author of Huly.io platform [Huly](https://github.com/hcengineering/platform).
+And finally, I'm a co-author/co-founder of Huly.io platform [Huly](https://github.com/hcengineering/platform).
 
 And I've worked on some personal pet projects:
 * [Personal Huly](https://github.com/haiodo/foundation) - Huly all in one, with some experiments.
 * [Tenniarb](https://github.com/haiodo/tenniarb) - A brain map editor for MacOS.
+* [OAITT](http://github.com/haiodo/oaitt) - A whisper* based transcoder with openai interfaces. Only inference.
 * [OOP](https://github.com/haiodo/oop) - a course and tasks for Novosibirsk State University Object Oriented Programming course.
 * [Blog](https://github.com/haiodo/haiodo) - my blog materials are here.
 
