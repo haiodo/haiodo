@@ -24,7 +24,7 @@ function colorLog(text, color = 'reset') {
 // Получить дату неделю назад
 function getWeekAgoDate() {
   const date = new Date();
-  date.setDate(date.getDate() - 7);
+  date.setDate(date.getDate() - 365 - 16);
   return date.toISOString().split('T')[0];
 }
 
