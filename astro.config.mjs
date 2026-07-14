@@ -35,14 +35,14 @@ export default defineConfig({
           },
           collapsed: false,
           items: [
-            {
-              label: "Заметки по дням",
-              translations: {
-                en: "Daily activities",
-              },
-              collapsed: true,
-              autogenerate: { directory: "daily" },
-            },
+            // {
+            //   label: "Заметки по дням",
+            //   translations: {
+            //     en: "Daily activities",
+            //   },
+            //   collapsed: true,
+            //   autogenerate: { directory: "daily" },
+            // },
             {
               label: "Статьи",
               translations: {
