@@ -1,0 +1,41 @@
+---
+import { getCollection } from "astro:content";
+import Base from "../../layouts/Base.astro";
+
+const posts = (await getCollection("posts"))
+  .filter((entry) => entry.id !== "overview")
+  .sort((a, b) => (b.data.date?.getTime() ?? 0) - (a.data.date?.getTime() ?? 0));
+---
+
+<Base title="Статьи - Андрей Соболев" description="Все статьи блога">
+  <h1 class="prompt">ls -la posts/</h1>
+  {
+    posts.map((entry) => {
+      const badge = entry.data.sidebar?.badge;
+      const badgeText = typeof badge === "string" ? badge : badge?.text;
+      return (
+        <a class="row" href={`/posts/${entry.id}`}>
+          <span class="row-head">
+            <span class="row-title">
+              <span class="post-date">
+                {entry.data.date?.toISOString().slice(0, 10)}
+              </span>
+              {entry.data.title}
+            </span>
+            <span class="row-meta">
+              {badgeText && <span class="badge">{badgeText}</span>}
+            </span>
+          </span>
+          {entry.data.description && <p class="row-desc">{entry.data.description}</p>}
+        </a>
+      );
+    })
+  }
+</Base>
+
+<style>
+  .post-date {
+    color: var(--fg-faint);
+    margin-right: 0.6rem;
+  }
+</style>

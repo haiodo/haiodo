@@ -1,0 +1,159 @@
+---
+import "@fontsource-variable/jetbrains-mono";
+import "../styles.css";
+
+import { getImage } from "astro:assets";
+import defaultOg from "../assets/me.jpeg";
+
+interface Props {
+  title: string;
+  description?: string;
+  /** Post hero; falls back to the avatar so every link previews with something. */
+  image?: ImageMetadata;
+  type?: "website" | "article";
+  publishedAt?: Date;
+}
+
+const { title, description, image, type = "website", publishedAt } = Astro.props;
+const site = "haiodo.blog";
+
+// Social crawlers need an absolute URL and don't all speak webp -> emit jpeg.
+const og = await getImage({
+  src: image ?? defaultOg,
+  width: 1200,
+  height: 630,
+  fit: "cover",
+  format: "jpeg",
+  quality: 80,
+});
+const ogUrl = new URL(og.src, Astro.site).href;
+
+const nav = [
+  { href: "/", label: "~" },
+  { href: "/posts/overview", label: "posts" },
+  { href: "/projects", label: "projects" },
+];
+
+const path = Astro.url.pathname;
+---
+
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="/favicon.ico" />
+    <title>{title}</title>
+    {description && <meta name="description" content={description} />}
+    <link rel="canonical" href={new URL(path, Astro.site)} />
+
+    <meta property="og:type" content={type} />
+    <meta property="og:title" content={title} />
+    {description && <meta property="og:description" content={description} />}
+    <meta property="og:url" content={new URL(path, Astro.site)} />
+    <meta property="og:site_name" content={site} />
+    <meta property="og:locale" content="ru_RU" />
+    <meta property="og:image" content={ogUrl} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={title} />
+    {publishedAt && (
+      <meta property="article:published_time" content={publishedAt.toISOString()} />
+    )}
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    {description && <meta name="twitter:description" content={description} />}
+    <meta name="twitter:image" content={ogUrl} />
+  </head>
+  <body>
+    <header>
+      <a href="/" class="brand prompt cursor">{site}</a>
+      <nav>
+        {
+          nav.map((item) => (
+            <a
+              href={item.href}
+              class:list={["nav-link", { active: path === item.href }]}
+            >
+              {item.label}
+            </a>
+          ))
+        }
+      </nav>
+    </header>
+
+    <main>
+      <slot />
+    </main>
+
+    <footer>
+      <span class="muted">haiodo@gmail.com</span>
+      <span class="links">
+        <a href="https://github.com/haiodo" target="_blank" rel="noreferrer">github</a>
+        <a href="https://t.me/dev_haiodo" target="_blank" rel="noreferrer">telegram</a>
+      </span>
+    </footer>
+
+    <style>
+      header {
+        max-width: var(--measure);
+        width: 100%;
+        margin: 0 auto;
+        padding: 2rem 1.25rem 1.5rem;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 1rem;
+      }
+
+      .brand {
+        color: var(--fg-bright);
+        text-decoration: none;
+        font-size: 1.125rem;
+      }
+
+      nav {
+        display: flex;
+        gap: 1.25rem;
+        font-size: 0.9375rem;
+      }
+
+      .nav-link {
+        color: var(--fg-muted);
+        text-decoration: none;
+      }
+
+      .nav-link:hover,
+      .nav-link.active {
+        color: var(--accent);
+      }
+
+      main {
+        max-width: var(--measure);
+        width: 100%;
+        margin: 0 auto;
+        padding: 0 1.25rem 4rem;
+        flex: 1;
+      }
+
+      footer {
+        max-width: var(--measure);
+        width: 100%;
+        margin: 0 auto;
+        padding: 1.5rem 1.25rem 2.5rem;
+        border-top: 1px solid var(--border);
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 1rem;
+        font-size: 0.875rem;
+      }
+
+      .links {
+        display: flex;
+        gap: 1rem;
+      }
+    </style>
+  </body>
+</html>

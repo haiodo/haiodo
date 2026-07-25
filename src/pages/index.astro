@@ -1,0 +1,443 @@
+---
+import { getCollection } from "astro:content";
+import { Icon } from "astro-icon/components";
+import { Image } from "astro:assets";
+import me from "../assets/me.jpeg";
+import Base from "../layouts/Base.astro";
+import { projects } from "../data/projects";
+
+const posts = (await getCollection("posts"))
+  .filter((entry) => entry.id !== "overview")
+  .sort((a, b) => (b.data.date?.getTime() ?? 0) - (a.data.date?.getTime() ?? 0))
+  .slice(0, 5);
+
+const fmtDate = (d?: Date) =>
+  d ? d.toISOString().slice(0, 10) : "";
+
+
+// Из профиля: чем занимаюсь и с чем работаю.
+const skills = [
+  "Go", "TypeScript / Node.js", "Java", "C++", "Svelte", "React", "Vue",
+  "TCL", "Ruby", "Kubernetes", "Enterprise Software", "Архитектура",
+  "Test Automation",
+];
+
+// Родословная платформы: один код, три поколения.
+const lineage = [
+  {
+    name: "Huly",
+    period: "2021 - 2025",
+    note: "Huly Labs. Открытая платформа для приложений: Chat, Tracker, HRM, ATS. Мои руки - Tracker, Github Integration, системные и UI-компоненты.",
+    links: [{ label: "hcengineering/platform", href: "https://github.com/hcengineering/platform" }],
+  },
+  {
+    name: "Platform Collective",
+    period: "2026 -",
+    note: "Продолжение платформы сообществом. Тот же фундамент, открытая разработка.",
+    links: [
+      { label: "Platform-Collective", href: "https://github.com/Platform-Collective" },
+      { label: "Platform-Collective/platform", href: "https://github.com/Platform-Collective/platform" },
+    ],
+  },
+  {
+    name: "Intabia Platform",
+    period: "2025 -",
+    note: "Intabia Fusion, я со-основатель. Продуктовая ветка платформы, над которой работаю сегодня.",
+    links: [{ label: "intabia-fusion/platform - PRs", href: "https://github.com/intabia-fusion/platform/pulls" }],
+  },
+];
+
+const career = [
+  { org: "Intabia Fusion", role: "Со-основатель, Intabia Platform", period: "2025 -" },
+  { org: "НГУ", role: "Преподаю ООП на C++ и Java", period: "2023 -" },
+  { org: "TraceX", role: "Building TraceX on Huly Platform", period: "2023 -" },
+  { org: "Huly Labs", role: "Building Huly", period: "2021 - 2025" },
+  { org: "Network Service Mesh", role: "Building Kubernetes Hybrid/Multi-cloud IP Service from scratch", period: "2018 - 2020" },
+  {
+    org: "Xored Software",
+    role: "Technical Leader / Principal Engineer",
+    period: "2005 - 2021",
+    detail: "проекты для Cisco Systems, Spirent Communications, InterSystems Corporation, British Telecom",
+  },
+  { org: "Novosoft LLC", role: "Software Architect", period: "2004 - 2005" },
+];
+---
+
+<Base
+  title="Андрей Соболев (haiodo)"
+  description="Инженер в ИТ. Заметки о технологиях, проектах и разработке."
+>
+  <section class="intro">
+    <Image
+      class="avatar"
+      src={me}
+      alt="Андрей Соболев"
+      width={192}
+      height={192}
+      format="webp"
+      quality={80}
+    />
+    <h1>Андрей Соболев</h1>
+  </section>
+
+  <section>
+    <h2 class="prompt">whoami</h2>
+    <p class="about">
+      Инженер в ИТ, больше двух десятков лет в разработке. Пишу на всём, что
+      движется, если не движется - двигаю и пишу. Люблю изучать новые технологии
+      и делиться тем, что узнал, не всегда хватает времени на делиться, но
+      всякое бывает.
+    </p>
+    <p class="about">
+      Накопилось понимание технологий, процессов и стандартов, без которых
+      нормальная разработка не получается: enterprise-софт, управление
+      проектами, автоматизация тестирования, архитектура. Интересно строить
+      инструменты, которыми потом пользуются каждый день, и доводить их до
+      состояния, когда они не раздражают.
+    </p>
+    <ul class="skills">
+      {skills.map((s) => <li>{s}</li>)}
+    </ul>
+    <p class="about muted">
+      Новосибирский государственный университет, магистр по информационным
+      технологиям. Уже три года помогаю университету - веду у студентов
+      объектно-ориентированное программирование на C++ и Java.
+    </p>
+  </section>
+
+  <section>
+    <h2 class="prompt">history | tail</h2>
+    <ul class="career">
+      {
+        career.map((job, i) => (
+          <li>
+            <span class="tree">{i === career.length - 1 ? "└─" : "├─"}</span>
+            <span class="career-period">{job.period}</span>
+            <span class="career-org">{job.org}</span>
+            <span class="career-role">
+              {job.role}
+              {job.detail && <span class="career-detail">{job.detail}</span>}
+            </span>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+
+  <section>
+    <h2 class="prompt">ls ~/projects</h2>
+    {
+      projects.map((p) => (
+        <details class="row project">
+          <summary>
+            <span class="row-head">
+              <span class="row-title">
+                <span class="caret">▸</span>
+                {p.name}
+              </span>
+              <span class="row-meta">{p.lang} · {p.years}</span>
+            </span>
+            <p class="row-desc">{p.note}</p>
+          </summary>
+          <div class="project-body">
+            <p class="project-about">{p.about}</p>
+            <span class="project-links">
+              {p.links.map((l) =>
+                l.icon ? (
+                  <a class="icon-link" href={l.href} target="_blank" rel="noreferrer">
+                    <Icon name="bi:github" />
+                    <span>{l.label}</span>
+                  </a>
+                ) : (
+                  <a href={l.href} target="_blank" rel="noreferrer">{l.label}</a>
+                ),
+              )}
+            </span>
+          </div>
+        </details>
+      ))
+    }
+  </section>
+
+  <section>
+    <h2 class="prompt">git log --graph platform</h2>
+    <p class="muted section-note">
+      Один фундамент, три поколения - от Huly до того, что делаю сейчас.
+    </p>
+    <ol class="lineage">
+      {
+        lineage.map((step) => (
+          <li>
+            <span class="lineage-head">
+              <span class="lineage-name">{step.name}</span>
+              <span class="lineage-period">{step.period}</span>
+            </span>
+            <p class="lineage-note">{step.note}</p>
+            <span class="lineage-links">
+              {step.links.map((l) => (
+                <a href={l.href} target="_blank" rel="noreferrer">{l.label}</a>
+              ))}
+            </span>
+          </li>
+        ))
+      }
+    </ol>
+  </section>
+
+  <section>
+    <h2 class="prompt">head -5 posts/</h2>
+    {
+      posts.map((entry) => (
+        <a class="row" href={`/posts/${entry.id}`}>
+          <span class="row-head">
+            <span class="row-title">
+              <span class="post-date">{fmtDate(entry.data.date)}</span>
+              {entry.data.title}
+            </span>
+            <span class="row-meta">читать →</span>
+          </span>
+          {entry.data.description && <p class="row-desc">{entry.data.description}</p>}
+        </a>
+      ))
+    }
+    <p class="more"><a href="/posts/overview">все статьи →</a></p>
+  </section>
+
+  <section>
+    <h2 class="prompt">contact</h2>
+    <pre class="tree-block">├─ email     <a href="mailto:haiodo@gmail.com">haiodo@gmail.com</a>
+├─ email     <a href="mailto:haiodo@yandex.ru">haiodo@yandex.ru</a>
+├─ telegram  <a href="https://t.me/dev_haiodo">t.me/dev_haiodo</a>
+└─ github    <a href="https://github.com/haiodo">github.com/haiodo</a></pre>
+  </section>
+</Base>
+
+<style>
+  .intro {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .intro h1 {
+    margin: 0;
+  }
+
+  .avatar {
+    width: 96px;
+    height: 96px;
+    object-fit: cover;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    flex-shrink: 0;
+  }
+
+  section {
+    margin-bottom: 2.5rem;
+  }
+
+  .tree-block {
+    background: none;
+    border: 0;
+    padding: 0;
+    margin: 0;
+    color: var(--fg-faint);
+    font-size: 1rem;
+    line-height: 1.75;
+  }
+
+  .section-note {
+    font-size: 0.9375rem;
+    margin-bottom: 1rem;
+  }
+
+  /* Expandable project row, native <details> - no JS. */
+  .project > summary {
+    cursor: pointer;
+    list-style: none;
+  }
+
+  .project > summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .project:hover {
+    border-color: var(--accent-border);
+  }
+
+  .project:hover .row-title {
+    color: var(--accent-bright);
+  }
+
+  .caret {
+    display: inline-block;
+    color: var(--accent);
+    margin-right: 0.5rem;
+    transition: transform 150ms;
+  }
+
+  .project[open] .caret {
+    transform: rotate(90deg);
+  }
+
+  .project-body {
+    margin-top: 0.9rem;
+    padding-top: 0.9rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .project-about {
+    margin: 0 0 0.75rem;
+    font-size: 0.9375rem;
+    color: var(--fg-muted);
+  }
+
+  .project-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.25rem;
+    font-size: 0.9375rem;
+  }
+
+  .icon-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .about {
+    color: var(--fg-muted);
+    margin-bottom: 0.75rem;
+  }
+
+  .skills {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    padding: 0;
+    margin: 0 0 1rem;
+    font-size: 0.875rem;
+  }
+
+  .skills > li {
+    border: 1px solid var(--border);
+    color: var(--fg-dim);
+    padding: 0.1rem 0.5rem;
+  }
+
+  /* Vertical rail with a node per generation. */
+  .lineage {
+    list-style: none;
+    margin: 0;
+    padding: 0 0 0 1.25rem;
+    border-left: 1px solid var(--border);
+  }
+
+  .lineage > li {
+    position: relative;
+    padding-bottom: 1.5rem;
+  }
+
+  .lineage > li::before {
+    content: "";
+    position: absolute;
+    left: calc(-1.25rem - 4px);
+    top: 0.55rem;
+    width: 7px;
+    height: 7px;
+    background: var(--accent);
+  }
+
+  .lineage > li:last-child {
+    padding-bottom: 0;
+  }
+
+  .lineage-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.6rem;
+  }
+
+  .lineage-name {
+    color: var(--accent);
+  }
+
+  .lineage-period {
+    font-size: 1rem;
+    color: var(--fg-faint);
+  }
+
+  .lineage-note {
+    margin: 0.35rem 0 0.5rem;
+    font-size: 0.9375rem;
+    color: var(--fg-muted);
+  }
+
+  .lineage-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    font-size: 1rem;
+  }
+
+  .career {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    font-size: 0.9375rem;
+  }
+
+  .career > li {
+    display: grid;
+    grid-template-columns: 1.5rem 8rem minmax(0, 13rem) 1fr;
+    gap: 0.5rem;
+    align-items: start;
+    padding: 0.15rem 0;
+  }
+
+  .career-period {
+    color: var(--fg-faint);
+  }
+
+  .career-org {
+    color: var(--fg-dim);
+  }
+
+  .career-role {
+    color: var(--fg-muted);
+  }
+
+  .career-detail {
+    display: block;
+    color: var(--fg-faint);
+    font-size: 0.875rem;
+  }
+
+  @media (max-width: 34rem) {
+    .career > li {
+      grid-template-columns: 1.5rem 1fr;
+    }
+
+    .career-period {
+      grid-column: 2;
+    }
+
+    .career-org,
+    .career-role {
+      grid-column: 2;
+    }
+  }
+
+  .post-date {
+    color: var(--fg-faint);
+    margin-right: 0.6rem;
+  }
+
+  .more {
+    margin-top: 1rem;
+    font-size: 0.9375rem;
+  }
+</style>

@@ -1,0 +1,125 @@
+---
+import { getCollection } from "astro:content";
+import { Icon } from "astro-icon/components";
+import Base from "../../layouts/Base.astro";
+import { projects } from "../../data/projects";
+
+// Pages with a longer write-up live in the content collection.
+const pages = (await getCollection("projects")).sort(
+  (a, b) => (a.data.sidebar?.order ?? 99) - (b.data.sidebar?.order ?? 99),
+);
+---
+
+<Base title="Проекты - Андрей Соболев" description="Проекты, над которыми я работал">
+  <h1 class="prompt">ls -la projects/</h1>
+
+  {
+    projects.map((p) => (
+      <details class="row project">
+        <summary>
+          <span class="row-head">
+            <span class="row-title">
+              <span class="caret">▸</span>
+              {p.name}
+            </span>
+            <span class="row-meta">{p.lang} · {p.years}</span>
+          </span>
+          <p class="row-desc">{p.note}</p>
+        </summary>
+        <div class="project-body">
+          <p class="project-about">{p.about}</p>
+          <span class="project-links">
+            {p.links.map((l) =>
+              l.icon ? (
+                <a class="icon-link" href={l.href} target="_blank" rel="noreferrer">
+                  <Icon name="bi:github" />
+                  <span>{l.label}</span>
+                </a>
+              ) : (
+                <a href={l.href} target="_blank" rel="noreferrer">{l.label}</a>
+              ),
+            )}
+          </span>
+        </div>
+      </details>
+    ))
+  }
+
+  <h2 class="prompt">cat projects/*.mdx</h2>
+  <p class="muted section-note">Подробные заметки по отдельным проектам.</p>
+  {
+    pages.map((entry) => (
+      <a class="row" href={`/projects/${entry.id}`}>
+        <span class="row-head">
+          <span class="row-title">{entry.data.title}</span>
+          <span class="row-meta">читать →</span>
+        </span>
+        {entry.data.description && <p class="row-desc">{entry.data.description}</p>}
+      </a>
+    ))
+  }
+</Base>
+
+<style>
+  .project > summary {
+    cursor: pointer;
+    list-style: none;
+  }
+
+  .project > summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .project:hover {
+    border-color: var(--accent-border);
+  }
+
+  .project:hover .row-title {
+    color: var(--accent-bright);
+  }
+
+  .caret {
+    display: inline-block;
+    color: var(--accent);
+    margin-right: 0.5rem;
+    transition: transform 150ms;
+  }
+
+  .project[open] .caret {
+    transform: rotate(90deg);
+  }
+
+  .project-body {
+    margin-top: 0.9rem;
+    padding-top: 0.9rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .project-about {
+    margin: 0 0 0.75rem;
+    font-size: 0.9375rem;
+    color: var(--fg-muted);
+  }
+
+  .project-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.25rem;
+    font-size: 0.9375rem;
+  }
+
+  .icon-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .section-note {
+    margin: 0 0 1rem;
+    font-size: 0.9375rem;
+  }
+
+  h2 {
+    margin-top: 2.5rem;
+  }
+</style>

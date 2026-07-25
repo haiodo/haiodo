@@ -1,58 +1,244 @@
-/* Dark mode colors. */
+/* Ayu Mirage palette (github.com/ayu-theme/ayu-colors). */
 :root {
-	--sl-color-accent-low: #122342;
-	--sl-color-accent: #245cc3;
-	--sl-color-accent-high: #b2caf2;
-	--sl-color-white: #ffffff;
-	--sl-color-gray-1: #eeeeee;
-	--sl-color-gray-2: #c2c2c2;
-	--sl-color-gray-3: #8b8b8b;
-	--sl-color-gray-4: #585858;
-	--sl-color-gray-5: #383838;
-	--sl-color-gray-6: #1A1928;
-	--sl-color-black: #242839;
-	--rounded-box-bg:rgb(39, 57, 92);
-}
-/* Light mode colors. */
-:root[data-theme='light'] {
-	--sl-color-accent-low: #c6d8f7;
-	--sl-color-accent: #245cc3;
-	--sl-color-accent-high: #153061;
-	--sl-color-white: #181818;
-	--sl-color-gray-1: #272727;
-	--sl-color-gray-2: #383838;
-	--sl-color-gray-3: #585858;
-	--sl-color-gray-4: #8b8b8b;
-	--sl-color-gray-5: #c2c2c2;
-	--sl-color-gray-6: #eeeeee;
-	--sl-color-gray-7: #DDE4F6;
-	--sl-color-black: #ffffff;
-	--rounded-box-bg:rgb(231, 237, 250);
+  --bg: #242936;          /* editor.bg */
+  --bg-inset: #1F2430;    /* ui.bg */
+  --bg-panel: #282E3B;    /* ui.panel.bg */
+  --fg: #CCCAC2;          /* editor.fg */
+  --fg-bright: #FFDFB3;   /* syntax.special */
+  --fg-dim: #B8CFE6;      /* syntax.comment base */
+  --fg-muted: #8A9199;    /* editor.gutter */
+  --fg-faint: #707A8C;    /* ui.fg */
+  --border: #3D4759;
+  --accent: #FFCC66;      /* common.accent.tint */
+  --accent-bright: #FFD173; /* syntax.func */
+  --accent-deep: #FFAD66;   /* syntax.keyword */
+  --accent-border: #736950; /* editor.findMatch */
+  --cyan: #5CCFE6;        /* syntax.tag */
+  --blue: #73D0FF;        /* syntax.entity */
+  --green: #87D96C;       /* vcs.added */
+
+  --font-mono: "JetBrains Mono Variable", ui-monospace, SFMono-Regular, Menlo,
+    Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+
+  --measure: 60rem;
+  color-scheme: dark;
 }
 
-[data-icon] {
-	font-size: 30px;
-	color: var(--sl-color-accent-high);
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
-[data-icon]:hover {
-	cursor: pointer;
-	color: var(--sl-color-white);
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg-muted);
+  font-family: var(--font-mono);
+  font-size: 1.125rem;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
-.social-icons {
-	display: flex;
-	align-items: center;
+a {
+  color: var(--cyan);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: color 150ms;
 }
 
-.social-icons span {
-	display: inline-block;
-	padding: 0 7px;
+a:hover {
+  color: var(--blue);
 }
 
-.rounded-box {
-  background-color: var(--rounded-box-bg);
-  border-radius: 12px;
-  padding: 20px;
-  transition: background-color 0.3s ease-in-out;
+h1,
+h2,
+h3,
+h4 {
+  font-weight: 600;
+  line-height: 1.375;
+  color: var(--fg-bright);
+  margin: 2rem 0 0.75rem;
+}
+
+h1 {
+  font-size: 1.85rem;
+  color: var(--accent);
+  letter-spacing: -0.025em;
+}
+h2 {
+  font-size: 1.4rem;
+}
+h3 {
+  font-size: 1.15rem;
+}
+
+p,
+ul,
+ol {
+  margin: 0 0 1rem;
+}
+
+ul,
+ol {
+  padding-left: 1.25rem;
+}
+
+li::marker {
+  color: var(--accent-border);
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid var(--border);
+  margin: 2rem 0;
+}
+
+blockquote {
+  margin: 1rem 0;
+  padding: 0.25rem 0 0.25rem 1rem;
+  border-left: 2px solid var(--accent-border);
+  color: var(--fg-muted);
+}
+
+code {
+  font-family: var(--font-mono);
+  font-size: 0.875em;
+  color: var(--fg);
+  background: var(--bg-inset);
+  border: 1px solid var(--border);
+  padding: 0.05em 0.3em;
+}
+
+strong,
+b {
+  color: var(--fg);
+  font-weight: 600;
+}
+
+pre {
+  background: var(--bg-inset);
+  border: 1px solid var(--border);
+  padding: 1rem;
+  overflow-x: auto;
+  margin: 0 0 1rem;
+}
+
+pre code {
+  background: none;
+  border: 0;
+  padding: 0;
+}
+
+img,
+video {
+  max-width: 100%;
+  height: auto;
+  border: 1px solid var(--border);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0 0 1rem;
+  font-size: 0.875rem;
+}
+
+th,
+td {
+  border: 1px solid var(--border);
+  padding: 0.4rem 0.6rem;
+  text-align: left;
+}
+
+th {
+  color: var(--fg-bright);
+}
+
+/* Shell prompt marker. */
+.prompt::before {
+  content: "$ ";
+  color: var(--accent-deep);
+}
+
+.cursor::after {
+  content: "▌";
+  color: var(--accent);
+  animation: blink 1.2s step-end infinite;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cursor::after {
+    animation: none;
+  }
+}
+
+/* Bordered nav/list rows, square corners like late.sh. */
+.row {
+  display: block;
+  border: 1px solid var(--border);
+  background: color-mix(in oklab, var(--bg-inset) 40%, transparent);
+  padding: 0.9rem 1.15rem;
+  margin-bottom: 0.5rem;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 200ms, color 200ms;
+}
+
+.row:hover {
+  border-color: var(--accent-border);
+  color: inherit;
+}
+
+.row-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.row-title {
+  color: var(--fg-dim);
+  min-width: 0;
+  transition: color 200ms;
+}
+
+.row:hover .row-title {
+  color: var(--accent-bright);
+}
+
+.row-meta {
+  flex-shrink: 0;
+  font-size: 0.875rem;
+  color: var(--fg-faint);
+}
+
+.row-desc {
+  margin: 0.4rem 0 0;
+  font-size: 0.9375rem;
+  color: var(--fg-muted);
+}
+
+.tree {
+  color: var(--fg-faint);
+}
+
+.muted {
+  color: var(--fg-faint);
+}
+
+.badge {
+  font-size: 0.8125rem;
+  color: var(--accent);
+  border: 1px solid var(--accent-border);
+  padding: 0 0.35rem;
 }
