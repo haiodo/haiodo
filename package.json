@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "astro build && node scripts/prune-unused-assets.mjs",
+    "build": "astro build && node scripts/prune-unused-assets.mjs && node scripts/slash-compat.mjs",
     "preview": "astro preview",
     "astro": "astro"
   },
@@ -26,5 +26,8 @@
       "esbuild",
       "sharp"
     ]
+  },
+  "dependencies": {
+    "@astrojs/rss": "^4.0.19"
   }
 }

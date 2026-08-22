@@ -242,3 +242,38 @@ th {
   border: 1px solid var(--accent-border);
   padding: 0 0.35rem;
 }
+
+/* Lightbox: any plain image inside <main> opens full size on click. */
+main img {
+  cursor: zoom-in;
+}
+
+/* Linked images keep their link, so the zoom cursor would lie about them. */
+main a img {
+  cursor: pointer;
+}
+
+#lightbox {
+  border: 0;
+  padding: 0;
+  background: none;
+  max-width: 94vw;
+  max-height: 94vh;
+  overflow: visible;
+  cursor: zoom-out;
+}
+
+#lightbox::backdrop {
+  background: rgb(31 36 48 / 0.92);
+}
+
+#lightbox img {
+  display: block;
+  max-width: 94vw;
+  max-height: 94vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
