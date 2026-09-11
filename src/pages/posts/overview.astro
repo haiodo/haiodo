@@ -4,7 +4,16 @@ import Base from "../../layouts/Base.astro";
 
 const posts = (await getCollection("posts"))
   .filter((entry) => entry.id !== "overview")
-  .sort((a, b) => (b.data.date?.getTime() ?? 0) - (a.data.date?.getTime() ?? 0));
+  .sort((a, b) => {
+    const byDate = (b.data.date?.getTime() ?? 0) - (a.data.date?.getTime() ?? 0);
+    // При одинаковой дате порядок задаёт sidebar.order: иначе два поста одного
+    // дня встают в порядке имён файлов, то есть старый оказывается сверху.
+    return byDate || (b.data.sidebar?.order ?? 0) - (a.data.sidebar?.order ?? 0);
+  });
+
+// Значок "Новое" ставится сам верхнему посту, чтобы не снимать его руками с
+// предыдущего при каждой публикации. Свой значок во frontmatter перекрывает.
+const newestId = posts[0]?.id;
 ---
 
 <Base title="Статьи - Андрей Соболев" description="Все статьи блога">
@@ -12,7 +21,9 @@ const posts = (await getCollection("posts"))
   {
     posts.map((entry) => {
       const badge = entry.data.sidebar?.badge;
-      const badgeText = typeof badge === "string" ? badge : badge?.text;
+      const badgeText =
+        (typeof badge === "string" ? badge : badge?.text) ??
+        (entry.id === newestId ? "Новое" : undefined);
       return (
         <a class="row" href={`/posts/${entry.id}`}>
           <span class="row-head">
