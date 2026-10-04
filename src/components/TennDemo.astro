@@ -1,0 +1,48 @@
+---
+// kind="view": two pan/zoom viewers via tenniarb-embed; kind="edit": the full editor, nothing is saved.
+const { kind, element = "" } = Astro.props;
+const base = `${import.meta.env.BASE_URL.replace(/\/$/, "")}/tenniarb/`;
+---
+
+<div class="tn-demo" data-kind={kind} data-base={base} data-element={element}>
+  {kind === "edit" && <button type="button" class="tn-reset">Сбросить</button>}
+  <div class="tn-host"></div>
+</div>
+
+<style is:global>
+  .tn-demo .tn-host { height: 680px; overflow: hidden; border: 1px solid var(--border); margin-bottom: 1rem; }
+  .tn-demo[data-kind="view"] .tn-host { height: 420px; }
+  .tn-demo .tn-reset { font: inherit; font-size: 0.875rem; color: var(--accent); background: none; border: 1px solid var(--accent-border); padding: 0.1rem 0.7rem; margin-bottom: 0.5rem; cursor: pointer; }
+  /* The blog's .row (bordered list card) leaks into the editor's outline rows. */
+  .tn-demo .tn-split .row { border: 0; margin: 0; transition: none; }
+  .tn-demo .tn-split .row:not(:hover):not(.sel) { background: none; }
+  @media (max-width: 640px) { .tn-demo .tn-host { height: 520px; } .tn-demo #outline { width: 130px; } }
+</style>
+
+<script is:inline type="module">
+  const load = (base) => (window.__tennText ??= fetch(`${base}tenniarb.tenn`).then((r) => r.text()));
+  const script = (src) => new Promise((ok, no) => Object.assign(document.head.appendChild(document.createElement("script")), { src, onload: ok, onerror: no }));
+
+  for (const demo of document.querySelectorAll(".tn-demo:not([data-ready])")) {
+    demo.dataset.ready = "";
+    const { kind, base, element } = demo.dataset;
+    const host = demo.querySelector(".tn-host");
+    const fail = (e) => { console.error("tenniarb demo:", e); host.textContent = "Не удалось загрузить демо."; };
+    if (kind === "view") {
+      Promise.all([load(base), window.Tenniarb ?? script(`${base}tenniarb-embed.min.js`)])
+        .then(([text]) => window.Tenniarb.render(host, text, { element, interactive: true, fontBaseUrl: `${base}fonts/` }))
+        .catch(fail);
+    } else {
+      let editor;
+      const start = async () => {
+        const [{ mount, mountLayout }, text] = await Promise.all([import(`${base}editor.js`), load(base)]);
+        editor?.destroy?.();
+        const layout = mountLayout(host);
+        layout.setTitle("tenniarb.tenn");
+        editor = await mount(layout.editor, { text, element, properties: layout.props, outline: layout.outline, toolbar: layout.bar, fontBaseUrl: `${base}fonts/` });
+      };
+      start().catch(fail);
+      demo.querySelector(".tn-reset").onclick = () => start().catch(fail);
+    }
+  }
+</script>
