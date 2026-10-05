@@ -44,6 +44,18 @@ export const projects: Project[] = [
     ],
   },
   {
+    name: "Hum1izer",
+    lang: "Go",
+    years: "2026 -",
+    note: "ищет канцелярит и следы нейросети в тексте, комментариях и коммитах",
+    about: "CLI на Go: проверяет прозу, комментарии в коде и сообщения коммитов на штампы, канцелярит и AI-слоп, показывает находки с номерами строк и советом. Встраивается в Claude Code, Codex, opencode и pi как скилл и хуки: агент видит находку сразу после правки. Текст сам не пишет, решает человек.",
+    links: [
+      { label: "github", href: "https://github.com/haiodo/hum1izer", icon: true },
+      { label: "как делался", href: "/posts/013_hum1izer" },
+      { label: "неделя с хуками", href: "/posts/016_hum1izer_hooks" },
+    ],
+  },
+  {
     name: "Tenniarb",
     lang: "Swift",
     years: "2018 -",

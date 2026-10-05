@@ -1,0 +1,181 @@
+---
+date: 2026-10-05
+title: "57% fewer long comments. My hook had almost nothing to do with it"
+description: "A week ago I found that my comment rules never reached Claude's subagents, and fixed it. I re-measured on 11 thousand edits from Claude transcripts: the 57% drop came from a model change, the rules at startup changed almost nothing. What works is the other hook - the one that shows a finding right after the edit."
+sidebar:
+  order: 16
+hero:
+  image:
+    file: ../../../../assets/heros/hero013.png
+---
+
+import { Image } from 'astro:assets';
+import ill_016_01 from '../../../../assets/016/ill_01.png';
+import ill_016_02 from '../../../../assets/016/ill_02.png';
+import ill_016_03 from '../../../../assets/016/ill_03.png';
+
+## What hum1izer is
+
+***
+
+[hum1izer](https://github.com/haiodo/hum1izer) is a CLI in Go. It looks for officialese, clichés and AI traces in prose, code comments and commit messages, in Russian and English. It counts only what grep and arithmetic can count: rules live in YAML, plus rhythm, nominalization and a cleanliness score from 0 to 100. It doesn't write text. It shows a finding with a line number and says what to do about it, and a human decides.
+
+This is the third post in a series about slop. In the first one, ["The em dash doesn't give away a neural network. I checked on a corpus"](/en/posts/013_hum1izer), I measured the usual signs of machine text on a corpus and found that the tool catches officialese, not authorship. In the second, ["Chasing AI-slop code"](/posts/014_code_shape) (in Russian), I looked for slop in the code itself: found no detector, found one stable quantity - nesting depth. Now the question is practical: does hum1izer help an agent write cleaner if it's wired straight into the agent's work?
+
+```bash
+hum1izer post.md              # prose: report with suggestions
+hum1izer --code ./src         # code comments
+hum1izer --code .             # same plus the last 20 commits
+hum1izer tui ./src            # go through findings by hand, three panes
+```
+
+Most of my code is now written by Claude and its subagents, and they comment in their own way: three to five lines retelling what the function does, edit history right in the code, `=====` banners, a `ponytail:` tag from a plugin at the start of a line.
+
+One command handles that:
+
+```bash
+hum1izer install --claude --hooks
+```
+
+It installs the skill and adds three hooks to `~/.claude/settings.json`:
+
+| Event | What it does |
+|---|---|
+| `SessionStart` | puts the rules into context: a comment is 1-2 lines, answers "why", not "what", no banners or tool tags |
+| `SubagentStart` | same for every subagent |
+| `PostToolUse` on `Edit` and `Write` | checks the changed lines of the file and returns findings to the agent |
+
+The last one fires right after an edit. No findings - it stays silent. Otherwise the agent gets this:
+
+```
+hum1izer found the following in .../Session.swift. Address the findings:
+fix the block or mark `fix --block <id> --keep` if the rule fired for nothing.
+
+## .../Session.swift:190-192
+block 5185d5332088 | `swift` | comment | weight 4
+
+- **Tool tag in a comment** (hard, line 192) - Drop the prefix, keep the thought
+- **Long comment** (line 190) - Fit in 2 lines: keep the reasoning, move the description to docs
+
+// Same stand and same workspace - continue the previous session: logging in
+// again wipes the last chat, and screen restore can't be checked.
+// ponytail: not checking the account, there's only one in the run.
+```
+
+Then the agent either rewrites the block or marks it `--keep` if the rule fired for nothing.
+
+***
+
+## Where the task came from
+
+The hooks have been on since September 17. On September 29 I decided to check whether they help and went through the transcripts in `~/.claude/projects`. That gave 9937 code edits. The metric is simple: blocks with findings per 100 added comment lines. All groups are run through the same hum1izer version.
+
+| Group | Comment lines | Long per 100 lines |
+|---|---|---|
+| main session, before hooks | 1833 | 3.82 |
+| main session, with hooks | 625 | 1.76 |
+| subagents, before hooks | 6908 | 9.25 |
+| subagents, with hooks | 13782 | 7.89 |
+
+Subagents made 95% of the edits. They wrote long comments 2.5-4.5 times as often as the main session, and the hooks cut that by only 15%.
+
+There were two reasons.
+
+**`SessionStart` doesn't fire for subagents.** It's in the Claude Code docs, in the section on subagent hooks. The rules showed up in the transcript of one subagent out of 1020. The rest learned about a rule only from a finding, that is, after they had already broken it.
+
+**The cache of shown blocks was keyed by `session_id`.** The hook doesn't repeat a block it has already shown, otherwise the context grows with every edit. But a subagent comes with its parent's `session_id` and its own `agent_id`. A block the parent had seen was silently never shown to the subagent.
+
+<Image src={ill_016_01} alt="An engineer with a clipboard outside a door, the rules hang outside, robots work inside" quality="max" />
+
+The fix: a `SubagentStart` hook that hands out the same rules, and `session_id` plus `agent_id` as the cache key. It costs about 1.5 KB of context per subagent.
+
+I wrote the criterion down in advance, in the task: re-measure in a week. If subagents' long comments drop by less than 15%, the startup rules didn't help, and I need another way.
+
+***
+
+## A week later: minus 57%
+
+Same script, same hum1izer version for all groups. Over the week 505 subagents got the rules, made 1073 edits and added 4739 comment lines.
+
+| Subagents | Comment lines | Long per 100 lines |
+|---|---|---|
+| before hooks | 6908 | 9.25 |
+| post-edit check only | 13899 | 7.94 |
+| plus rules at startup | 4739 | **3.40** |
+
+Minus 57% from the week before. The criterion is met with room to spare, the task can be closed.
+
+***
+
+## Except the model changed too
+
+The same week subagents in one project, project A from here on, moved from `sonnet-5` to `opus-5-5` and `sonnet-5-5`. The other one, project B, stayed on `sonnet-5`. When groups differ by more than the hook, you can't compare them as a whole. Split by model:
+
+| Subagents | Model | Lines | Long per 100 lines |
+|---|---|---|---|
+| post-edit check only | sonnet-5 | 13745 | 7.99 |
+| plus rules at startup | sonnet-5 | 1387 | 7.43 |
+| plus rules at startup | opus-5-5 | 3115 | 1.67 |
+
+On the same model the startup rules gave minus 7%. That's below my own threshold. In project B on `sonnet-5` it even got worse: 6.31 before, 7.04 after.
+
+In project A, where the model changed, it went from 10.23 to 1.69. That's where the 57% came from.
+
+<Image src={ill_016_02} alt="An old and a new robot at drafting tables: the old one has a long scroll, the new one a short note" quality="max" />
+
+Rules at the start of a session barely change the first draft of a comment. The model does. Had I not split the data by model, I'd have booked someone else's result as my win.
+
+***
+
+## Where the hook does work
+
+The first measurement looks at the draft - the comment at the moment of the edit, before the agent sees any finding. But the post-edit check exists exactly to fix the draft. So I counted something else: what the agent did with the block after the finding, in the same transcript. Each block is counted once.
+
+| Subagents, sonnet-5 | Blocks | Fixed | Marked `--keep` | Left as is |
+|---|---|---|---|---|
+| before September 28 | 2336 | 42% | 2% | 54% |
+| the week after | 189 | **93%** | 0% | 5% |
+
+Same model, and it fixes more than twice as often. It's not a change in project mix: inside project B it went from 35% to 91%, inside project A from 50% to 95%.
+
+Whose contribution it is, I can't say. Three changes landed between the two measurements: the hook started returning only new findings instead of the whole file (the 90th percentile of its output fell from 6745 to 3469 characters), subagents started getting the rules, and each subagent got its own cache. This data can't separate them.
+
+With the new models my "fixed" heuristic falls short: it looks for an edit whose old text contains the first line of the block. By it, `opus-5-5` fixed 27% of blocks and `sonnet-5-5` 6%. So I ran hum1izer over the files as they are now. Of 322 blocks shown to subagents during the week, 285 are clean now, 22 still have a finding, and 15 files no longer exist. For `opus-5-5`, all 79 remaining blocks are clean. Who cleaned them - the subagent itself, the main session or me by hand - the transcript doesn't say.
+
+***
+
+## What made it into git
+
+A transcript shows the draft, git shows what I committed. I took only my own commits: in project A half of the week's commits are a colleague's, and I don't have their sessions. Then ran the added lines.
+
+| Project | Period | Comment lines | Long per 100 | Other per 100 |
+|---|---|---|---|---|
+| A | Sep 17-28 | 3059 | 0.92 | 0.39 |
+| A | Sep 28 - Oct 5 | 5398 | **0.52** | 0.52 |
+| B | Sep 17-28 | 2699 | 2.56 | 1.19 |
+| B | Sep 28 - Oct 5 | 1506 | 2.46 | **2.46** |
+
+Committed code has 3-11 times fewer long comments than the drafts. Something removes them between the edit and the commit: the hook, the main session, or me. Git can't tell which.
+
+But the "other" column grew. In project B it doubled. I looked at why.
+
+<Image src={ill_016_03} alt="A robot clerk stretches a sheet sideways so it fits between two strips of tape" quality="max" />
+
+`Long comment line` - a comment line longer than 100 characters. In project B there were 3 of them the week before and 21 this week. In project A they're 26 of the 28 "other" findings. The agent got the rule "no more than two lines" and follows it to the letter: three lines of 80 characters become two lines of 120. Same thought, same length, check passes.
+
+This has happened before. In [the first post](/en/posts/013_hum1izer) the agent glued three lines into one of 140 characters, and I added a line length limit. The limit works: it catches such lines. But the agent starts from them instead of ending there, and every such line has to be caught after the edit.
+
+In [the post about code shape](/posts/014_code_shape) (in Russian) I wrote that an agent learns to ignore a threshold that gets broken too often. Here it doesn't ignore the rule, it routes around it: follows the letter and leaves alone what the rule was written for.
+
+There's a separate rule for this, and the hook shows it. But in `opus-5-5` drafts long lines run at 0.77 per 100 comment lines against 0.36 for `sonnet-5` a week earlier: it writes fewer blocks over two lines, but wider lines.
+
+***
+
+## Summary
+
+- **Rules at subagent startup** don't change the first draft of a comment: minus 7% on one model, below the threshold I set in advance. In project B it got worse.
+- **The post-edit check** works. On the same model subagents fix 93% of shown blocks against 42%, and it holds inside each project.
+- **The model** gave more than all my hooks together: 1.67 long comments per 100 lines for `opus-5-5` against 7.99 for `sonnet-5`.
+- **The two-line rule** gets routed around by width. The limit probably should count characters per block, not lines.
+
+The "hum1izer findings" metric is scored by hum1izer itself. The next step in the task is a blind sample: 30-50 comments from each group, rated by me without knowing where they came from.

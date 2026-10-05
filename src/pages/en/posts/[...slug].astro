@@ -1,0 +1,17 @@
+---
+import { getCollection } from "astro:content";
+import Post from "../../../layouts/Post.astro";
+
+// An English post shares its id with the Russian original.
+export async function getStaticPaths() {
+  const posts = await getCollection("postsEn");
+  return posts.map((entry) => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+---
+
+<Post entry={entry} lang="en" alternate={`/posts/${entry.id}`} />

@@ -1,0 +1,33 @@
+---
+import { getCollection } from "astro:content";
+import Base from "../../../layouts/Base.astro";
+
+const posts = (await getCollection("postsEn")).sort(
+  (a, b) => (b.data.date?.getTime() ?? 0) - (a.data.date?.getTime() ?? 0),
+);
+---
+
+<Base title="Posts - Andrey Sobolev" description="English translations of the blog posts" lang="en">
+  <h1 class="prompt">ls -la en/posts/</h1>
+  {
+    posts.map((entry) => (
+      <a class="row" href={`/en/posts/${entry.id}`}>
+        <span class="row-head">
+          <span class="row-title">
+            <span class="post-date">{entry.data.date?.toISOString().slice(0, 10)}</span>
+            {entry.data.title}
+          </span>
+        </span>
+        {entry.data.description && <p class="row-desc">{entry.data.description}</p>}
+      </a>
+    ))
+  }
+  <p class="muted">More posts in Russian: <a href="/posts/overview">/posts/overview</a></p>
+</Base>
+
+<style>
+  .post-date {
+    color: var(--fg-faint);
+    margin-right: 0.6rem;
+  }
+</style>

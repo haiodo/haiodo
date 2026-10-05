@@ -36,6 +36,10 @@ export const collections = {
     loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/docs/posts', generateId: keepCase }),
     schema: entry,
   }),
+  postsEn: defineCollection({
+    loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/docs/en/posts', generateId: keepCase }),
+    schema: entry,
+  }),
   projects: defineCollection({
     loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/docs/projects', generateId: keepCase }),
     schema: entry,
