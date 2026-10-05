@@ -20,19 +20,28 @@ Prints `<path> seed=<N>`. One image takes about 1-2 minutes; run in background w
 3. Generate 2-3 variants with different seeds into the scratchpad, look at each (Read the PNG), show the user the best one or all.
 4. After the user picks one, copy it into the repo and wire it up.
 
-## Where images go
+## Hero cover (new post or replacing one)
 
-- Hero cover: `src/assets/heros/heroNNN.png` (next free number), 1024x1024 or 1024x768. Frontmatter:
-  ```yaml
-  hero:
-    image:
-      file: ../../../assets/heros/heroNNN.png
-  ```
-- Inline image: `src/assets/NNN/<name>.png` where NNN is the post number, then in the mdx:
-  ```mdx
-  import img001 from '../../../assets/NNN/<name>.png';
-  <Image src={img001} alt="..." inferSize quality="max" />
-  ```
+1. Read the whole post: title, description, headings. A draft is fine; build on the title and the main conflict.
+2. Write 3 prompts with different metaphors for the post's main idea, 1024x1024 (no `-W/-H`). Run all three in parallel with `&` and `wait`; ComfyUI queues them.
+3. Look at all three (a contact sheet via PIL saves tokens). Drop variants with garbled text or letters. Pick the one that fits the title best and show the user the alternatives.
+4. Copy it to `src/assets/heros/heroNNN.png`, where NNN is the next free number (`ls src/assets/heros`). Never overwrite an existing hero: other posts may share it (`grep -rn "heros/" src/content`).
+5. Set the frontmatter to the new file. If the post has no `hero` block, add it after `sidebar`:
+   ```yaml
+   hero:
+     image:
+       file: ../../../assets/heros/heroNNN.png
+   ```
+6. Run `pnpm build` to check.
+
+## Inline images
+
+Place an image after a full paragraph or right after a heading, never inside code, tables or JSX. Skip spots that a screenshot or diagram already covers. File: `src/assets/NNN/ill_NN.png`, where NNN is the post number. In the mdx, `import { Image } from 'astro:assets';` must be present after the frontmatter:
+```mdx
+import ill_NNN_01 from '../../../assets/NNN/ill_01.png';
+
+<Image src={ill_NNN_01} alt="..." quality="max" />
+```
 
 ## Style of existing heros
 
