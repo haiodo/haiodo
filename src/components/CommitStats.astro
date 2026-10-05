@@ -1,0 +1,108 @@
+---
+// Build-time SVG charts for post 015: chart="bars" (added vs alive lines) or chart="weekly".
+import D from "../data/015_commits.json";
+
+const { chart } = Astro.props;
+const rows = D.rows;
+const me = rows[0], d1 = rows[1];
+const color = (r) => (r === me ? "var(--cyan)" : r === d1 ? "var(--accent-deep)" : "var(--fg-faint)");
+const fmt = (n) => n.toLocaleString("ru-RU");
+const k = (v) => (v ? v / 1000 + "k" : "0");
+
+const W = 1000;
+const list = rows.filter((r) => r.code_add + r.test_add > 1000);
+const bL = 160, bR = 210, rowH = 30, bH = 6 + list.length * rowH + 26;
+const bMax = Math.max(...list.map((r) => r.code_add + r.test_add));
+const bx = (v) => bL + (v / bMax) * (W - bL - bR);
+const bTicks = Array.from({ length: Math.floor(bMax / 50000) + 1 }, (_, i) => i * 50000);
+
+const n = D.weeks.length;
+const team = D.weeks.map((_, i) => rows.slice(2).reduce((s, r) => s + r.weekly[i], 0));
+const series = [
+  { s: team, c: "var(--fg-faint)" },
+  { s: me.weekly, c: "var(--cyan)" },
+  { s: d1.weekly, c: "var(--accent-deep)" },
+];
+const wH = 320, wL = 56, wR = 16, wT = 12, wB = 34;
+const wTop = Math.ceil(Math.max(...series.flatMap((x) => x.s)) / 20000) * 20000;
+const wx = (i) => wL + (i / (n - 1)) * (W - wL - wR);
+const wy = (v) => wT + (1 - v / wTop) * (wH - wT - wB);
+const wTicks = Array.from({ length: wTop / 20000 + 1 }, (_, i) => i * 20000);
+const monthNames = ["янв", "фев", "мар", "апр", "май", "июн", "июл", "авг", "сен", "окт"];
+// A month that starts in the last days of the range gets no label, it would overlap the next one.
+const months = D.weeks.flatMap((w, i) => ((i === 0 || w.slice(5, 7) !== D.weeks[i - 1].slice(5, 7)) && D.weeks[i + 2]?.slice(5, 7) === w.slice(5, 7) ? [{ i, m: monthNames[+w.slice(5, 7) - 1] }] : []));
+---
+
+<figure class="cs">
+  {chart === "bars" && (
+    <>
+      <div class="cs-legend">
+        <span><i style="background:var(--cyan)" />код, я</span>
+        <span><i style="background:var(--accent-deep)" />код, разработчик 1</span>
+        <span><i style="background:var(--fg-faint)" />код, остальные</span>
+        <span><i style="background:var(--fg-faint);opacity:.45" />тесты</span>
+        <span><i class="line" style="background:var(--fg-bright)" />сохранилось в основной ветке</span>
+      </div>
+      <svg viewBox={`0 0 ${W} ${bH}`} role="img" aria-label="Добавленные строки кода и тестов по участникам">
+        {bTicks.map((v) => (
+          <>
+            <line x1={bx(v)} x2={bx(v)} y1={6} y2={bH - 22} stroke="var(--border)" />
+            <text x={bx(v)} y={bH - 6} text-anchor="middle">{k(v)}</text>
+          </>
+        ))}
+        {list.map((r, i) => {
+          const y = 6 + i * rowH, total = r.code_add + r.test_add, alive = r.alive_code + r.alive_test;
+          return (
+            <>
+              <text x={bL - 10} y={y + 14} text-anchor="end" class={r === me || r === d1 ? "hl" : ""} style={`fill:${color(r)}`}>{r.name}</text>
+              <rect x={bL} y={y} width={bx(r.code_add) - bL} height="18" fill={color(r)} />
+              <rect x={bx(r.code_add)} y={y} width={bx(total) - bx(r.code_add)} height="18" fill={color(r)} opacity=".45" />
+              <line x1={bx(alive)} x2={bx(alive)} y1={y - 3} y2={y + 21} stroke="var(--fg-bright)" stroke-width="2.5" />
+              <text x={bx(total) + 8} y={y + 13}>{fmt(total)} · жив. {Math.round((alive / total) * 100)}%</text>
+            </>
+          );
+        })}
+      </svg>
+    </>
+  )}
+  {chart === "weekly" && (
+    <>
+      <div class="cs-legend">
+        <span><i class="line" style="background:var(--cyan)" />я</span>
+        <span><i class="line" style="background:var(--accent-deep)" />разработчик 1</span>
+        <span><i class="line" style="background:var(--fg-faint)" />остальные вместе</span>
+      </div>
+      <svg viewBox={`0 0 ${W} ${wH}`} role="img" aria-label="Строки кода и тестов по неделям">
+        {wTicks.map((v) => (
+          <>
+            <line x1={wL} x2={W - wR} y1={wy(v)} y2={wy(v)} stroke="var(--border)" />
+            <text x={wL - 8} y={wy(v) + 4} text-anchor="end">{k(v)}</text>
+          </>
+        ))}
+        {months.map(({ i, m }) => <text x={wx(i)} y={wH - 10}>{m}</text>)}
+        {series.map(({ s, c }) => {
+          const peak = s.indexOf(Math.max(...s));
+          return (
+            <>
+              <path d={s.map((v, i) => `${i ? "L" : "M"}${wx(i).toFixed(1)} ${wy(v).toFixed(1)}`).join("")} fill="none" stroke={c} stroke-width="2.4" stroke-linejoin="round" />
+              <circle cx={wx(peak)} cy={wy(s[peak])} r="4" fill={c} />
+              {wx(peak) > W - 120
+                ? <text x={wx(peak) - 8} y={wy(s[peak]) - 8} text-anchor="end">{fmt(s[peak])}</text>
+                : <text x={wx(peak) + 8} y={wy(s[peak]) + 4}>{fmt(s[peak])}</text>}
+            </>
+          );
+        })}
+      </svg>
+    </>
+  )}
+</figure>
+
+<style>
+  .cs { margin: 1.5rem 0; padding: 1rem; border: 1px solid var(--border); background: var(--bg-inset); }
+  .cs svg { display: block; width: 100%; height: auto; }
+  .cs text { fill: var(--fg-muted); font-family: var(--font-mono); font-size: 13px; }
+  .cs text.hl { font-weight: 600; }
+  .cs-legend { display: flex; flex-wrap: wrap; gap: 0.25rem 1.25rem; font-size: 0.8rem; color: var(--fg-muted); margin-bottom: 0.75rem; }
+  .cs-legend i { display: inline-block; width: 12px; height: 12px; margin-right: 6px; vertical-align: -1px; }
+  .cs-legend i.line { height: 3px; vertical-align: 3px; }
+</style>
