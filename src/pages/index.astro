@@ -18,8 +18,13 @@ const fmtDate = (d?: Date) =>
 // Из профиля: чем занимаюсь и с чем работаю.
 const skills = [
   "Go", "TypeScript / Node.js", "Java", "C++", "Svelte", "React", "Vue",
-  "TCL", "Ruby", "Kubernetes", "Enterprise Software", "Архитектура",
-  "Test Automation",
+  "JavaScript", "HTML / CSS", "TCL", "Ruby", "Kubernetes", "Enterprise Software",
+  "Архитектура", "ООП", "Test Automation", "Start-up Leadership",
+];
+
+const cv = [
+  { href: "/cv/andrey-sobolev-cv-ru.pdf", label: "резюме.pdf" },
+  { href: "/cv/andrey-sobolev-cv-en.pdf", label: "cv-en.pdf" },
 ];
 
 // Родословная платформы: один код, три поколения.
@@ -55,11 +60,22 @@ const career = [
   { org: "Network Service Mesh", role: "Building Kubernetes Hybrid/Multi-cloud IP Service from scratch", period: "2018 - 2020" },
   {
     org: "Xored Software",
-    role: "Technical Leader / Principal Engineer",
-    period: "2005 - 2021",
-    detail: "проекты для Cisco Systems, Spirent Communications, InterSystems Corporation, British Telecom",
+    role: "Principal Software Engineer",
+    period: "2013 - 2021",
+    detail: "архитектура продуктовых линеек, руководство несколькими командами; InterSystems Atelier, Q7 / RCPTT и отладчик ECL, YANG-IDE, продукты на React / Meteor / Node.js; проекты для Cisco Systems, Spirent Communications, InterSystems Corporation, British Telecom",
   },
-  { org: "Novosoft LLC", role: "Software Architect", period: "2004 - 2005" },
+  {
+    org: "Xored Software",
+    role: "Sr. Software Engineer",
+    period: "2005 - 2013",
+    detail: "Eclipse DLTK (IDE для TCL, Ruby, JavaScript), Q7 и Q7 Server, ECL, F4 - IDE для Fantom, RCPML, YANG-IDE на EMF и GEF/GMF",
+  },
+  {
+    org: "Novosoft LLC",
+    role: "Software Architect",
+    period: "2004 - 2005",
+    detail: "HandyPassword - менеджер паролей как расширение Internet Explorer, C++ и MS COM",
+  },
 ];
 ---
 
@@ -101,10 +117,22 @@ const career = [
       {skills.map((s) => <li>{s}</li>)}
     </ul>
     <p class="about muted">
-      Новосибирский государственный университет, магистр по информационным
-      технологиям. Уже три года помогаю университету - веду у студентов
-      объектно-ориентированное программирование на C++ и Java.
+      Новосибирский государственный университет: бакалавр (2001 - 2005) и
+      магистр (2005 - 2007) по информационным технологиям. Уже три года помогаю
+      университету - веду у студентов объектно-ориентированное программирование
+      на C++ и Java. Русский - родной, английский - рабочий.
     </p>
+    <p class="cv">
+      {cv.map((f) => <a class="cv-link" href={f.href} target="_blank" rel="noreferrer">{f.label}</a>)}
+    </p>
+    <dialog class="cv-dialog">
+      <div class="cv-bar">
+        <span class="cv-title"></span>
+        <a class="cv-download" download>↓ скачать</a>
+        <button type="button" class="cv-close" aria-label="Закрыть">✕</button>
+      </div>
+      <iframe class="cv-frame" title="Резюме"></iframe>
+    </dialog>
   </section>
 
   <section>
@@ -210,8 +238,29 @@ const career = [
     <pre class="tree-block">├─ email     <a href="mailto:haiodo@gmail.com">haiodo@gmail.com</a>
 ├─ email     <a href="mailto:haiodo@yandex.ru">haiodo@yandex.ru</a>
 ├─ telegram  <a href="https://t.me/dev_haiodo">t.me/dev_haiodo</a>
+├─ linkedin  <a href="https://www.linkedin.com/in/sobolevandrey">linkedin.com/in/sobolevandrey</a>
 └─ github    <a href="https://github.com/haiodo">github.com/haiodo</a></pre>
   </section>
+  <script is:inline>
+    // Phones don't render PDF inside an iframe, so there the link just opens a new tab.
+    {
+      const dialog = document.querySelector(".cv-dialog");
+      const frame = dialog.querySelector(".cv-frame");
+      for (const link of document.querySelectorAll(".cv-link")) {
+        link.addEventListener("click", (e) => {
+          if (!matchMedia("(min-width: 48rem)").matches) return;
+          e.preventDefault();
+          dialog.querySelector(".cv-title").textContent = link.textContent;
+          dialog.querySelector(".cv-download").href = link.href;
+          frame.src = link.href;
+          dialog.showModal();
+        });
+      }
+      dialog.querySelector(".cv-close").addEventListener("click", () => dialog.close());
+      dialog.addEventListener("click", (e) => e.target === dialog && dialog.close());
+      dialog.addEventListener("close", () => frame.removeAttribute("src"));
+    }
+  </script>
 </Base>
 
 <style>
@@ -431,6 +480,79 @@ const career = [
     .career-role {
       grid-column: 2;
     }
+  }
+
+  .cv {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin: 0;
+  }
+
+  .cv-link {
+    border: 1px solid var(--accent-border);
+    color: var(--accent);
+    padding: 0.2rem 0.75rem;
+    font-size: 0.9375rem;
+    text-decoration: none;
+  }
+
+  .cv-link:hover {
+    border-color: var(--accent);
+    color: var(--accent-bright);
+  }
+
+  .cv-dialog {
+    width: min(64rem, 100vw - 2rem);
+    height: calc(100vh - 2rem);
+    max-width: none;
+    max-height: none;
+    padding: 0;
+    border: 1px solid var(--border);
+    background: var(--bg-inset);
+    color: var(--fg);
+  }
+
+  .cv-dialog[open] {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .cv-dialog::backdrop {
+    background: rgb(0 0 0 / 0.6);
+  }
+
+  .cv-bar {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.4rem 0.75rem;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.9375rem;
+  }
+
+  .cv-title {
+    flex: 1;
+    color: var(--fg-dim);
+  }
+
+  .cv-close {
+    background: none;
+    border: 0;
+    color: var(--fg-muted);
+    font: inherit;
+    cursor: pointer;
+  }
+
+  .cv-close:hover {
+    color: var(--accent);
+  }
+
+  .cv-frame {
+    flex: 1;
+    width: 100%;
+    border: 0;
+    background: #fff;
   }
 
   .post-date {
