@@ -56,6 +56,14 @@ export const projects: Project[] = [
     ],
   },
   {
+    name: "OAITT",
+    lang: "Python / Swift",
+    years: "2025 -",
+    note: "распознавание речи на GigaAM с API как у OpenAI",
+    about: "Сервис распознавания речи на модели GigaAM с API, совместимым с OpenAI. Две реализации с одним API: сервис на Python и нативная сборка на Swift/MLX для Apple Silicon в виде приложения для строки меню macOS. Воркеры - отдельные процессы с автоперезапуском, живая статистика, бенчмарки.",
+    links: [{ label: "github", href: "https://github.com/haiodo/oaitt", icon: true }],
+  },
+  {
     name: "Tenniarb",
     lang: "Swift",
     years: "2018 -",
@@ -94,6 +102,30 @@ export const projects: Project[] = [
     ],
   },
   {
+    name: "ECL",
+    lang: "Java",
+    years: "2010 - 2013",
+    note: "Eclipse Command Language, скриптовый язык Q7 и RCPTT",
+    about: "Расширяемый скриптовый язык командной строки от Xored, основной язык сценариев Q7 и RCPTT. Делал ядро, runtime отладчика, переработку клиент-серверного выполнения команд и новые команды.",
+    links: [{ label: "github", href: "https://github.com/haiodo/ecl", icon: true }],
+  },
+  {
+    name: "F4",
+    lang: "Java / Fantom",
+    years: "2010 - 2016",
+    note: "IDE для языка Fantom на Eclipse",
+    about: "IDE для языка Fantom на базе Eclipse и DLTK. Интеграция с JDT, автодополнение и навигация по FFI, парсер, сборка; позже сопровождал проект и принимал PR сообщества.",
+    links: [{ label: "github", href: "https://github.com/haiodo/f4", icon: true }],
+  },
+  {
+    name: "YANG-IDE",
+    lang: "Java",
+    years: "2014 - 2016",
+    note: "IDE для языка моделирования YANG / NETCONF",
+    about: "IDE для языка YANG, разрабатывалась в Xored для Cisco. Продукт, сборка, редакторы, модель. Форк продолжает жить в OpenDaylight.",
+    links: [{ label: "github", href: "https://github.com/haiodo/yang-ide", icon: true }],
+  },
+  {
     name: "Eclipse DLTK",
     lang: "Java",
     years: "2005 - 2015",
@@ -104,4 +136,19 @@ export const projects: Project[] = [
       { label: "github", href: "https://github.com/eclipse-dltk", icon: true },
     ],
   },
-];
+  {
+    name: "RCPML",
+    lang: "Java",
+    years: "2006 - 2007",
+    note: "декларативный UI на XML для Eclipse RCP",
+    about: "UI-движок для Eclipse RCP: интерфейс описывается на XML и оформляется стилями CSS. Делал ядро, формы и отрисовку на SWT.",
+    links: [{ label: "github", href: "https://github.com/haiodo/rcpml", icon: true }],
+  },
+// Active projects ("2025 -") go first in the order written; finished ones follow, newest start year first.
+].sort((a, b) => {
+  const aActive = a.years.endsWith("-");
+  const bActive = b.years.endsWith("-");
+  if (aActive !== bActive) return aActive ? -1 : 1;
+  if (aActive) return 0;
+  return parseInt(b.years) - parseInt(a.years);
+});
