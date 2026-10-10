@@ -11,11 +11,11 @@ export type Project = {
 
 export const projects: Project[] = [
   {
-    name: "Intabia Platform",
+    name: "Интабия Платформа",
     lang: "TypeScript",
     years: "2025 -",
-    note: "Интабия Платформа, чем занимаюсь сейчас",
-    about: "Продуктовая ветка платформы в Intabia Fusion, где я со-основатель. Тот же фундамент, что и Huly: объектная модель, живые запросы, постоянное соединение.",
+    note: "открытая платформа для команд, чем занимаюсь сейчас",
+    about: "Открытая платформа и единое место работы для команд: Chat, Tracker, Office, Drive. Доступна в Web, Desktop, iOS, Android и через MCP.",
     links: [
       { label: "platform.intabia.ru", href: "https://platform.intabia.ru" },
       { label: "github", href: "https://github.com/intabia-fusion/platform/pulls", icon: true },
@@ -37,7 +37,7 @@ export const projects: Project[] = [
     lang: "TypeScript",
     years: "2021 - 2025",
     note: "открытая платформа для бизнес-приложений",
-    about: "Открытая платформа для приложений: Chat, Tracker, HRM, ATS. Моими руками сделаны Tracker, Github Integration, системные и UI-компоненты. 26k+ звёзд на GitHub.",
+    about: "Открытая платформа для приложений: Chat, Tracker, HRM, ATS. Моими руками сделаны Tracker, Github Integration, системные и UI-компоненты. 27.9k звёзд на GitHub.",
     links: [
       { label: "huly.io", href: "https://huly.io" },
       { label: "github", href: "https://github.com/hcengineering/platform", icon: true },

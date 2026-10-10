@@ -1,7 +1,7 @@
 /* Print stylesheet for the downloadable CV; colors follow the blog's Ayu Mirage palette. */
 @page {
   size: A4;
-  margin: 14mm 15mm 14mm 15mm;
+  margin: 11mm 12mm;
 }
 
 :root {
@@ -36,12 +36,24 @@ body {
 header {
   background: var(--band);
   color: var(--band-fg);
-  padding: 7mm 8mm 6mm;
-  margin-bottom: 6mm;
+  padding: 2.5mm 3.5mm;
+  border-radius: 3mm;
+  margin-bottom: 5mm;
   display: grid;
-  grid-template-columns: 1fr auto;
+  grid-template-columns: auto 1fr auto;
   gap: 6mm;
-  align-items: end;
+  align-items: center;
+}
+
+header .photo {
+  display: block;
+  width: 24mm;
+  height: 24mm;
+  margin: 0.35mm;
+  object-fit: cover;
+  object-position: top;
+  border-radius: 2mm;
+  box-shadow: 0 0 0 0.35mm var(--band-accent);
 }
 
 header h1 {
@@ -104,12 +116,26 @@ li {
   margin-bottom: 3.2mm;
 }
 
+/* Everything under a job heading hangs on one rail; spacing is padding so the rail has no gaps. */
+.job > p,
+.job > ul,
+.job > .sub {
+  margin: 0 0 0 3mm;
+  padding: 0.5mm 0 1mm 3mm;
+  border-left: 2px solid var(--rule);
+}
+
+.job > ul {
+  padding-left: 7.5mm;
+}
+
+.job > .sub {
+  padding-top: 1.8mm;
+  padding-bottom: 0;
+}
+
 .job-head {
   break-after: avoid;
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: 4mm;
 }
 
 .job-org {
@@ -127,10 +153,16 @@ li {
   white-space: nowrap;
 }
 
+.job-head .job-period {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+.job-head .job-period::before {
+  content: "- ";
+}
+
 .sub {
-  margin: 1.8mm 0 0 0;
-  padding-left: 3mm;
-  border-left: 2px solid var(--rule);
   break-inside: avoid;
 }
 
@@ -157,7 +189,7 @@ li {
   margin: 0;
 }
 
-.url {
+.nowrap {
   white-space: nowrap;
 }
 
