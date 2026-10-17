@@ -1,27 +1,41 @@
-# Overview
+**Русский** | [English](Readme.en.md)
 
-Hi, My name is Andrey.
+# Обо мне
 
-I am a software developer who enjoys learning new technologies and sharing my knowledge with others.
+Привет, меня зовут Андрей Соболев.
 
-Started with Java,
-  * [DLTK](https://github.com/eclipse-dltk) => [DLTK at Eclipse.org](https://www.eclipse.org/dltk/)
-  * [RCPTT](https://github.com/eclipse-rcptt) => [RCPTT at Eclipse.org](https://www.eclipse.org/rcptt/)
+Разработчик и архитектор, со-основатель Intabia Fusion. Люблю изучать новые технологии и делиться знаниями.
 
-Continued with Go:
-  * [NetworkServiceMesh](https://github.com/networkservicemesh)
+Начинал с Java и Eclipse:
+* [DLTK](https://github.com/eclipse-dltk) - [DLTK на eclipse.dev](https://eclipse.dev/dltk/)
+* [RCPTT](https://github.com/eclipse-rcptt) - [RCPTT на eclipse.dev](https://eclipse.dev/rcptt/)
 
-And finally, I'm a co-author/co-founder of Huly.io platform [Huly](https://github.com/hcengineering/platform).
+Продолжил на Go:
+* [Network Service Mesh](https://github.com/networkservicemesh)
 
-And I've worked on some personal pet projects:
-* [Personal Huly](https://github.com/haiodo/foundation) - Huly all in one, with some experiments.
-* [Tenniarb](https://github.com/haiodo/tenniarb) - A brain map editor for MacOS.
-* [OAITT](http://github.com/haiodo/oaitt) - A whisper* based transcoder with openai interfaces. Only inference.
-* [OOP](https://github.com/haiodo/oop) - a course and tasks for Novosibirsk State University Object Oriented Programming course.
-* [Blog](https://github.com/haiodo/haiodo) - my blog materials are here.
+Со-автор и со-основатель платформы [Huly](https://github.com/hcengineering/platform), сейчас делаю [Интабия Платформу](https://github.com/intabia-fusion/platform).
 
-How to find me:
+## Open Source
 
-1. email: haiodo@gmail.com
-2. telegram: https://t.me/dev_haiodo
-3. github: https://github.com/haiodo
+* [Hum1izer](https://github.com/haiodo/hum1izer) - CLI на Go: ищет канцелярит, штампы и следы нейросети в тексте, комментариях и коммитах.
+* [Интабия Платформа](https://github.com/intabia-fusion/platform) - открытая платформа и единое место работы для команд: Chat, Tracker, Office, Drive.
+* [Huly Platform](https://github.com/hcengineering/platform) - открытый фреймворк для бизнес-приложений: чат, управление проектами, CRM, HRM, ATS.
+* [Tenniarb](https://github.com/haiodo/tenniarb) - нативный редактор мозговых карт для macOS на Swift со своим форматом диаграмм.
+* [OAITT](https://github.com/haiodo/oaitt) - сервис распознавания речи на GigaAM с API, совместимым с OpenAI: сервис на Python и приложение для строки меню macOS на Swift/MLX.
+* [ECL](https://github.com/haiodo/ecl) - Eclipse Command Language, скриптовый язык Q7 и RCPTT.
+* [F4](https://github.com/haiodo/f4) - IDE для языка Fantom на Eclipse и DLTK.
+* [YANG-IDE](https://github.com/haiodo/yang-ide) - IDE для языка моделирования YANG / NETCONF, форк живёт в OpenDaylight.
+* [RCPML](https://github.com/haiodo/rcpml) - декларативный UI-движок на XML для Eclipse RCP со стилями CSS.
+* [Eclipse RCPTT](https://eclipse.dev/rcptt/), [Eclipse DLTK](https://eclipse.dev/dltk/)
+
+Другие проекты:
+* [Personal Huly](https://github.com/haiodo/foundation) - Huly всё в одном, с экспериментами.
+* [OOP](https://github.com/haiodo/oop) - курс и задачи по объектно-ориентированному программированию в НГУ.
+* [Блог](https://github.com/haiodo/blog) - материалы блога [haiodo.github.io](https://haiodo.github.io).
+
+## Контакты
+
+* email: haiodo@gmail.com
+* telegram: https://t.me/dev_haiodo
+* github: https://github.com/haiodo
+* linkedin: https://www.linkedin.com/in/sobolevandrey
