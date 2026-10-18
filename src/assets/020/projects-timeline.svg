@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 476" width="100%" role="img" aria-labelledby="projects-timeline-title projects-timeline-desc" font-family="inherit" font-size="12" fill="currentColor">
+<title id="projects-timeline-title">Проекты по годам</title>
+<desc id="projects-timeline-desc">12 строк: проекты и группы репозиториев, с 2006 по 2026 год.</desc>
+<line x1="24" y1="22" x2="24" y2="406" stroke="currentColor" stroke-opacity="0.1" vector-effect="non-scaling-stroke"/>
+<text x="24" y="12" font-size="12" text-anchor="middle" opacity="0.65">2006</text>
+<text x="24" y="424" font-size="12" text-anchor="middle" opacity="0.65">2006</text>
+<line x1="80.4" y1="22" x2="80.4" y2="406" stroke="currentColor" stroke-opacity="0.1" vector-effect="non-scaling-stroke"/>
+<text x="80.4" y="12" font-size="12" text-anchor="middle" opacity="0.65">2008</text>
+<text x="80.4" y="424" font-size="12" text-anchor="middle" opacity="0.65">2008</text>
+<line x1="136.8" y1="22" x2="136.8" y2="406" stroke="currentColor" stroke-opacity="0.1" vector-effect="non-scaling-stroke"/>
+<text x="136.8" y="12" font-size="12" text-anchor="middle" opacity="0.65">2010</text>
+<text x="136.8" y="424" font-size="12" text-anchor="middle" opacity="0.65">2010</text>
+<line x1="193.1" y1="22" x2="193.1" y2="406" stroke="currentColor" stroke-opacity="0.1" vector-effect="non-scaling-stroke"/>
+<text x="193.1" y="12" font-size="12" text-anchor="middle" opacity="0.65">2012</text>
+<text x="193.1" y="424" font-size="12" text-anchor="middle" opacity="0.65">2012</text>
+<line x1="249.5" y1="22" x2="249.5" y2="406" stroke="currentColor" stroke-opacity="0.1" vector-effect="non-scaling-stroke"/>
+<text x="249.5" y="12" font-size="12" text-anchor="middle" opacity="0.65">2014</text>
+<text x="249.5" y="424" font-size="12" text-anchor="middle" opacity="0.65">2014</text>
+<line x1="305.9" y1="22" x2="305.9" y2="406" stroke="currentColor" stroke-opacity="0.1" vector-effect="non-scaling-stroke"/>
+<text x="305.9" y="12" font-size="12" text-anchor="middle" opacity="0.65">2016</text>
+<text x="305.9" y="424" font-size="12" text-anchor="middle" opacity="0.65">2016</text>
+<line x1="362.3" y1="22" x2="362.3" y2="406" stroke="currentColor" stroke-opacity="0.1" vector-effect="non-scaling-stroke"/>
+<text x="362.3" y="12" font-size="12" text-anchor="middle" opacity="0.65">2018</text>
+<text x="362.3" y="424" font-size="12" text-anchor="middle" opacity="0.65">2018</text>
+<line x1="418.7" y1="22" x2="418.7" y2="406" stroke="currentColor" stroke-opacity="0.1" vector-effect="non-scaling-stroke"/>
+<text x="418.7" y="12" font-size="12" text-anchor="middle" opacity="0.65">2020</text>
+<text x="418.7" y="424" font-size="12" text-anchor="middle" opacity="0.65">2020</text>
+<line x1="475" y1="22" x2="475" y2="406" stroke="currentColor" stroke-opacity="0.1" vector-effect="non-scaling-stroke"/>
+<text x="475" y="12" font-size="12" text-anchor="middle" opacity="0.65">2022</text>
+<text x="475" y="424" font-size="12" text-anchor="middle" opacity="0.65">2022</text>
+<line x1="531.4" y1="22" x2="531.4" y2="406" stroke="currentColor" stroke-opacity="0.1" vector-effect="non-scaling-stroke"/>
+<text x="531.4" y="12" font-size="12" text-anchor="middle" opacity="0.65">2024</text>
+<text x="531.4" y="424" font-size="12" text-anchor="middle" opacity="0.65">2024</text>
+<line x1="587.8" y1="22" x2="587.8" y2="406" stroke="currentColor" stroke-opacity="0.1" vector-effect="non-scaling-stroke"/>
+<text x="587.8" y="12" font-size="12" text-anchor="middle" opacity="0.65">2026</text>
+<text x="587.8" y="424" font-size="12" text-anchor="middle" opacity="0.65">2026</text>
+<text x="12" y="37" font-size="14">rcpml</text>
+<text x="628" y="37" font-size="13" text-anchor="end" opacity="0.65">54</text>
+<path d="M26.5 41H72.8Q75.8 41 75.8 44V46Q75.8 49 72.8 49H26.5Z" fill="#2a78d6"/>
+<text x="12" y="69" font-size="14">DLTK (3 репозитория)</text>
+<text x="628" y="69" font-size="13" text-anchor="end" opacity="0.65">1 740</text>
+<path d="M56.1 73H317.1Q320.1 73 320.1 76V78Q320.1 81 317.1 81H56.1Z" fill="#2a78d6"/>
+<text x="12" y="101" font-size="14">ecl</text>
+<text x="628" y="101" font-size="13" text-anchor="end" opacity="0.65">95</text>
+<path d="M155.4 105H241.3Q244.3 105 244.3 108V110Q244.3 113 241.3 113H155.4Z" fill="#2a78d6"/>
+<text x="12" y="133" font-size="14">f4</text>
+<text x="628" y="133" font-size="13" text-anchor="end" opacity="0.65">138</text>
+<path d="M163.1 137H322.5Q325.5 137 325.5 140V142Q325.5 145 322.5 145H163.1Z" fill="#2a78d6"/>
+<text x="12" y="165" font-size="14">утилиты, эксперименты и прочее (24 репозитория)</text>
+<text x="628" y="165" font-size="13" text-anchor="end" opacity="0.65">406</text>
+<path d="M177.3 169H384Q387 169 387 172V174Q387 177 384 177H177.3Z" fill="#2a78d6"/>
+<path d="M428.8 169H443.9Q446.9 169 446.9 172V174Q446.9 177 443.9 177H428.8Z" fill="#2a78d6"/>
+<path d="M449.4 169H452.4Q455.4 169 455.4 172V174Q455.4 177 452.4 177H449.4Z" fill="#2a78d6"/>
+<path d="M469.9 169H472.9Q475.9 169 475.9 172V174Q475.9 177 472.9 177H469.9Z" fill="#2a78d6"/>
+<path d="M522 169H609.6Q612.6 169 612.6 172V174Q612.6 177 609.6 177H522Z" fill="#2a78d6"/>
+<text x="12" y="197" font-size="14">закрытые проекты</text>
+<text x="628" y="197" font-size="13" text-anchor="end" opacity="0.65">3 748</text>
+<path d="M177.6 201H350Q353 201 353 204V206Q353 209 350 209H177.6Z" fill="#2a78d6"/>
+<path d="M405.5 201H423.9Q426.9 201 426.9 204V206Q426.9 209 423.9 209H405.5Z" fill="#2a78d6"/>
+<path d="M479.1 201H609.6Q612.6 201 612.6 204V206Q612.6 209 609.6 209H479.1Z" fill="#2a78d6"/>
+<text x="12" y="229" font-size="14">yang-ide</text>
+<text x="628" y="229" font-size="13" text-anchor="end" opacity="0.65">57</text>
+<path d="M263.2 233H301.8Q304.8 233 304.8 236V238Q304.8 241 301.8 241H263.2Z" fill="#2a78d6"/>
+<text x="12" y="261" font-size="14">rcptt</text>
+<text x="628" y="261" font-size="13" text-anchor="end" opacity="0.65">138</text>
+<path d="M287.6 265H429.4Q432.4 265 432.4 268V270Q432.4 273 429.4 273H287.6Z" fill="#2a78d6"/>
+<text x="12" y="293" font-size="14">tenniarb</text>
+<text x="628" y="293" font-size="13" text-anchor="end" opacity="0.65">389</text>
+<path d="M344 297H608.6Q611.6 297 611.6 300V302Q611.6 305 608.6 305H344Z" fill="#2a78d6"/>
+<text x="12" y="325" font-size="14">networkservicemesh (14 репозиториев)</text>
+<text x="628" y="325" font-size="13" text-anchor="end" opacity="0.65">178</text>
+<path d="M386.2 329H453.2Q456.2 329 456.2 332V334Q456.2 337 453.2 337H386.2Z" fill="#2a78d6"/>
+<text x="12" y="357" font-size="14">platform (8 репозиториев)</text>
+<text x="628" y="357" font-size="13" text-anchor="end" opacity="0.65">2 895</text>
+<path d="M431 361H609.6Q612.6 361 612.6 364V366Q612.6 369 609.6 369H431Z" fill="#2a78d6"/>
+<line x1="583.3" y1="358" x2="583.3" y2="372" stroke="currentColor" stroke-width="2" vector-effect="non-scaling-stroke"/>
+<text x="577.3" y="357" font-size="12" text-anchor="end">форк intabia-fusion</text>
+<text x="12" y="389" font-size="14">gowt</text>
+<text x="628" y="389" font-size="13" text-anchor="end" opacity="0.65">335</text>
+<path d="M608.3 393H611.3Q614.3 393 614.3 396V398Q614.3 401 611.3 401H608.3Z" fill="#2a78d6"/>
+<text x="12" y="448" font-size="12" opacity="0.65">Справа - коммиты, переносы включены. Полоса: от первого до последнего коммита.</text>
+<text x="12" y="466" font-size="12" opacity="0.65">В группах - репозитории, где есть коммиты автора.</text>
+</svg>

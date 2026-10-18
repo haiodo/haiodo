@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 316" width="100%" role="img" aria-labelledby="commit-size-by-year-title commit-size-by-year-desc" font-family="inherit" font-size="12" fill="currentColor">
+<title id="commit-size-by-year-title">Размер коммита по годам</title>
+<desc id="commit-size-by-year-desc">Медиана размера рабочего коммита (добавлено плюс удалено строк кода) по годам с 2006 по 2026, от 6 до 141 строк в годах, где коммитов не меньше 20; полоса - от 25-го до 75-го процентиля, шкала логарифмическая.</desc>
+<text x="10" y="18" font-size="12" opacity="0.65">строк кода, логарифмическая шкала</text>
+<line x1="46" y1="250" x2="628" y2="250" stroke="currentColor" stroke-opacity="0.45" vector-effect="non-scaling-stroke"/>
+<text x="40" y="254" font-size="12" text-anchor="end" opacity="0.65">1</text>
+<line x1="46" y1="176.7" x2="628" y2="176.7" stroke="currentColor" stroke-opacity="0.15" vector-effect="non-scaling-stroke"/>
+<text x="40" y="180.7" font-size="12" text-anchor="end" opacity="0.65">10</text>
+<line x1="46" y1="103.3" x2="628" y2="103.3" stroke="currentColor" stroke-opacity="0.15" vector-effect="non-scaling-stroke"/>
+<text x="40" y="107.3" font-size="12" text-anchor="end" opacity="0.65">100</text>
+<line x1="46" y1="30" x2="628" y2="30" stroke="currentColor" stroke-opacity="0.15" vector-effect="non-scaling-stroke"/>
+<text x="40" y="34" font-size="12" text-anchor="end" opacity="0.65">1 000</text>
+<path d="M50.9 176.7V67.2Q50.9 64.2 53.9 64.2H65.9Q68.9 64.2 68.9 67.2V176.7Z" fill="#2a78d6" fill-opacity="0.3"/>
+<path d="M78.6 183.8V94.7Q78.6 91.7 81.6 91.7H93.6Q96.6 91.7 96.6 94.7V183.8Z" fill="#2a78d6" fill-opacity="0.3"/>
+<path d="M106.3 168.3V88.1Q106.3 85.1 109.3 85.1H121.3Q124.3 85.1 124.3 88.1V168.3Z" fill="#2a78d6" fill-opacity="0.3"/>
+<path d="M134 188V94.5Q134 91.5 137 91.5H149Q152 91.5 152 94.5V188Z" fill="#2a78d6" fill-opacity="0.3"/>
+<path d="M161.7 220.8V156Q161.7 153 164.7 153H176.7Q179.7 153 179.7 156V220.8Z" fill="#2a78d6" fill-opacity="0.3"/>
+<path d="M189.4 183.8V101.9Q189.4 98.9 192.4 98.9H204.4Q207.4 98.9 207.4 101.9V183.8Z" fill="#2a78d6" fill-opacity="0.3"/>
+<path d="M217.1 192.9V82.1Q217.1 79.1 220.1 79.1H232.1Q235.1 79.1 235.1 82.1V192.9Z" fill="#2a78d6" fill-opacity="0.3"/>
+<path d="M244.9 183.8V89.4Q244.9 86.4 247.9 86.4H259.9Q262.9 86.4 262.9 89.4V183.8Z" fill="#2a78d6" fill-opacity="0.3"/>
+<path d="M272.6 161.7V62.2Q272.6 59.2 275.6 59.2H287.6Q290.6 59.2 290.6 62.2V161.7Z" fill="#2a78d6" fill-opacity="0.3"/>
+<path d="M300.3 183.8V69.3Q300.3 66.3 303.3 66.3H315.3Q318.3 66.3 318.3 69.3V183.8Z" fill="#2a78d6" fill-opacity="0.3"/>
+<path d="M328 188V72.3Q328 69.3 331 69.3H343Q346 69.3 346 72.3V188Z" fill="#2a78d6" fill-opacity="0.3"/>
+<path d="M355.7 159.8V64.4Q355.7 61.4 358.7 61.4H370.7Q373.7 61.4 373.7 64.4V159.8Z" fill="#2a78d6" fill-opacity="0.3"/>
+<path d="M383.4 144.1V75.3Q383.4 72.3 386.4 72.3H398.4Q401.4 72.3 401.4 75.3V144.1Z" fill="#2a78d6" fill-opacity="0.3"/>
+<path d="M411.1 157.4V70.7Q411.1 67.7 414.1 67.7H426.1Q429.1 67.7 429.1 70.7V157.4Z" fill="#2a78d6" fill-opacity="0.3"/>
+<path d="M438.9 170.9V74.2Q438.9 71.2 441.9 71.2H453.9Q456.9 71.2 456.9 74.2V170.9Z" fill="#2a78d6" fill-opacity="0.3"/>
+<path d="M466.6 151.8V52.3Q466.6 49.3 469.6 49.3H481.6Q484.6 49.3 484.6 52.3V151.8Z" fill="#2a78d6" fill-opacity="0.3"/>
+<path d="M494.3 176.7V68.9Q494.3 65.9 497.3 65.9H509.3Q512.3 65.9 512.3 68.9V176.7Z" fill="#2a78d6" fill-opacity="0.3"/>
+<path d="M522 166V94.7Q522 91.7 525 91.7H537Q540 91.7 540 94.7V166Z" fill="#2a78d6" fill-opacity="0.3"/>
+<path d="M549.7 205.8V115.3Q549.7 112.3 552.7 112.3H564.7Q567.7 112.3 567.7 115.3V205.8Z" fill="#2a78d6" fill-opacity="0.3"/>
+<path d="M577.4 192.9V95.5Q577.4 92.5 580.4 92.5H592.4Q595.4 92.5 595.4 95.5V192.9Z" fill="#2a78d6" fill-opacity="0.3"/>
+<path d="M605.1 170.9V55.9Q605.1 52.9 608.1 52.9H620.1Q623.1 52.9 623.1 55.9V170.9Z" fill="#2a78d6" fill-opacity="0.3"/>
+<path d="M59.9 92.4L87.6 148.8L115.3 131.7L143 145L170.7 192.9L198.4 143.3L226.1 147.5L253.9 146.2L281.6 98.6L309.3 125.4L337 119.1L364.7 97.5L392.4 97.5L420.1 103.5L447.9 116.6L475.6 94.1L503.3 120.7L531 143.9L558.7 143.9L586.4 131L614.1 105.6" fill="none" stroke="#2a78d6" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" vector-effect="non-scaling-stroke"/>
+<circle cx="59.9" cy="92.4" r="4" fill="#2a78d6" stroke="#2a78d6" stroke-width="2"/>
+<circle cx="87.6" cy="148.8" r="4" fill="#2a78d6" stroke="#2a78d6" stroke-width="2"/>
+<circle cx="115.3" cy="131.7" r="4" fill="#2a78d6" stroke="#2a78d6" stroke-width="2"/>
+<circle cx="143" cy="145" r="4" fill="#2a78d6" stroke="#2a78d6" stroke-width="2"/>
+<circle cx="170.7" cy="192.9" r="4" fill="#2a78d6" stroke="#2a78d6" stroke-width="2"/>
+<circle cx="198.4" cy="143.3" r="4" fill="#2a78d6" stroke="#2a78d6" stroke-width="2"/>
+<circle cx="226.1" cy="147.5" r="4" fill="#2a78d6" stroke="#2a78d6" stroke-width="2"/>
+<circle cx="253.9" cy="146.2" r="4" fill="#2a78d6" stroke="#2a78d6" stroke-width="2"/>
+<circle cx="281.6" cy="98.6" r="4" fill="#2a78d6" stroke="#2a78d6" stroke-width="2"/>
+<circle cx="309.3" cy="125.4" r="4" fill="#2a78d6" stroke="#2a78d6" stroke-width="2"/>
+<circle cx="337" cy="119.1" r="4" fill="#2a78d6" stroke="#2a78d6" stroke-width="2"/>
+<circle cx="364.7" cy="97.5" r="4" fill="#2a78d6" stroke="#2a78d6" stroke-width="2"/>
+<circle cx="392.4" cy="97.5" r="4" fill="#2a78d6" stroke="#2a78d6" stroke-width="2"/>
+<circle cx="420.1" cy="103.5" r="4" fill="#2a78d6" stroke="#2a78d6" stroke-width="2"/>
+<circle cx="447.9" cy="116.6" r="4" fill="#2a78d6" stroke="#2a78d6" stroke-width="2"/>
+<circle cx="475.6" cy="94.1" r="4" fill="#2a78d6" stroke="#2a78d6" stroke-width="2"/>
+<circle cx="503.3" cy="120.7" r="4" fill="#2a78d6" stroke="#2a78d6" stroke-width="2"/>
+<circle cx="531" cy="143.9" r="4" fill="#2a78d6" stroke="#2a78d6" stroke-width="2"/>
+<circle cx="558.7" cy="143.9" r="4" fill="#2a78d6" stroke="#2a78d6" stroke-width="2"/>
+<circle cx="586.4" cy="131" r="4" fill="#2a78d6" stroke="#2a78d6" stroke-width="2"/>
+<circle cx="614.1" cy="105.6" r="4" fill="#2a78d6" stroke="#2a78d6" stroke-width="2"/>
+<text x="614.1" y="46.9" font-size="12" text-anchor="middle">93</text>
+<text x="59.9" y="58.2" font-size="12" text-anchor="middle">141</text>
+<text x="170.7" y="147" font-size="12" text-anchor="middle">6</text>
+<text x="59.9" y="268" font-size="13" text-anchor="middle" opacity="0.65">2006</text>
+<text x="115.3" y="268" font-size="13" text-anchor="middle" opacity="0.65">2008</text>
+<text x="170.7" y="268" font-size="13" text-anchor="middle" opacity="0.65">2010</text>
+<text x="226.1" y="268" font-size="13" text-anchor="middle" opacity="0.65">2012</text>
+<text x="281.6" y="268" font-size="13" text-anchor="middle" opacity="0.65">2014</text>
+<text x="337" y="268" font-size="13" text-anchor="middle" opacity="0.65">2016</text>
+<text x="392.4" y="268" font-size="13" text-anchor="middle" opacity="0.65">2018</text>
+<text x="447.9" y="268" font-size="13" text-anchor="middle" opacity="0.65">2020</text>
+<text x="503.3" y="268" font-size="13" text-anchor="middle" opacity="0.65">2022</text>
+<text x="558.7" y="268" font-size="13" text-anchor="middle" opacity="0.65">2024</text>
+<text x="614.1" y="268" font-size="13" text-anchor="middle" opacity="0.65">2026</text>
+<text x="46" y="290" font-size="12" opacity="0.65">Строк кода в рабочем коммите, без генерации и переносов. Полоса - p25-p75.</text>
+<text x="46" y="308" font-size="12" opacity="0.65">Полый маркер - меньше 20 коммитов в году. 2026 - данные по 19 октября</text>
+</svg>

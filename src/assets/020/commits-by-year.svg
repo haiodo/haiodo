@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 348" width="100%" role="img" aria-labelledby="commits-by-year-title commits-by-year-desc" font-family="inherit" font-size="12" fill="currentColor">
+<title id="commits-by-year-title">Коммиты по годам</title>
+<desc id="commits-by-year-desc">Коммитов по годам с 2006 по 2026: всего 10 173, больше всего в 2026 году (2 632); переносы и массовые правки включены. Штрихованная часть столбцов 2010-2020 - оценка, не измерение: она доводит год до среднего при полной занятости (557 в год), всего 3 726 коммитов в закрытых репозиториях.</desc>
+<defs><pattern id="commits-by-year-hatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="6" height="6" fill="#2a78d6" fill-opacity="0.12"/><line x1="0" y1="0" x2="0" y2="6" stroke="#2a78d6" stroke-width="2"/></pattern></defs>
+<rect x="46" y="8" width="10" height="10" rx="2" fill="#2a78d6"/>
+<text x="62" y="17" font-size="13">коммиты</text>
+<rect x="138.6" y="8" width="10" height="10" fill="url(#commits-by-year-hatch)" stroke="#2a78d6" stroke-width="1"/>
+<text x="154.6" y="17" font-size="13">оценка: закрытые репозитории</text>
+<line x1="46" y1="264" x2="628" y2="264" stroke="currentColor" stroke-opacity="0.45" vector-effect="non-scaling-stroke"/>
+<text x="40" y="268" font-size="12" text-anchor="end" opacity="0.65">0</text>
+<line x1="46" y1="190.7" x2="628" y2="190.7" stroke="currentColor" stroke-opacity="0.15" vector-effect="non-scaling-stroke"/>
+<text x="40" y="194.7" font-size="12" text-anchor="end" opacity="0.65">1 000</text>
+<line x1="46" y1="117.3" x2="628" y2="117.3" stroke="currentColor" stroke-opacity="0.15" vector-effect="non-scaling-stroke"/>
+<text x="40" y="121.3" font-size="12" text-anchor="end" opacity="0.65">2 000</text>
+<line x1="46" y1="44" x2="628" y2="44" stroke="currentColor" stroke-opacity="0.15" vector-effect="non-scaling-stroke"/>
+<text x="40" y="48" font-size="12" text-anchor="end" opacity="0.65">3 000</text>
+<path d="M48 264V263.6Q48 260.6 51 260.6H68.7Q71.7 260.6 71.7 263.6V264Z" fill="#2a78d6"/>
+<path d="M75.7 264V227.8Q75.7 224.8 78.7 224.8H96.4Q99.4 224.8 99.4 227.8V264Z" fill="#2a78d6"/>
+<path d="M103.4 264V211Q103.4 208 106.4 208H124.1Q127.1 208 127.1 211V264Z" fill="#2a78d6"/>
+<path d="M131.1 264V239.1Q131.1 236.1 134.1 236.1H151.9Q154.9 236.1 154.9 239.1V264Z" fill="#2a78d6"/>
+<path d="M158.9 264V264Q158.9 262 160.8 262H180.6Q182.6 262 182.6 264V264Z" fill="#2a78d6"/>
+<path d="M186.6 264V244Q186.6 241 189.6 241H207.3Q210.3 241 210.3 244V264Z" fill="#2a78d6"/>
+<path d="M214.3 264V244Q214.3 241 217.3 241H235Q238 241 238 244V264Z" fill="#2a78d6"/>
+<path d="M242 264V253.6Q242 250.6 245 250.6H262.7Q265.7 250.6 265.7 253.6V264Z" fill="#2a78d6"/>
+<path d="M269.7 264V254.3Q269.7 251.3 272.7 251.3H290.4Q293.4 251.3 293.4 254.3V264Z" fill="#2a78d6"/>
+<path d="M297.4 264V260.5Q297.4 257.5 300.4 257.5H318.1Q321.1 257.5 321.1 260.5V264Z" fill="#2a78d6"/>
+<path d="M325.1 264V243.4Q325.1 240.4 328.1 240.4H345.9Q348.9 240.4 348.9 243.4V264Z" fill="#2a78d6"/>
+<path d="M352.9 264V234.9Q352.9 231.9 355.9 231.9H373.6Q376.6 231.9 376.6 234.9V264Z" fill="#2a78d6"/>
+<path d="M380.6 264V259.1Q380.6 256.1 383.6 256.1H401.3Q404.3 256.1 404.3 259.1V264Z" fill="#2a78d6"/>
+<path d="M408.3 264V250.4Q408.3 247.4 411.3 247.4H429Q432 247.4 432 250.4V264Z" fill="#2a78d6"/>
+<path d="M436 264V251.8Q436 248.8 439 248.8H456.7Q459.7 248.8 459.7 251.8V264Z" fill="#2a78d6"/>
+<path d="M463.7 264V239.4Q463.7 236.4 466.7 236.4H484.4Q487.4 236.4 487.4 239.4V264Z" fill="#2a78d6"/>
+<path d="M491.4 264V241.6Q491.4 238.6 494.4 238.6H512.1Q515.1 238.6 515.1 241.6V264Z" fill="#2a78d6"/>
+<path d="M519.1 264V228.6Q519.1 225.6 522.1 225.6H539.9Q542.9 225.6 542.9 228.6V264Z" fill="#2a78d6"/>
+<path d="M546.9 264V195.7Q546.9 192.7 549.9 192.7H567.6Q570.6 192.7 570.6 195.7V264Z" fill="#2a78d6"/>
+<path d="M574.6 264V179.1Q574.6 176.1 577.6 176.1H595.3Q598.3 176.1 598.3 179.1V264Z" fill="#2a78d6"/>
+<path d="M602.3 264V74Q602.3 71 605.3 71H623Q626 71 626 74V264Z" fill="#2a78d6"/>
+<rect x="158.9" y="223.2" width="23.7" height="38.9" fill="url(#commits-by-year-hatch)" stroke="#2a78d6" stroke-width="1" stroke-dasharray="3 2" vector-effect="non-scaling-stroke"/>
+<rect x="186.6" y="223.2" width="23.7" height="17.9" fill="url(#commits-by-year-hatch)" stroke="#2a78d6" stroke-width="1" stroke-dasharray="3 2" vector-effect="non-scaling-stroke"/>
+<rect x="214.3" y="223.2" width="23.7" height="17.8" fill="url(#commits-by-year-hatch)" stroke="#2a78d6" stroke-width="1" stroke-dasharray="3 2" vector-effect="non-scaling-stroke"/>
+<rect x="242" y="223.2" width="23.7" height="27.4" fill="url(#commits-by-year-hatch)" stroke="#2a78d6" stroke-width="1" stroke-dasharray="3 2" vector-effect="non-scaling-stroke"/>
+<rect x="269.7" y="223.2" width="23.7" height="28.2" fill="url(#commits-by-year-hatch)" stroke="#2a78d6" stroke-width="1" stroke-dasharray="3 2" vector-effect="non-scaling-stroke"/>
+<rect x="297.4" y="223.2" width="23.7" height="34.3" fill="url(#commits-by-year-hatch)" stroke="#2a78d6" stroke-width="1" stroke-dasharray="3 2" vector-effect="non-scaling-stroke"/>
+<rect x="325.1" y="223.2" width="23.7" height="17.2" fill="url(#commits-by-year-hatch)" stroke="#2a78d6" stroke-width="1" stroke-dasharray="3 2" vector-effect="non-scaling-stroke"/>
+<rect x="352.9" y="223.2" width="23.7" height="8.7" fill="url(#commits-by-year-hatch)" stroke="#2a78d6" stroke-width="1" stroke-dasharray="3 2" vector-effect="non-scaling-stroke"/>
+<rect x="380.6" y="223.2" width="23.7" height="32.9" fill="url(#commits-by-year-hatch)" stroke="#2a78d6" stroke-width="1" stroke-dasharray="3 2" vector-effect="non-scaling-stroke"/>
+<rect x="408.3" y="223.2" width="23.7" height="24.3" fill="url(#commits-by-year-hatch)" stroke="#2a78d6" stroke-width="1" stroke-dasharray="3 2" vector-effect="non-scaling-stroke"/>
+<rect x="436" y="223.2" width="23.7" height="25.7" fill="url(#commits-by-year-hatch)" stroke="#2a78d6" stroke-width="1" stroke-dasharray="3 2" vector-effect="non-scaling-stroke"/>
+<line x1="46" y1="223.2" x2="628" y2="223.2" stroke="currentColor" stroke-width="1.5" stroke-dasharray="6 4" vector-effect="non-scaling-stroke"/>
+<text x="309.3" y="216.2" font-size="12" text-anchor="middle">среднее при полной занятости: 557</text>
+<text x="614.1" y="65" font-size="12" text-anchor="middle">2 632</text>
+<text x="598.3" y="170.1" font-size="12" text-anchor="end">1 198</text>
+<text x="115.3" y="202" font-size="12" text-anchor="middle">764</text>
+<text x="87.6" y="215.2" font-size="12" text-anchor="middle">534</text>
+<text x="531" y="215.2" font-size="12" text-anchor="middle">524</text>
+<text x="143" y="215.2" font-size="12" text-anchor="middle">380</text>
+<text x="475.6" y="215.2" font-size="12" text-anchor="middle">376</text>
+<text x="503.3" y="215.2" font-size="12" text-anchor="middle">346</text>
+<text x="59.9" y="282" font-size="13" text-anchor="middle" opacity="0.65">2006</text>
+<text x="115.3" y="282" font-size="13" text-anchor="middle" opacity="0.65">2008</text>
+<text x="170.7" y="282" font-size="13" text-anchor="middle" opacity="0.65">2010</text>
+<text x="226.1" y="282" font-size="13" text-anchor="middle" opacity="0.65">2012</text>
+<text x="281.6" y="282" font-size="13" text-anchor="middle" opacity="0.65">2014</text>
+<text x="337" y="282" font-size="13" text-anchor="middle" opacity="0.65">2016</text>
+<text x="392.4" y="282" font-size="13" text-anchor="middle" opacity="0.65">2018</text>
+<text x="447.9" y="282" font-size="13" text-anchor="middle" opacity="0.65">2020</text>
+<text x="503.3" y="282" font-size="13" text-anchor="middle" opacity="0.65">2022</text>
+<text x="558.7" y="282" font-size="13" text-anchor="middle" opacity="0.65">2024</text>
+<text x="614.1" y="282" font-size="13" text-anchor="middle" opacity="0.65">2026</text>
+<text x="46" y="304" font-size="12" opacity="0.65">Коммиты без слияний и дублей, переносы включены. 2026 - данные по 19 октября</text>
+<text x="46" y="322" font-size="12" opacity="0.65">Штриховка - оценка: среднее при полной занятости минус видимые коммиты года.</text>
+<text x="46" y="340" font-size="12" opacity="0.65">В CVS-проектах сообщение, повторённое за 10 минут, - один коммит.</text>
+</svg>

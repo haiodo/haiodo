@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 184" width="100%" role="img" aria-labelledby="github-vs-unique-title github-vs-unique-desc" font-family="inherit" font-size="12" fill="currentColor">
+<title id="github-vs-unique-title">Коммиты: GitHub и уникальные</title>
+<desc id="github-vs-unique-desc">GitHub насчитал 10 542 коммита, без трёх копий платформы 3 609; уникальных коммитов в репозиториях 10 173.</desc>
+<text x="12" y="21" font-size="15">GitHub: коммиты в профиле</text>
+<text x="12" y="37" font-size="12" opacity="0.65">каждая из трёх копий платформы считается отдельно</text>
+<path d="M12 44H555Q558 44 558 47V55Q558 58 555 58H12Z" fill="currentColor" fill-opacity="0.35"/>
+<text x="566" y="56" font-size="15" font-weight="600">10 542</text>
+<text x="12" y="79" font-size="15">GitHub без трёх копий платформы</text>
+<text x="12" y="95" font-size="12" opacity="0.65">минус 6 933 коммита (65,8 %)</text>
+<path d="M12 102H195.9Q198.9 102 198.9 105V113Q198.9 116 195.9 116H12Z" fill="currentColor" fill-opacity="0.35"/>
+<text x="206.9" y="114" font-size="15" font-weight="600">3 609</text>
+<text x="12" y="137" font-size="15">Уникальные коммиты в репозиториях</text>
+<text x="12" y="153" font-size="12" opacity="0.65">без слияний и дублей, из них 76 - переносы и массовые правки</text>
+<path d="M12 160H535.9Q538.9 160 538.9 163V171Q538.9 174 535.9 174H12Z" fill="#2a78d6"/>
+<text x="546.9" y="172" font-size="15" font-weight="600">10 173</text>
+</svg>
