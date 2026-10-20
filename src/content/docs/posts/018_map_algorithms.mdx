@@ -113,7 +113,7 @@ import ill_018_05 from '../../../assets/018/ill_05.png';
 
 <Image src={ill_018_03} alt="Кукушка в гнезде из ящика выталкивает робота в соседнее гнездо" quality="max" />
 
-Теория красивая. На практике [две ячейки - это два случайных похода в память](https://johlits.com/j-magazine/publications/Hash%20tables%20%28separate%20chaining%2C%20open%20addressing%2C%20cuckoo%29.html), а вставки [с ростом данных становятся всё дороже](https://github.com/RaphaelPrevost/hashmap-benchmark). Автор go-hashtable-shootout так и подписал: "[разрыв между красотой теории и замерами](https://github.com/TKTHdev/go-hashtable-shootout)".
+Теория красивая. На практике [две ячейки - это два случайных похода в память](https://johlits.com/j-magazine/publications/Hash%20tables%20%28separate%20chaining%2C%20open%20addressing%2C%20cuckoo%29.html), а чем плотнее таблица, тем длиннее цепочки вытеснений при вставке.
 
 ***
 
@@ -212,7 +212,7 @@ import ill_018_05 from '../../../assets/018/ill_05.png';
 | шарды | N карт со своими мьютексами, ключ выбирает шард | конкуренция только внутри шарда | то же |
 | `sync.Map` (1.24+) | [hash trie](https://dixon.cx/blog/sync-map-vs-mutex-map-go.html) | атомарные загрузки, без блокировок | блокировка узла trie |
 | xsync `Map` | [CLHT](https://pkg.go.dev/github.com/puzpuzpuz/xsync/v4): бакеты размером с кэш-линию, [до 5 записей в бакете](https://github.com/puzpuzpuz/go-concurrent-map-bench) | атомарно, [без записи в память](https://pkg.go.dev/github.com/puzpuzpuz/xsync/v3) | мьютекс на бакет |
-| haxmap, cornelk | [lock-free связные списки](https://github.com/puzpuzpuz/go-concurrent-map-bench) + индекс (у haxmap - по Харрису) | атомарно | CAS |
+| haxmap, cornelk | lock-free связные списки + индекс ([у haxmap - по Харрису](https://github.com/alphadose/haxmap)) | атомарно | CAS |
 | copy-on-write | новая копия на каждую запись | без блокировок | [O(n)](https://strebkov.dev/posts/hand-rolled-vs-libraries) |
 
 Несколько вещей, которые не очевидны.
