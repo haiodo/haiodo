@@ -1,0 +1,396 @@
+---
+date: 2026-10-30
+title: "О пользе генеративного AI, или Как я сделал свой UI-фреймворк"
+description: "Как опыт с Eclipse, транслятор Java в Go и работа с агентами помогли мне сделать gowt."
+sidebar:
+  order: 21
+hero:
+  image:
+    file: ../../../assets/heros/hero018.png
+---
+
+Я уже рассказывал, а может, и нет, но в начале своего пути я работал с Java. Очень плотно работал. Сначала помогал делать отладчик Python для IDE на основе Eclipse, потом стартовал проект Dynamic Languages Toolkit на основе технологий Eclipse, включая Standard Widget Toolkit.
+
+Однажды мне даже пришлось для заказчика разобрать Eclipse Workbench на компоненты. Ему нужно было настраивать видимость и рабочие столы под разные варианты развертывания и пользователей. Кому-то нужны такие-то действия, кому-то другие. Все это бралось с сервера после логина, и это нужно было динамически подменять в плагинной модели Eclipse. Так что поковыряться во внутрянке мне пришлось изрядно.
+
+А потом мне стало жутко больно использовать механизмы для автоматизации. В то время они были дико тупыми. После знакомства с AspectJ мне пришла в голову идея: а почему мы не можем ждать, пока система успокоится, и кликать, как пользователь?
+
+После этого родился проект Q7, который впоследствии выродился в RCPTT, официальный проект Eclipse. Второй, который я помогал принести в мир Eclipse. И там уже пришлось вкопаться в дебри Eclipse по полной.
+
+Система получилась стабильной, удобной. Было много концептов, которые до сих пор мало где встречаются. Например, мы ввели понятие [контекста](https://eclipse.dev/rcptt/userguide/contexts/), когда Eclipse вгоняется в определенное состояние: файлы, настройки, состояние плагинов и т.д.
+
+После этого тест проверяет только малую часть функциональности на уже готовом контексте. Можно было подготовить проект, данные, нажать кнопку и записать контекст. А потом каждый раз стабильно воспроизводить сценарии.
+
+У нас даже было несколько случаев, когда пользователи продукта нанимали part-time джуна, и он через систему покрывал сложные продукты тестами в одного. Быстро и качественно.
+
+А это я все про что? А про то, что SWT по своей структуре - кроссплатформенная штукенция. Она, в отличие от Swing, была нативной, и это было прямо хорошо. Eclipse в те годы выглядел прямо лучше конкурентов. В 2024 году появилась [Initiative 31](https://www.eclipse.org/lists/eclipse-dev/msg12360.html): модернизировать SWT, улучшить внешний вид и настройку интерфейсов, снизить затраты на поддержку. И она все еще жива что интересно.
+
+Но это все были вводны слова :-)
+Я тут в последний год вернулся к Go и помогал с одним проектом рулить роботами. И задумался: а как можно делать приложения на Go под все платформы не только TUI?
+
+Для Интабия Платформа мы в активной фазе пинг-понга с Апплом, чтобы выпустить наше приложение. Оно внезапно большей частью написано на Go: gomobile + Swift/Kotlin для небольших платформенных обвязок. Современные агентные походы в действии, то что раньше было прямо тяжело, сейчас можно осилить и поддерживать в одно лицо, или в несколько, с компанией всегда веселее :-)
+
+На нем же я построил CLI + TUI и MCP-клиента к Платформе. Как бы одна база и куча приложений. В планах запуск мелких сервисов на Go на основе клиента. Самого клиента на Go в ближайший месяц планировал тоже опубликовать, чтобы из сервисов с Платформой было удобнее работать. Не только же Node.js + браузер.
+
+Там тоже были забавные сценарии. Платформа работает через WebSocket + msgpackr + сжатие Snappy, и пришлось msgpackr тоже портировать. Его тоже нужно будет выложить :-)
+
+Ну так вот, возникла у меня идея: а чего есть на Go, чтобы приложеньки десктопные-то делать? Для TUI есть неплохой Bubble Tea, но агенты его плохо понимают. Прямо тяжело описывать то, что ты хочешь.
+
+А я об интерфейсах уже не первый раз думаю. Были думы с 2012 года, были реализации RCPML (Rich Client Platform Markup Language), когда формочки через XML задаешь. Тогда это казалось: воу, React еще ходил под стол :-)
+
+Была у меня и другая попытка - MOB, билдер интерфейсов на Java. Хотелось, чтобы по коду было видно, какие виджеты получатся, без переменной под каждую подпись и кнопку.
+
+Вот сокращенный пример создания виджетов обычным SWT. Оставил только создание формы, без привязок данных и обработчиков:
+
+```java
+Shell shell = new Shell(display, SWT.NONE);
+GridLayoutFactory.swtDefaults().numColumns(2).applyTo(shell);
+
+Label userLabel = new Label(shell, SWT.NONE);
+userLabel.setText("User name:");
+Text userName = new Text(shell, SWT.BORDER);
+userName.setText("Initial value");
+
+Label passwordLabel = new Label(shell, SWT.NONE);
+passwordLabel.setText("Password:");
+Text password = new Text(shell, SWT.PASSWORD);
+
+Button okButton = new Button(shell, SWT.PUSH);
+okButton.setText("OK");
+Button cancelButton = new Button(shell, SWT.PUSH);
+cancelButton.setText("Cancel");
+
+shell.open();
+```
+
+А вот сокращенный пример того, что я предлагал в MOB:
+
+```java
+MOB mob = new MOB();
+
+mob.window("MyWindow")
+    .label("User name:").text()
+    .label("Password:").text()
+    .button("OK").button("Cancel");
+
+mob.show();
+```
+
+Это набросок API. Идея была в том, чтобы структура формы читалась прямо в Java.
+
+И я пофантазировал, как бы это могло быть на Go. Вот пример:
+
+```go
+package main
+import (
+	"log"
+	"github.com/haiodo/gowt"
+)
+func main() {
+	err := gowt.Run(func(app *gowt.App) {
+		w := app.Window("Hello",
+			gowt.Label("Hello, gowt"),
+			gowt.Button("Quit", gowt.OnClick(app.Quit)))
+		w.Show()
+	})
+	if err != nil {
+		log.Fatal(err)
+	}
+}
+```
+
+И подумал я: а почему бы не сделать свой фреймворк для Go? SWT под EPL, я точно помнил, что там нативные части делают вызовы и все обвязки на месте. И начал пробовать.
+
+Но объемы для портирования несколько грустные. Но на то мы и не модели, чтобы головой думать. Немного смекалки - и появился j2go, инструмент, который позволил мне транслировать SWT, а потом и часть JFace с Java на Go. Из JFace я перенес фабрики виджетов и раскладки, но не весь набор viewers, диалогов и мастеров. А потом я завернул это все в мою удобную обвязку.
+
+## Сколько тут кода
+
+Чтобы было понятно, почему я не стал переносить все руками, вот размер исходных Java-библиотек:
+
+| Исходники | Файлы Java | Строки |
+|---|---:|---:|
+| SWT, основной bundle `org.eclipse.swt` | 1 151 | 449 919 |
+| JFace, основной bundle `org.eclipse.jface` | 422 | 110 073 |
+| Всего | 1 573 | 559 992 |
+
+Здесь нет отдельных тестовых bundles, примеров и нативных исходников на C. В строках учтены комментарии и пустые строки.
+
+А вот что лежит в gowt на 30 октября 2026 года:
+
+| Go-код | Файлы | Строки |
+|---|---:|---:|
+| Сгенерированный код | 1 221 | 467 690 |
+| Собственный код проекта | 602 | 81 115 |
+| Тесты | 310 | 33 464 |
+| Всего | 2 133 | 582 269 |
+
+Из сгенерированного Go 314 516 строк лежат в пакете `swt`, еще 8 191 - в `jface`. Остальное приходится на другие пакеты, платформенные обвязки, перенесенные примеры и тесты. Помимо j2go, здесь работают генераторы girgen и webkitgen.
+
+Для кода, который мы писали и дорабатывали с агентами, ближайший измеримый ориентир - 114 579 строк Go. Из них 33 464 строки - тесты. Это не точная атрибуция авторства: по файлу нельзя надежно разделить мои строки, строки агента и заимствования. Отдельно в `tooling/j2go` еще 12 183 строки Java: транслятор, тесты, тестовые данные и заглушки.
+
+## Основные вехи
+
+От первой попытки до нынешней библиотеки прошло чуть больше месяца:
+
+| Когда | Что получилось |
+|---|---|
+| 23-30 сентября | [j2go и конвейер переноса SWT](https://github.com/haiodo/gowt/commit/d13a5cce), затем SWT-тесты и исправления перевода Java в Go. |
+| Начало октября - 13 октября | Go API поверх SWT, отдельный слой `look` и [golden-тесты j2go](https://github.com/haiodo/gowt/commit/758f0381). |
+| 15-18 октября | [Реактивный пакет rx](https://github.com/haiodo/gowt/commit/1e88894b): состояние, вычисляемые значения, эффекты и scopes. Первые приложения помогли доработать панели и структуру окна. |
+| 23-24 октября | [QA-драйвер](https://github.com/haiodo/gowt/commit/1a2ba3ee): поиск компонентов, действия и ожидание фоновой работы из Go-тестов. |
+| 24-27 октября | [Экспериментальный gfx](https://github.com/haiodo/gowt/commit/4dd6b578), редактор сцены и монитор с реальными счетчиками и графиками. |
+| 28-30 октября | Исправления памяти и полей inspector. В [v0.14.2](https://github.com/haiodo/gowt/commit/c540cc54) содержимое размещается под плавающими панелями macOS 26. |
+
+Я приносил требования, запускал приложения и показывал ошибки. Инструмент распределял задачи между агентами и собирал изменения.
+Работа шла итерациями: компиляции было мало, поведение приходилось проверять в тестах и живых приложениях.
+
+## Что получилось
+
+Обычные формы собираются из системных полей, кнопок, вкладок, меню, таблиц и деревьев.
+Есть [раскладки](https://github.com/haiodo/gowt/blob/c540cc54/docs/windows-layouts.md), [виджеты](https://github.com/haiodo/gowt/blob/c540cc54/docs/widgets.md),
+[боковые панели, inspector и нижняя панель](https://github.com/haiodo/gowt/blob/c540cc54/look/look.go).
+Оформление учитывает платформу: Liquid Glass на macOS 26, другие материалы и панели на остальных системах.
+[Темная тема Windows пока частичная](https://github.com/haiodo/gowt/blob/c540cc54/docs/cross-platform-look.md).
+
+Но интереснее смотреть на приложения:
+
+- [Монитор](https://github.com/haiodo/gowt/blob/c540cc54/examples/apps/monitor/main.go) читает CPU, память и сеть, показывает процессы.
+  В одном окне работают графики на `gfx`, нативные карточки и таблица с сортировкой.
+- В [gfxeditor](https://github.com/haiodo/gowt/blob/c540cc54/examples/gfxeditor/main.go) можно выбрать узел карты, перетащить и переименовать двойным щелчком.
+  Сцену можно вывести в PNG без окна. [API gfx](https://github.com/haiodo/gowt/blob/c540cc54/docs/gfx.md) пока экспериментальный.
+- Среди [восьми примеров приложений](https://github.com/haiodo/gowt/blob/c540cc54/docs/apps.md) есть чат, файлы, почта и настройки.
+  У [чата](https://github.com/haiodo/gowt/blob/c540cc54/examples/apps/chat/main.go) статические данные: это пример интерфейса, а не готовый мессенджер.
+
+![Монитор gowt на macOS: графики и таблица процессов](https://raw.githubusercontent.com/haiodo/gowt/c540cc54/docs/img/app-monitor-macos.png)
+
+[Тот же монитор на macOS, Windows и Linux](https://github.com/haiodo/gowt/blob/c540cc54/docs/apps.md#monitor).
+
+Обновляемые таблицы и деревья связываются с состоянием через `Rows` и `Nodes`.
+[Привязки](https://github.com/haiodo/gowt/blob/c540cc54/each.go) сопоставляют записи по уникальным среди соседей ключам и сохраняют выделение оставшихся элементов.
+Перестановка пересоздает строку; перенос узла к другому родителю создает новый узел.
+
+Для фоновой работы есть [Job с отменой и прогрессом](https://github.com/haiodo/gowt/blob/c540cc54/jobs.go); `Track` учитывает работу внешних библиотек.
+Результат `Job` через `Then` возвращается в UI-поток; [виджеты по-прежнему доступны только из него](https://github.com/haiodo/gowt/blob/c540cc54/docs/events.md#the-ui-thread-rule).
+Реактивные привязки `rx` и тест приложения через QA покажу ниже на коде.
+
+Для HTML рядом с нативными компонентами есть [webview и Browser](https://github.com/haiodo/gowt/blob/c540cc54/docs/webview-browser.md).
+Они используют WKWebView, WebView2 или WebKitGTK 4.1; движок должен быть установлен.
+
+## А как это все проверять?
+
+Тестирование получилось в три слоя. Первый - [golden-тесты j2go](https://github.com/haiodo/gowt/blob/c540cc54/tooling/j2go/src/test/java/dev/gowt/j2go/GoldenTest.java):
+Java-пример переводится в Go, результат и набор файлов сравниваются с эталоном.
+
+Второй - переведенные JUnit-тесты SWT.
+[Runner](https://github.com/haiodo/gowt/blob/c540cc54/Makefile) [сравнивает результат](https://github.com/haiodo/gowt/blob/c540cc54/cmd/swttest/expected.go) с эталоном стенда,
+где учтены известные `fail`, `skip` и `flaky`. Зеленая проверка означает отсутствие регрессии относительно эталона.
+
+Вот сохраненные результаты на 30 октября. Это подсчет записей в файлах эталонов, без нового запуска:
+
+| Стенд | Всего SWT | pass | fail | flaky | skip |
+|---|---:|---:|---:|---:|---:|
+| [macOS](https://github.com/haiodo/gowt/blob/c540cc54/tests/expected.txt) | 3894 | 3818 | 4 | 3 | 69 |
+| [Windows под Wine](https://github.com/haiodo/gowt/blob/c540cc54/tests/expected_windows.txt) | 3894 | 3728 | 70 | 7 | 89 |
+| [Windows 11 arm64, UTM](https://github.com/haiodo/gowt/blob/c540cc54/tests/expected_windows_vm.txt) | 3894 | 3799 | 0 | 6 | 89 |
+| [Linux, Docker/Xvfb](https://github.com/haiodo/gowt/blob/c540cc54/tests/expected_linux.txt) | 3901 | 3840 | 2 | 1 | 58 |
+| [Linux, GNOME/Wayland, UTM](https://github.com/haiodo/gowt/blob/c540cc54/tests/expected_linux_desktop.txt) | 3901 | 3836 | 4 | 1 | 60 |
+
+Числа по платформам не складываются: в основном это одни и те же проверки, хотя состав немного отличается.
+
+Для перенесенной части JFace есть еще 87 тестов.
+На [macOS](https://github.com/haiodo/gowt/blob/c540cc54/tests/expected_jface.txt) это 86 `pass` и один `skip`.
+На [Windows](https://github.com/haiodo/gowt/blob/c540cc54/tests/expected_jface_windows.txt) и [Linux](https://github.com/haiodo/gowt/blob/c540cc54/tests/expected_jface_linux.txt) - 85 `pass`, один `fail` и один `skip`.
+
+Третий слой - собственные Go-тесты: обычные проверки, GUI-тесты и сценарии через QA-драйвер.
+В отслеживаемых `*_test.go` насчиталась 861 функция вида `Test*(t *testing.T)`.
+Считал через Go AST, включая все платформенные файлы и build tags, исключая `TestMain`, benchmarks и вложенные `t.Run`.
+Это число объявлений в исходниках, а не 861 тест, который запускается и проходит на каждой ОС.
+
+В [CI](https://github.com/haiodo/gowt/blob/c540cc54/.github/workflows/ci.yml) есть сборка и `vet` для трех ОС на amd64 и arm64.
+На Windows и macOS запускаются обычные Go-тесты; Linux в Docker/Xvfb проходит SWT, JFace, Go и GUI-проверки.
+GUI-задачи hosted runners Windows/macOS выделены отдельно с `continue-on-error: true`: их падение не делает весь workflow красным.
+По одному описанию workflow нельзя заключить, что последний запуск прошел.
+
+## Почти как в RCPTT
+
+Для проверки приложений я вернулся к идее RCPTT: найти компонент, выполнить действие, дождаться покоя и проверить результат.
+
+QA-сборка приложения получает локальный сервер через `-tags gowtqa`.
+Обычный `go test` запускает ее отдельным процессом и отправляет JSON-команды через сокет.
+В Windows предусмотрен запасной вариант через loopback TCP с токеном.
+В сборке без тега сервера нет. Устройство описано в [docs/qa.md](https://github.com/haiodo/gowt/blob/c540cc54/docs/qa.md).
+
+Вот сокращенный сценарий из [examples/qa/qa_test.go](https://github.com/haiodo/gowt/blob/c540cc54/examples/qa/qa_test.go):
+
+```go
+func TestGreet(t *testing.T) {
+    app := qatest.App(t)
+    app.Find(qa.ID("name")).Type("Ada")
+    app.Find(qa.ID("greet")).Click()
+    if got := app.Find(qa.ID("greeting")).Node().Text; got != "Hello, Ada" {
+        t.Fatalf("greeting is %q", got)
+    }
+}
+```
+
+Это фрагмент: ему нужен `TestMain`, который собирает приложение с QA-тегом и передает путь в `qatest.Main`.
+Полный вариант и проверка `GOWT_GUI_TEST` есть [в том же исходнике](https://github.com/haiodo/gowt/blob/c540cc54/examples/qa/qa_test.go).
+`qatest.App(t)` вызывает обработчик `reset`; без него состояние между тестами само не очищается.
+
+После действия [settle](https://github.com/haiodo/gowt/blob/c540cc54/docs/qa.md#waiting) ждет опустошения очереди UI, завершения `Job` с их `Then`, закрытия `Track`, коротких таймеров и двух одинаковых снимков дерева.
+Обычную `go func()`, фоновые `BackgroundJob`, периодические `Every` и `After` от секунды драйвер не ждет.
+
+[Действия семантические](https://github.com/haiodo/gowt/blob/c540cc54/docs/qa.md#limits): `Click` вызывает событие даже у перекрытой кнопки, без щелчка через ОС.
+Диалоги получают подготовленные ответы, а `Shot` сохраняет картинку без сравнения пикселей.
+
+Для управления компонентами есть QA-протокол и [Go-клиент](https://github.com/haiodo/gowt/blob/c540cc54/qa/qatest/qatest.go). В планах - отдельный `gowt-mcp`: агент исследует живое приложение и записывает пройденный сценарий в Go-тест.
+
+## А что уже есть на Go?
+
+Вот что я сравнивал на 30 октября 2026 года. Для Fyne взял v2.8.2, для Gio - v0.10.2, для Wails - стабильную v3.0.0.
+Walk рассматриваю по исходникам репозитория, а andlabs/ui - в состоянии `mid-alpha`, как его называет автор.
+
+| Библиотека | Из чего получается интерфейс | Платформы и сборка |
+|---|---|---|
+| [gowt](https://github.com/haiodo/gowt) | Системные AppKit, Win32 и GTK 3 через переведенный SWT | macOS, Windows, Linux. Без cgo и C-компилятора; на Linux нужна GTK 3 |
+| [Fyne v2.8.2](https://github.com/fyne-io/fyne/releases/tag/v2.8.2) | Собственные виджеты; desktop driver рисует через GLFW/OpenGL | Windows, macOS, Linux, BSD, Android, iOS. Для desktop-сборки нужен C toolchain и графические development-пакеты |
+| [Gio v0.10.2](https://github.com/gioui/gio/tree/v0.10.2) | Приложение обрабатывает кадр, виджеты создают операции рисования для GPU | Windows, macOS, Linux, мобильные платформы и WebAssembly. Windows без cgo; macOS требует Xcode, Linux - C toolchain и development-пакеты |
+| [Wails v3.0.0](https://github.com/wailsapp/wails/releases) | HTML/CSS/JavaScript в системном WebView; Go-сервисы доступны через bridge | Windows, macOS, Linux. Для v3 нужны Go 1.26+, платформенные инструменты и библиотеки; мобильная поддержка экспериментальная |
+| [Walk](https://github.com/lxn/walk) | Win32 controls, в том числе декларативное описание через Go-структуры | Только Windows. Нужен manifest Common Controls v6; опубликованных GitHub Releases нет |
+| [andlabs/ui](https://github.com/andlabs/ui/blob/master/README.md) | Go-обертка над C-библиотекой libui с системными controls | Windows, macOS, Unix с GTK 3. Нужны cgo и C toolchain; пакет обозначен как mid-alpha |
+
+Про Fyne это видно в [исходниках desktop driver](https://github.com/fyne-io/fyne/blob/v2.8.2/internal/driver/glfw/driver.go), [требованиях сборки](https://docs.fyne.io/started/quick/) и [списке платформ](https://github.com/fyne-io/fyne/wiki/Supported-Platforms).
+У Gio отдельно описаны [виджеты](https://gioui.org/doc/architecture/widget) и [установка на разных платформах](https://gioui.org/doc/install).
+У Wails - [установка v3](https://wails.io/quick-start/installation/) и [bridge между JavaScript и Go](https://wails.io/concepts/bridge/).
+Для Walk требования и manifest есть в [README](https://github.com/lxn/walk/blob/master/README.mdown), отсутствие выпусков видно на [Releases](https://github.com/lxn/walk/releases).
+
+А [Bubble Tea](https://github.com/charmbracelet/bubbletea) оставлю отдельно: это интерфейс в терминале, а не библиотека desktop-окон.
+
+### То же окно, тот же Quit
+
+В Fyne пример получается вполне коротким. Это полный `main.go` для той же задачи: текст и кнопка выхода:
+
+```go
+package main
+
+import (
+    "fyne.io/fyne/v2/app"
+    "fyne.io/fyne/v2/container"
+    "fyne.io/fyne/v2/widget"
+)
+
+func main() {
+    a := app.New()
+    w := a.NewWindow("Hello")
+    w.SetContent(container.NewVBox(
+        widget.NewLabel("Hello, Go"),
+        widget.NewButton("Quit", a.Quit),
+    ))
+    w.ShowAndRun()
+}
+```
+
+Это развитие [официального Hello](https://docs.fyne.io/started/hello/); по короткому примеру удобство API не измерить.
+
+В Gio наружу выходит цикл событий. Внешний код создает `app.Window`, запускает обработку событий в goroutine и вызывает `app.Main()`.
+Полный каркас есть в [официальном примере](https://gioui.org/doc/learn/get-started), а внутри `app.FrameEvent` задача выглядит так:
+
+```go
+gtx := app.NewContext(&ops, e)
+if quit.Clicked(gtx) {
+    return nil
+}
+layout.Flex{Axis: layout.Vertical}.Layout(gtx,
+    layout.Rigid(material.Body1(theme, "Hello, Go").Layout),
+    layout.Rigid(material.Button(theme, &quit, "Quit").Layout),
+)
+e.Frame(gtx.Ops)
+```
+
+Здесь `ops` имеет тип `op.Ops`, а `quit` - `widget.Clickable`; оба живут вне цикла. Там же создается `theme := material.NewTheme()`.
+Импорты фрагмента: `gioui.org/app`, `gioui.org/layout`, `gioui.org/op`, `gioui.org/widget` и `gioui.org/widget/material`.
+Возврат завершает функцию обработки; внешний код официального одноконного примера затем вызывает `os.Exit(0)`.
+[Состояние кнопки](https://github.com/gioui/gio/blob/v0.10.2/widget/button.go) хранится отдельно от ее [оформления](https://github.com/gioui/gio/blob/v0.10.2/widget/material/button.go).
+
+У Walk тоже есть декларативный API. Внутри `main`, с импортами `log`, `github.com/lxn/walk` и dot-import `github.com/lxn/walk/declarative`:
+
+```go
+var window *walk.MainWindow
+_, err := (MainWindow{
+    AssignTo: &window,
+    Title: "Hello", Layout: VBox{},
+    Children: []Widget{
+        Label{Text: "Hello, Go"},
+        PushButton{Text: "Quit", OnClicked: func() {
+            if err := window.Close(); err != nil {
+                log.Print(err)
+            }
+        }},
+    },
+}).Run()
+if err != nil {
+    log.Fatal(err)
+}
+```
+
+Это фрагмент, а не полный проект: нужен Windows manifest из README, встроенный в exe или лежащий рядом как `hello.exe.manifest`.
+API сверены по [MainWindow.Run](https://github.com/lxn/walk/blob/master/declarative/mainwindow.go) и [FormBase.Close](https://github.com/lxn/walk/blob/master/form.go).
+
+У Wails часть примера будет в Go, часть - во frontend. Для v3 можно создать проект через `wails3 init -n hello -t vanilla-js`.
+В его `frontend/src/main.js` кнопка выхода выглядит так:
+
+```javascript
+import { Application } from '@wailsio/runtime';
+
+document.body.innerHTML = '<p>Hello, Go</p><button id="quit">Quit</button>';
+document.getElementById('quit').addEventListener('click', async () => {
+    await Application.Quit();
+});
+```
+
+Go-оболочка и сборка frontend остаются из [шаблона проекта](https://wails.io/quick-start/first-app/); выход вызывает [runtime v3](https://wails.io/reference/frontend-runtime/).
+Данные из Go доступны через bindings зарегистрированного service. Часть интерфейсного кода остается в JavaScript.
+
+### А если число меняется?
+
+В gowt у меня есть пакет `rx`. Внутри `gowt.Run` счетчик можно связать с подписью так:
+К импортам примера выше нужны `strconv` и `github.com/haiodo/gowt/rx`.
+
+```go
+count := rx.New(0)
+label := rx.Compute(func() string { return strconv.Itoa(count.Get()) })
+w := app.Window("Counter",
+    gowt.Label("", gowt.BindText(label)),
+    gowt.Button("+1", gowt.OnClick(func() {
+        count.Set(count.Get() + 1)
+    })))
+w.Show()
+```
+
+Зависимость выражена в [rx.Compute](https://github.com/haiodo/gowt/blob/c540cc54/docs/events.md): меняется `count`, пересчитывается строка, обновляется подпись.
+
+В Fyne для такого же счетчика достаточно обновить существующий label. Добавим `strconv` и заменим `SetContent` из Hello:
+
+```go
+count := 0
+value := widget.NewLabel("0")
+w.SetContent(container.NewVBox(
+    value,
+    widget.NewButton("+1", func() {
+        count++
+        value.SetText(strconv.Itoa(count))
+    }),
+))
+```
+
+[SetText](https://github.com/fyne-io/fyne/blob/v2.8.2/widget/label.go) обновляет виджет без отдельного `Refresh`.
+На одном счетчике привязка длиннее; она полезнее, когда состояние читают несколько элементов. У Fyne тоже есть [data binding](https://docs.fyne.io/binding/).
+
+Мне в gowt были нужны системные виджеты, Go-описание формы и сборка без cgo. Нативный GUI уже есть и у Walk, и у andlabs/ui.
+Отличие gowt - переведенный SWT и связывание с библиотеками ОС во время выполнения. На Linux это все равно требует GTK 3.
+
+Примеры альтернатив сверены с документацией и исходниками, но я не компилировал и не запускал их для этого сравнения.
+
+--
+
+Библиотека еще очень сырая, но я ее понемногу совершенствую, делая побочные продуктики, нахожу баги и вперед, не покрыта Windows/Linux в хорошем виде, но уже сейчас планирую набор из нескольких вполне удобных приложений, которые мне нужны, и без которых иной раз разработка становиться морокой. Расскажу о них чуть позже.
