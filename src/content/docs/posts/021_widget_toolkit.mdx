@@ -6,8 +6,13 @@ sidebar:
   order: 21
 hero:
   image:
-    file: ../../../assets/heros/hero018.png
+    file: ../../../assets/heros/hero019.png
 ---
+
+import { Image } from 'astro:assets';
+import ill_021_01 from '../../../assets/021/ill_01.png';
+import ill_021_02 from '../../../assets/021/ill_02.png';
+import settingsForm from '../../../assets/021/settings-macos.png';
 
 Я уже рассказывал, а может, и нет, но в начале своего пути я работал с Java. Очень плотно работал. Сначала помогал делать отладчик Python для IDE на основе Eclipse, потом стартовал проект Dynamic Languages Toolkit на основе технологий Eclipse, включая Standard Widget Toolkit.
 
@@ -103,6 +108,8 @@ func main() {
 
 Но объемы для портирования несколько грустные. Но на то мы и не модели, чтобы головой думать. Немного смекалки - и появился j2go, инструмент, который позволил мне транслировать SWT, а потом и часть JFace с Java на Go. Из JFace я перенес фабрики виджетов и раскладки, но не весь набор viewers, диалогов и мастеров. А потом я завернул это все в мою удобную обвязку.
 
+<Image src={ill_021_01} alt="Робот проверяет детали после обработки в мастерской" quality="max" />
+
 ## Сколько тут кода
 
 Чтобы было понятно, почему я не стал переносить все руками, вот размер исходных Java-библиотек:
@@ -165,6 +172,18 @@ func main() {
 
 [Тот же монитор на macOS, Windows и Linux](https://github.com/haiodo/gowt/blob/c540cc54/docs/apps.md#monitor).
 
+А вот форма настроек из [examples/apps/settings](https://github.com/haiodo/gowt/blob/c540cc54/examples/apps/settings/main.go). Это пример интерфейса со статическими данными.
+Блок Account на скриншоте описан так:
+
+```go
+gowt.Fields(gowt.GrowX(), gowt.Gap(gowt.Spacing.MD),
+    gowt.Field("Display name", gowt.Text(gowt.Value("Alex Morgan"), gowt.GrowX())),
+    gowt.Field("Email", gowt.Text(gowt.Hint("name@example.com"), gowt.GrowX())),
+    gowt.Field("Password", gowt.Text(gowt.Password(), gowt.Value("secret-pass"), gowt.GrowX())))
+```
+
+<Image src={settingsForm} alt="Форма настроек gowt на macOS: оформление, параметры отображения и поля учетной записи" quality="max" />
+
 Обновляемые таблицы и деревья связываются с состоянием через `Rows` и `Nodes`.
 [Привязки](https://github.com/haiodo/gowt/blob/c540cc54/each.go) сопоставляют записи по уникальным среди соседей ключам и сохраняют выделение оставшихся элементов.
 Перестановка пересоздает строку; перенос узла к другому родителю создает новый узел.
@@ -214,6 +233,8 @@ GUI-задачи hosted runners Windows/macOS выделены отдельно 
 ## Почти как в RCPTT
 
 Для проверки приложений я вернулся к идее RCPTT: найти компонент, выполнить действие, дождаться покоя и проверить результат.
+
+<Image src={ill_021_02} alt="Робот проверяет кнопки пульта с зелеными индикаторами" quality="max" />
 
 QA-сборка приложения получает локальный сервер через `-tags gowtqa`.
 Обычный `go test` запускает ее отдельным процессом и отправляет JSON-команды через сокет.
