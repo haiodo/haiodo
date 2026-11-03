@@ -1,22 +1,40 @@
 ---
-// kind="view": two pan/zoom viewers via tenniarb-embed; kind="edit": the full editor, nothing is saved.
+// kind="view": pan/zoom viewer via tenniarb-embed; kind="edit": the editor over the site's document;
+// kind="open": the editor over a .tenn the visitor drops in. Nothing is saved.
 const { kind, element = "" } = Astro.props;
 const base = `${import.meta.env.BASE_URL.replace(/\/$/, "")}/tenniarb/`;
 ---
 
 <div class="tn-demo" data-kind={kind} data-base={base} data-element={element}>
   {kind === "edit" && <button type="button" class="tn-reset">Сбросить</button>}
-  <div class="tn-host"></div>
+  {
+    kind === "open" && (
+      <label class="tn-open">
+        Открыть .tenn
+        <input type="file" accept=".tenn,text/plain" />
+      </label>
+    )
+  }
+  <div class="tn-host">
+    {kind === "open" && <p class="tn-drop">Перетащите .tenn сюда или выберите файл</p>}
+  </div>
 </div>
 
 <style is:global>
-  .tn-demo .tn-host { height: 680px; overflow: hidden; border: 1px solid var(--border); margin-bottom: 1rem; }
-  .tn-demo[data-kind="view"] .tn-host { height: 420px; }
-  .tn-demo .tn-reset { font: inherit; font-size: 0.875rem; color: var(--accent); background: none; border: 1px solid var(--accent-border); padding: 0.1rem 0.7rem; margin-bottom: 0.5rem; cursor: pointer; }
+  /* A viewer sizes itself: the embed reads the host's height, and without one it keeps the scene's
+     aspect ratio, so the drawing fills the box instead of floating in letterbox. */
+  .tn-demo .tn-host { overflow: hidden; border: 1px solid var(--border); margin-bottom: 1rem; }
+  .tn-demo[data-kind="edit"] .tn-host,
+  .tn-demo[data-kind="open"] .tn-host { height: 680px; }
+  .tn-demo .tn-reset,
+  .tn-demo .tn-open { font: inherit; font-size: 0.875rem; color: var(--accent); background: none; border: 1px solid var(--accent-border); padding: 0.1rem 0.7rem; margin-bottom: 0.5rem; cursor: pointer; }
+  .tn-demo .tn-open input { display: none; }
+  .tn-demo .tn-drop { margin: 0; height: 100%; display: flex; align-items: center; justify-content: center; color: var(--muted); font-size: 0.9375rem; pointer-events: none; }
+  .tn-demo .tn-host.tn-over { border-color: var(--accent); }
   /* The blog's .row (bordered list card) leaks into the editor's outline rows. */
   .tn-demo .tn-split .row { border: 0; margin: 0; transition: none; }
   .tn-demo .tn-split .row:not(:hover):not(.sel) { background: none; }
-  @media (max-width: 640px) { .tn-demo .tn-host { height: 520px; } .tn-demo #outline { width: 130px; } }
+  @media (max-width: 640px) { .tn-demo[data-kind="edit"] .tn-host, .tn-demo[data-kind="open"] .tn-host { height: 520px; } .tn-demo #outline { width: 130px; } }
 </style>
 
 <script is:inline type="module">
@@ -27,22 +45,53 @@ const base = `${import.meta.env.BASE_URL.replace(/\/$/, "")}/tenniarb/`;
     demo.dataset.ready = "";
     const { kind, base, element } = demo.dataset;
     const host = demo.querySelector(".tn-host");
-    const fail = (e) => { console.error("tenniarb demo:", e); host.textContent = "Не удалось загрузить демо."; };
+    const fail = (e) => { console.error("tenniarb demo:", e); host.textContent = e?.message ?? "Не удалось загрузить демо."; };
+
     if (kind === "view") {
       Promise.all([load(base), window.Tenniarb ?? script(`${base}tenniarb-embed.min.js`)])
         .then(([text]) => window.Tenniarb.render(host, text, { element, interactive: true, fontBaseUrl: `${base}fonts/` }))
         .catch(fail);
-    } else {
-      let editor;
-      const start = async () => {
-        const [{ mount, mountLayout }, text] = await Promise.all([import(`${base}editor.js`), load(base)]);
-        editor?.destroy?.();
-        const layout = mountLayout(host);
-        layout.setTitle("tenniarb.tenn");
-        editor = await mount(layout.editor, { text, element, properties: layout.props, outline: layout.outline, toolbar: layout.bar, fontBaseUrl: `${base}fonts/` });
-      };
+      continue;
+    }
+
+    let editor;
+    const mount = async (text, title) => {
+      const mod = await import(`${base}editor.js`);
+      editor?.destroy?.();
+      const layout = mod.mountLayout(host);
+      layout.setTitle(title);
+      demo.querySelector(".tn-drop")?.remove();
+      // An empty element means "the first one with content": the editor picks it, the visitor's file has no path.
+      editor = await mod.mount(layout.editor, {
+        text,
+        ...(element ? { element } : {}),
+        properties: layout.props,
+        outline: layout.outline,
+        toolbar: layout.bar,
+        fontBaseUrl: `${base}fonts/`,
+      });
+    };
+
+    if (kind === "edit") {
+      const start = () => load(base).then((text) => mount(text, "tenniarb.tenn"));
       start().catch(fail);
       demo.querySelector(".tn-reset").onclick = () => start().catch(fail);
+      continue;
     }
+
+    // kind="open": the visitor's own file. Mounts cannot be read here, so say so instead of drawing half.
+    const pick = async (file) => {
+      if (!file) return;
+      const text = await file.text();
+      if (/--from-file/.test(text)) {
+        throw new Error("Файл подключает другие через --from-file, а в браузере их не прочитать: разверните его командой tenniarb bundle -o bundled.tenn file.tenn");
+      }
+      await mount(text, file.name);
+    };
+    const input = demo.querySelector("input[type=file]");
+    input.onchange = () => pick(input.files[0]).catch(fail);
+    host.addEventListener("dragover", (e) => { e.preventDefault(); host.classList.add("tn-over"); });
+    host.addEventListener("dragleave", () => host.classList.remove("tn-over"));
+    host.addEventListener("drop", (e) => { e.preventDefault(); host.classList.remove("tn-over"); pick(e.dataTransfer.files[0]).catch(fail); });
   }
 </script>

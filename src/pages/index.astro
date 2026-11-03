@@ -178,8 +178,10 @@ const career = [
                     <Icon name="bi:github" />
                     <span>{l.label}</span>
                   </a>
-                ) : (
+                ) : l.href.startsWith("http") ? (
                   <a href={l.href} target="_blank" rel="noreferrer">{l.label}</a>
+                ) : (
+                  <a href={l.href}>{l.label}</a>
                 ),
               )}
             </span>

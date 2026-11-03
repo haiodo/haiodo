@@ -69,7 +69,11 @@ export const projects: Project[] = [
     years: "2018 -",
     note: "дизайн-инструмент с текстовым форматом",
     about: "Личный проект: дизайн-инструмент, в котором интерфейсы живут в текстовом формате .tenn — компоненты, стили, параметры, анимации и вычисления в узлах. Приложение на Go для macOS, Windows и Linux, веб-версия и MCP для агентов.",
-    links: [{ label: "github", href: "https://github.com/haiodo/tenniarb", icon: true }],
+    links: [
+      { label: "описание проекта", href: "/projects/Tenniarb/overview" },
+      { label: "живая демонстрация", href: "/projects/Tenniarb/demo" },
+      { label: "github", href: "https://github.com/haiodo/tenniarb", icon: true },
+    ],
   },
   {
     name: "Network Service Mesh",
