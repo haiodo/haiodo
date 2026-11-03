@@ -1,11 +1,11 @@
 ---
 // kind="view": pan/zoom viewer via tenniarb-embed; kind="edit": the editor over the site's document;
 // kind="open": the editor over a .tenn the visitor drops in. Nothing is saved.
-const { kind, element = "" } = Astro.props;
+const { kind, element = "", file = "tenniarb.tenn" } = Astro.props;
 const base = `${import.meta.env.BASE_URL.replace(/\/$/, "")}/tenniarb/`;
 ---
 
-<div class="tn-demo" data-kind={kind} data-base={base} data-element={element}>
+<div class="tn-demo" data-kind={kind} data-base={base} data-element={element} data-file={file}>
   {kind === "edit" && <button type="button" class="tn-reset">Сбросить</button>}
   {
     kind === "open" && (
@@ -38,17 +38,22 @@ const base = `${import.meta.env.BASE_URL.replace(/\/$/, "")}/tenniarb/`;
 </style>
 
 <script is:inline type="module">
-  const load = (base) => (window.__tennText ??= fetch(`${base}tenniarb.tenn`).then((r) => r.text()));
+  const cache = (window.__tennText ??= new Map());
+  const load = (base, file) => {
+    const url = `${base}${file}`;
+    if (!cache.has(url)) cache.set(url, fetch(url).then((r) => r.text()));
+    return cache.get(url);
+  };
   const script = (src) => new Promise((ok, no) => Object.assign(document.head.appendChild(document.createElement("script")), { src, onload: ok, onerror: no }));
 
   for (const demo of document.querySelectorAll(".tn-demo:not([data-ready])")) {
     demo.dataset.ready = "";
-    const { kind, base, element } = demo.dataset;
+    const { kind, base, element, file } = demo.dataset;
     const host = demo.querySelector(".tn-host");
     const fail = (e) => { console.error("tenniarb demo:", e); host.textContent = e?.message ?? "Не удалось загрузить демо."; };
 
     if (kind === "view") {
-      Promise.all([load(base), window.Tenniarb ?? script(`${base}tenniarb-embed.min.js`)])
+      Promise.all([load(base, file), window.Tenniarb ?? script(`${base}tenniarb-embed.min.js`)])
         .then(([text]) => window.Tenniarb.render(host, text, { element, interactive: true, fontBaseUrl: `${base}fonts/` }))
         .catch(fail);
       continue;
@@ -73,7 +78,7 @@ const base = `${import.meta.env.BASE_URL.replace(/\/$/, "")}/tenniarb/`;
     };
 
     if (kind === "edit") {
-      const start = () => load(base).then((text) => mount(text, "tenniarb.tenn"));
+      const start = () => load(base, file).then((text) => mount(text, file));
       start().catch(fail);
       demo.querySelector(".tn-reset").onclick = () => start().catch(fail);
       continue;
