@@ -10,8 +10,9 @@ sidebar:
 import { Image } from 'astro:assets';
 
 import imgGeneralInfo from "../../../../assets/tenniarb/general_info.png";
+import imgHero from "../../../../assets/tenniarb/hero.svg";
 
-{/* TODO: hero visual from Tenniarb */}
+<Image src={imgHero} alt="Экран Tenniarb: слева файлы и навигация проекта, в центре карточки заказов из одного компонента, справа панель его параметров" quality="max" />
 
 Tenniarb — инструмент, в котором макет остаётся текстом: один `.tenn`-файл с элементами, стилями, компонентами и вычислениями. Из него получаются экраны и компонентная библиотека, а редактируют его и человек в редакторе, и агент через MCP.
 
