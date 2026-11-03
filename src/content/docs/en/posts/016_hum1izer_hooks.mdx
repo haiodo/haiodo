@@ -171,11 +171,32 @@ There's a separate rule for this, and the hook shows it. But in `opus-5-5` draft
 
 ***
 
+## A month later: all Claude and Codex sessions
+
+On November 3 I ran the same analyzer over every available transcript: 3197 Claude sessions and 201 Codex sessions. The hum1izer project itself was excluded, as in the previous measurement. The data covers `Edit`, `Write`, `MultiEdit` and `apply_patch`; file edits made through the shell are not included.
+
+| Agent | Edit fragments | Comment lines | Long blocks per 100 lines | Long lines per 100 lines |
+|---|---:|---:|---:|---:|
+| Claude | 16360 | 43313 | 6.00 | 2.42 |
+| Codex | 420 | 39 | 0 | 2.56 |
+
+Codex produced only 39 comment lines and one long line. That is not enough for a comparison with Claude: the percentage here measures one finding, not a property of the model.
+
+The fresh Claude slice matters more for checking the earlier conclusion: October 6 through November 3, only subagents that received the rules at startup.
+
+| Period | Edit fragments | Comment lines | Long blocks per 100 lines | Long lines per 100 lines |
+|---|---:|---:|---:|---:|
+| Oct 6 - Nov 3 | 2729 | 10616 | 3.98 | 5.44 |
+
+Long blocks did not improve: 3.98 against 3.40 in the previous measurement. Long lines became the main finding instead - 578 over the period. For `opus-5-5` there were 5.15 per 100 lines against 0.77 a week earlier. The agent still satisfies the two-line limit by making the lines wider.
+
+***
+
 ## Summary
 
 - **Rules at subagent startup** don't change the first draft of a comment: minus 7% on one model, below the threshold I set in advance. In project B it got worse.
 - **The post-edit check** works. On the same model subagents fix 93% of shown blocks against 42%, and it holds inside each project.
 - **The model** gave more than all my hooks together: 1.67 long comments per 100 lines for `opus-5-5` against 7.99 for `sonnet-5`.
-- **The two-line rule** gets routed around by width. The limit probably should count characters per block, not lines.
+- **The two-line rule** gets routed around by width. A month later there are 5.44 long lines per 100 comment lines, so the startup rules need a width limit as well as a line-count limit.
 
 The "hum1izer findings" metric is scored by hum1izer itself. The next step in the task is a blind sample: 30-50 comments from each group, rated by me without knowing where they came from.
