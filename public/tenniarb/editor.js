@@ -11582,16 +11582,42 @@ function attachCanvas(box2, canvas, session, opts) {
   };
   let last2 = null;
   let active = false;
+  const touches = /* @__PURE__ */ new Map();
+  let pinch = 0;
+  const spread = (pts) => pts.length === 2 ? Math.hypot(pts[0].x - pts[1].x, pts[0].y - pts[1].y) : 0;
+  const zoomBetween = (pts) => {
+    const r = canvas.getBoundingClientRect();
+    const d = spread(pts);
+    zoomAt(d / pinch, (pts[0].x + pts[1].x) / 2 - r.left, (pts[0].y + pts[1].y) / 2 - r.top);
+    pinch = d;
+  };
   canvas.addEventListener("pointerdown", (ev) => {
     box2.focus();
     if (ev.button !== 0) return;
     canvas.setPointerCapture(ev.pointerId);
+    if (ev.pointerType === "touch") {
+      touches.set(ev.pointerId, { x: ev.clientX, y: ev.clientY });
+      if (touches.size === 2) {
+        if (active) session.up(toScene(ev), true);
+        active = false;
+        last2 = null;
+        pinch = spread([...touches.values()]);
+        return;
+      }
+    }
     const [toggle, line, alt] = isMac ? [ev.metaKey, ev.ctrlKey, ev.altKey] : [ev.ctrlKey && !ev.altKey, ev.ctrlKey && ev.altKey, ev.altKey && !ev.ctrlKey];
     active = session.down(toScene(ev), { toggle, band: ev.shiftKey, line, alt });
     last2 = active ? null : { x: ev.clientX, y: ev.clientY };
     redraw();
   });
   canvas.addEventListener("pointermove", (ev) => {
+    if (touches.has(ev.pointerId)) {
+      touches.set(ev.pointerId, { x: ev.clientX, y: ev.clientY });
+      if (pinch > 0 && touches.size === 2) {
+        zoomBetween([...touches.values()]);
+        return;
+      }
+    }
     if (active) return session.move(toScene(ev));
     if (last2 === null) return;
     view.x += ev.clientX - last2.x;
@@ -11600,9 +11626,14 @@ function attachCanvas(box2, canvas, session, opts) {
     redraw();
   });
   const release = (ev) => {
+    if (touches.delete(ev.pointerId)) {
+      pinch = 0;
+      const left = [...touches.values()][0];
+      last2 = left === void 0 ? null : { x: left.x, y: left.y };
+    }
     if (active) session.up(toScene(ev), ev.type === "pointercancel");
     active = false;
-    last2 = null;
+    if (touches.size === 0) last2 = null;
     redraw();
   };
   canvas.addEventListener("pointerup", release);
