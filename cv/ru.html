@@ -6,155 +6,109 @@
   <link rel="stylesheet" href="cv.css">
 </head>
 <body>
-  <header>
-    <img class="photo" src="../src/assets/me.jpeg" alt="Андрей Соболев">
-    <div>
-      <h1>Андрей Соболев</h1>
-      <p class="title">Инженер-разработчик, архитектор · <span class="nowrap">со-основатель Intabia Fusion</span></p>
-    </div>
-    <ul class="contacts mono">
-      <li><a href="mailto:haiodo@gmail.com">haiodo@gmail.com</a></li>
-      <li><a href="https://haiodo.github.io">haiodo.github.io</a></li>
-      <li><a href="https://github.com/haiodo">github.com/haiodo</a></li>
-      <li><a href="https://www.linkedin.com/in/sobolevandrey">linkedin.com/in/sobolevandrey</a></li>
-      <li><a href="https://t.me/dev_haiodo">t.me/dev_haiodo</a></li>
-    </ul>
-  </header>
+  <section class="identity">
+    <h1>Андрей Соболев</h1>
+    <p>Инженер-разработчик / Архитектор / Со-основатель</p>
+    <p>Россия</p>
+    <p class="contact">haiodo@gmail.com</p>
+    <p class="contact">https://haiodo.github.io</p>
+    <p class="contact">https://github.com/haiodo</p>
+    <p class="contact">https://www.linkedin.com/in/sobolevandrey</p>
+    <p class="contact">https://t.me/dev_haiodo</p>
+  </section>
 
-  <h2>О себе</h2>
-  <p>
-    Больше двадцати лет в разработке: от расширений браузера на C++ и IDE на Eclipse
-    до сетей в Kubernetes и открытых платформ для бизнес-приложений. Проектирую архитектуру
-    продуктовых линеек, руковожу командами и сам пишу ключевой код. Люблю строить
-    инструменты, которыми пользуются каждый день, и доводить их до состояния, когда
-    они не раздражают.
-  </p>
+  <h2>Профессиональный профиль</h2>
+  <p>Более 20 лет в разработке программного обеспечения: архитектура распределенных систем, бизнес-платформ, интегрированных сред разработки (IDE) и инструментов разработчика. Ответственность за продукт, техническое руководство командами, промышленная эксплуатация Kubernetes и обеспечение надежности (SRE). Разработка на TypeScript, Go, Java, C++ и Swift.</p>
 
-  <h2>Опыт</h2>
+  <h2>Опыт работы</h2>
+<section class="job">
+  <p class="job-head">Со-основатель, Intabia Fusion, Октябрь 2025 - настоящее время</p>
+  <p>Развиваю Интабия Платформу, открытое рабочее место для команд: Chat, Tracker, Office, Drive; Web, Desktop, iOS, Android и MCP.</p>
+<ul>
+  <li>- Определяю продуктовую стратегию и отвечаю за продукт, управляю промышленной эксплуатацией Kubernetes и надежностью сервисов (SRE), решаю инциденты пользователей.</li>
+  <li>- Разрабатываю Helm-чарты и сложную функциональность, администрирую PostgreSQL, оптимизирую производительность.</li>
+  <li>- Совершенствую платформу на Svelte/Typescript/Node.js, работаю над клиентом под iOS/Android на go + swift/kotlin и сервисами на Go.</li>
+  <li>- Развиваю Интабия Платформу как продолжение Huly.io; исходный проект набрал 28 000 звёзд GitHub до остановки владельцем.</li>
+</ul>
+<div class="sub">
+  <p class="job-head">Управление роботами на Robot Operating System (ROS), Intabia Fusion, Март 2026 - Октябрь 2026</p>
+<ul>
+  <li>- Разработал систему управления роботами на Robot Operating System (ROS) с использованием Go, Java и React.</li>
+</ul>
+</div>
+</section>
 
-  <div class="job">
-    <div class="job-head">
-      <span><span class="job-org">Intabia Fusion</span> <span class="job-role">- со-основатель</span></span>
-      <span class="job-period mono">2025 - н.в.</span>
-    </div>
-    <p>Делаю Интабия Платформу - открытую платформу и единое место работы для команд: Chat, Tracker, Office, Drive. Доступна в Web, Desktop, iOS, Android и через MCP.</p>
-  </div>
+<section class="job">
+  <p class="job-head">Инженер-разработчик / Архитектор, Huly Labs, Май 2021 - Октябрь 2025 (4 года 6 месяцев)</p>
+  <p>Разработал Huly Platform, открытый фреймворк для бизнес-приложений: чат, управление проектами, CRM, HRM и ATS.</p>
+<ul>
+  <li>- Разработал Tracker, GitHub Integration, системные компоненты и компоненты интерфейса; продукты на платформе создавали несколько команд, включая Huly и TraceX.</li>
+  <li>- Определял продуктовые решения и отвечал за продукт, управлял промышленной эксплуатацией Kubernetes и надежностью сервисов (SRE), поддерживал 2 000 ежедневных пользователей.</li>
+  <li>- Настроил развертывание и оркестрацию MongoDB; выполнил миграцию из MongoDB в PostgreSQL.</li>
+  <li>- Оптимизировал производительность PostgreSQL и разрабатывал сложную функциональность на Svelte, Node.js, Go и Swift в большом репозитории TypeScript.</li>
+</ul>
+</section>
 
-  <div class="job">
-    <div class="job-head">
-      <span><span class="job-org">Huly Labs</span> <span class="job-role">- разработка Huly</span></span>
-      <span class="job-period mono">2021 - 2025 (4 года 6 месяцев)</span>
-    </div>
-    <p>Huly Platform - открытый фреймворк для бизнес-приложений: чат, управление проектами, CRM, HRM, ATS. На нём несколько команд строят свои продукты, в том числе Huly и TraceX. 27.9k звёзд на GitHub.</p>
-    <ul>
-      <li>Сделал Tracker, интеграцию с GitHub, много системных и UI-компонентов.</li>
-      <li>Стек: TypeScript / Node.js, Svelte на UI, часть сервисов на Go.</li>
-    </ul>
-  </div>
+<section class="job">
+  <p class="job-head">Преподаватель, Новосибирский государственный университет, 2023 - настоящее время</p>
+  <p>Преподаю объектно-ориентированное программирование (ООП) на C++ и Java.</p>
+</section>
 
-  <div class="job">
-    <div class="job-head">
-      <span><span class="job-org">TraceX</span> <span class="job-role">- разработка TraceX на платформе Huly</span></span>
-      <span class="job-period mono">2023 - н.в.</span>
-    </div>
-  </div>
+<section class="job">
+  <p class="job-head">Инженер-разработчик, Network Service Mesh, Октябрь 2018 - Сентябрь 2020 (2 года)</p>
+  <p>Разработал с нуля ядро и интеграции гибридной и мультиоблачной IP-сети сервисов (service mesh) для Kubernetes на Go.</p>
+<ul>
+  <li>- Стек: Go, gRPC, Protocol Buffers, Kubernetes, client-go, Docker и Kustomize.</li>
+  <li>- Сетевые технологии: VPP, SR-IOV, Linux netlink/netns, WireGuard, VLAN и OVS.</li>
+  <li>- Безопасность и наблюдаемость: SPIFFE/SPIRE, OpenTelemetry, Prometheus и Jaeger.</li>
+</ul>
+</section>
 
-  <div class="job">
-    <div class="job-head">
-      <span><span class="job-org">Новосибирский государственный университет</span> <span class="job-role">- преподавание</span></span>
-      <span class="job-period mono">2023 - н.в.</span>
-    </div>
-    <p>Курс объектно-ориентированного программирования на C++ и Java.</p>
-  </div>
+<section class="job">
+  <p class="job-head">Новосибирск, Xored Software Inc, Сентябрь 2005 - Май 2021 (15 лет 9 месяцев)</p>
+  <p>Проекты для Cisco Systems, Spirent Communications, InterSystems Corporation и British Telecom.</p>
+<div class="sub">
+  <p class="job-head">Ведущий инженер-разработчик, Xored Software Inc, Март 2013 - Май 2021 (8 лет 3 месяца)</p>
+<ul>
+  <li>- Проектировал архитектуру высоконагруженных корпоративных продуктов и продуктовых линеек; технически руководил несколькими командами.</li>
+  <li>- Руководил разработкой YANG-IDE и корпоративного продукта: координировал команду, развивал интерфейс и серверную часть, оптимизировал производительность.</li>
+  <li>- Разрабатывал InterSystems Atelier, Eclipse DLTK и Eclipse RCPTT; создал полнофункциональный отладчик ECL.</li>
+  <li>- Руководил продуктами на React, Meteor и Node.js с обработкой естественного языка; исследовал Nim, Imba и Cycle.js.</li>
+</ul>
+</div>
 
-  <div class="job">
-    <div class="job-head">
-      <span><span class="job-org">Network Service Mesh</span> <span class="job-role">- Software Engineer</span></span>
-      <span class="job-period mono">2018 - 2020 (2 года)</span>
-    </div>
-    <p>Гибридный и мульти-облачный IP service mesh для Kubernetes с нуля. Работал над ядром и интеграциями на Go.</p>
-  </div>
+<div class="sub">
+  <p class="job-head">Старший инженер-разработчик, Xored Software Inc, Сентябрь 2005 - Март 2013 (7 лет 7 месяцев)</p>
+<ul>
+  <li>- Создал ядро Eclipse DLTK и интегрированные среды разработки для TCL, Ruby и JavaScript как один из первых контрибьюторов.</li>
+  <li>- Разработал Q7 для автоматизации тестирования интерфейса Eclipse/SWT; оптимизировал среду выполнения записи и воспроизведения до прохождения 1 500+ тестов заказчика.</li>
+  <li>- Разработал Q7 Server с архитектурой клиент/сервер/агент и удаленными вызовами ECL (RPC); развивал командный язык ECL и среду выполнения отладчика.</li>
+  <li>- Создал интегрированную среду разработки F4 для Fantom, движок RCPML на XML/CSS/SVG и редакторы YANG-IDE на EMF/GEF/GMF.</li>
+</ul>
+</div>
+</section>
 
-  <div class="job">
-    <div class="job-head">
-      <span><span class="job-org">Xored Software Inc</span> <span class="job-role">- Новосибирск</span></span>
-      <span class="job-period mono">2005 - 2021 (15 лет 9 месяцев)</span>
-    </div>
-    <p class="note">Проекты для Cisco Systems, Spirent Communications, InterSystems Corporation, British Telecom.</p>
+<section class="job">
+  <p class="job-head">Инженер-разработчик, Novosoft LLC, Февраль 2004 - Август 2005 (1 год 7 месяцев)</p>
+  <p>Спроектировал серверную и клиентскую архитектуру HandyPassword; разработал автономное приложение и панель инструментов Internet Explorer на C++/MS COM.</p>
+</section>
 
-    <div class="sub">
-      <div class="job-head">
-        <span class="job-role">Principal Software Engineer</span>
-        <span class="job-period mono">2013 - 2021 (8 лет 3 месяца)</span>
-      </div>
-      <ul>
-        <li>Архитектура технологий и продуктовых линеек, техническое руководство несколькими командами.</li>
-        <li>Новые инициативы: выбор архитектуры и технологий для enterprise-продуктов с высокой нагрузкой и масштабированием.</li>
-        <li>Разработка продуктов компании и исследования, в том числе Eclipse DLTK и Eclipse RCPTT.</li>
-        <li>InterSystems Atelier (IDE для Caché): разработка, поддержка Eclipse DLTK, UI-автоматизация на RCPTT.</li>
-        <li>Руководил несколькими продуктами на React.js / Meteor / Node.js с обработкой естественного языка.</li>
-        <li>Технический консультант Q7: полноценный отладчик ECL и другие улучшения; Q7 ушёл в Eclipse как открытый проект RCPTT.</li>
-        <li>Технический лидер YANG-IDE и enterprise-продукта для заказчика: координация команды, UI и бэкенд, производительность.</li>
-        <li>Исследования новых технологий: Nim, React.js, Imba.io, Cycle.js как основа новой платформы.</li>
-      </ul>
-    </div>
+  <h2>Открытые проекты</h2>
+  <p>- gowt: Разработал кроссплатформенный GUI-фреймворк для Go без cgo: нативные виджеты AppKit, Win32 и GTK 3, порт Eclipse SWT с Java на Go. https://github.com/haiodo/gowt</p>
+  <p>- Hum1izer: Разработал инструмент командной строки (CLI) на Go для поиска канцелярита и следов машинной генерации в тексте, комментариях и коммитах. https://github.com/haiodo/hum1izer</p>
+  <p>- Tenniarb: Разработал редактор диаграмм для macOS на Swift с текстовым форматом документов. https://github.com/haiodo/tenniarb</p>
+  <p>- OAITT: Создал сервис распознавания речи на GigaAM с API, совместимым с OpenAI, на Python и Swift/MLX, 2025 - 2026. https://github.com/haiodo/oaitt</p>
+  <p>- Eclipse RCPTT и DLTK: Разрабатывал ядро, среду выполнения и компоненты интегрированной среды разработки в открытых проектах Eclipse Foundation. https://eclipse.dev/rcptt, https://eclipse.dev/dltk</p>
 
-    <div class="sub">
-      <div class="job-head">
-        <span class="job-role">Senior Software Engineer</span>
-        <span class="job-period mono">2005 - 2013 (7 лет 7 месяцев)</span>
-      </div>
-      <ul>
-        <li><b>Eclipse DLTK</b> - один из первых контрибьюторов: основа фреймворка и полноценные IDE для TCL, Ruby, JavaScript.</li>
-        <li><b>Q7</b> - UI-тестирование Eclipse/SWT-приложений: низкоуровневый runtime записи и воспроизведения, AspectJ, поддержка RAP, ленивая модель тест-кейсов по образцу JDT; довёл runtime до прохождения 1500+ тестов на проекте заказчика.</li>
-        <li><b>Q7 Server</b> - распределённое выполнение тестов, архитектура клиент/сервер/агент с ECL в роли RPC: планирование, стабильность, отказоустойчивая связь.</li>
-        <li><b>ECL</b> - командный язык тестовых сценариев, много сделал в языке и фреймворке.</li>
-        <li><b>F4</b> - IDE для языка Fantom на базе DLTK: первая версия на Java, интеграция с JDT, автодополнение и навигация по FFI.</li>
-        <li><b>RCPML</b> - декларативный UI-движок на XML со стилями CSS и SVG.</li>
-        <li><b>YANG-IDE</b> - IDE для языка моделирования NETCONF в телекоме: модель ресурсов EMF, своя XML-сериализация, редакторы диаграмм на GEF/GMF.</li>
-      </ul>
-    </div>
-  </div>
+  <h2>Ключевые навыки</h2>
+  <p>TypeScript, JavaScript, Node.js, Svelte, Go, Java, C++, Swift, Kubernetes, Helm, PostgreSQL, MongoDB</p>
 
-  <div class="job">
-    <div class="job-head">
-      <span><span class="job-org">Novosoft LLC</span> <span class="job-role">- архитектор и разработчик</span></span>
-      <span class="job-period mono">2004 - 2005 (1 год 7 месяцев)</span>
-    </div>
-    <p>HandyPassword - менеджер паролей и защищённое хранилище как расширение Internet Explorer. Архитектура сервера и браузерного клиента, отдельное приложение и тулбар IE. C++, MS COM, API Internet Explorer.</p>
-  </div>
+  <h2>Образование</h2>
+  <p>Новосибирский государственный университет</p>
+  <p>Магистр, информационные технологии, 2005 - 2007</p>
+  <p>Бакалавр, информационные технологии, 2001 - 2005</p>
 
-  <h2>Open Source</h2>
-  <dl class="grid">
-    <dt>Hum1izer</dt><dd>CLI на Go: ищет канцелярит, штампы и следы нейросети в тексте, комментариях и коммитах. <span class="nowrap">github.com/haiodo/hum1izer</span></dd>
-    <dt>Интабия Платформа</dt><dd>Открытая платформа и единое место работы для команд: Chat, Tracker, Office, Drive. <span class="nowrap">github.com/intabia-fusion/platform</span></dd>
-    <dt>Tenniarb</dt><dd>Нативный редактор мозговых карт для macOS на Swift со своим форматом диаграмм. <span class="nowrap">github.com/haiodo/tenniarb</span></dd>
-    <dt>OAITT</dt><dd>Сервис распознавания речи на GigaAM с API, совместимым с OpenAI: сервис на Python и нативное приложение для строки меню macOS на Swift/MLX. Единственный автор, 2025 - 2026. <span class="nowrap">github.com/haiodo/oaitt</span></dd>
-    <dt>ECL</dt><dd>Eclipse Command Language - скриптовый язык Q7 и RCPTT. 2010 - 2013: ядро, runtime отладчика, переработка клиент-сервера, новые команды. <span class="nowrap">github.com/haiodo/ecl</span></dd>
-    <dt>F4</dt><dd>IDE для языка Fantom на Eclipse и DLTK. 2010 - 2016: интеграция Fantom с JDT, автодополнение, парсер, сборка; позже сопровождал проект и принимал PR сообщества. <span class="nowrap">github.com/haiodo/f4</span></dd>
-    <dt>YANG-IDE</dt><dd>IDE для языка моделирования YANG / NETCONF, разрабатывалась для Cisco; форк живёт в OpenDaylight. 2014 - 2016: продукт, сборка, редакторы, модель. <span class="nowrap">github.com/haiodo/yang-ide</span></dd>
-    <dt>RCPML</dt><dd>Декларативный UI-движок на XML для Eclipse RCP со стилями CSS. 2006 - 2007: ядро, формы, отрисовка на SWT. <span class="nowrap">github.com/haiodo/rcpml</span></dd>
-    <dt>Eclipse RCPTT, DLTK</dt><dd>eclipse.dev/rcptt, eclipse.dev/dltk</dd>
-  </dl>
-
-  <div class="two-col">
-    <div>
-      <h2>Навыки</h2>
-      <dl class="grid">
-        <dt>Языки</dt><dd>Go, TypeScript / JavaScript, Java, C++, Swift, TCL, Ruby</dd>
-        <dt>Фронтенд</dt><dd>Svelte, React, Vue, HTML / CSS</dd>
-        <dt>Платформы</dt><dd>Node.js, Kubernetes, Eclipse RCP / EMF / GEF</dd>
-        <dt>Практики</dt><dd>Архитектура, enterprise-софт, автоматизация тестирования, руководство стартапом</dd>
-      </dl>
-    </div>
-    <div>
-      <h2>Образование</h2>
-      <p><b>Новосибирский государственный университет</b></p>
-      <p>Магистр, информационные технологии <span class="job-period mono">2005 - 2007</span></p>
-      <p>Бакалавр, информационные технологии <span class="job-period mono">2001 - 2005</span></p>
-      <h2>Языки</h2>
-      <p>Русский - родной. Английский - рабочий.</p>
-    </div>
-  </div>
+  <h2>Языки</h2>
+  <p>Русский - родной. Английский - профессиональное владение.</p>
 </body>
 </html>

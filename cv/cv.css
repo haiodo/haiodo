@@ -1,201 +1,69 @@
-/* Print stylesheet for the downloadable CV; colors follow the blog's Ayu Mirage palette. */
 @page {
   size: A4;
-  margin: 11mm 12mm;
-}
-
-:root {
-  --ink: #1f2430;
-  --muted: #5c6370;
-  --faint: #8a9199;
-  --rule: #d9dde3;
-  --accent: #c27a00;
-  --band: #242936;
-  --band-fg: #cccac2;
-  --band-accent: #ffcc66;
-}
-
-* {
-  box-sizing: border-box;
-  -webkit-print-color-adjust: exact;
-  print-color-adjust: exact;
+  margin: 10mm 12mm;
 }
 
 body {
   margin: 0;
-  color: var(--ink);
-  font-family: "Helvetica Neue", Arial, sans-serif;
-  font-size: 9.6pt;
-  line-height: 1.38;
+  color: #000;
+  background: #fff;
+  font-family: Arial, sans-serif;
+  font-size: 11pt;
+  line-height: 1.25;
 }
 
-.mono {
-  font-family: Menlo, "JetBrains Mono", monospace;
-}
-
-header {
-  background: var(--band);
-  color: var(--band-fg);
-  padding: 2.5mm 3.5mm;
-  border-radius: 3mm;
-  margin-bottom: 5mm;
-  display: grid;
-  grid-template-columns: auto 1fr auto;
-  gap: 6mm;
-  align-items: center;
-}
-
-header .photo {
-  display: block;
-  width: 24mm;
-  height: 24mm;
-  margin: 0.35mm;
-  object-fit: cover;
-  object-position: top;
-  border-radius: 2mm;
-  box-shadow: 0 0 0 0.35mm var(--band-accent);
-}
-
-header h1 {
-  margin: 0;
-  font-size: 22pt;
-  font-weight: 500;
-  color: #fff;
-  letter-spacing: 0.2pt;
-}
-
-header .title {
-  margin: 1mm 0 0;
-  font-size: 10.5pt;
-  color: var(--band-accent);
-}
-
-header .contacts {
-  list-style: none;
+h1,
+h2,
+p,
+ul {
   margin: 0;
   padding: 0;
-  font-size: 8.4pt;
-  line-height: 1.6;
-  text-align: right;
+  font-weight: normal;
+  font-style: normal;
 }
 
-header a {
-  color: var(--band-fg);
-  text-decoration: none;
+h1 {
+  margin-bottom: 1mm;
+  font-size: 16pt;
+  break-after: avoid;
 }
 
 h2 {
-  font-size: 9pt;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 1.2pt;
-  color: var(--accent);
-  margin: 5mm 0 2mm;
-  padding-bottom: 1mm;
-  border-bottom: 1px solid var(--rule);
-}
-
-h2:first-child {
-  margin-top: 0;
+  margin: 3mm 0 1mm;
+  font-size: 11pt;
+  break-after: avoid;
 }
 
 p {
-  margin: 0 0 1.5mm;
+  margin-bottom: 1mm;
 }
 
-ul {
-  margin: 0.5mm 0 1.5mm;
-  padding-left: 4.5mm;
+.identity {
+  margin-bottom: 2mm;
 }
 
-li {
-  margin-bottom: 0.6mm;
+.identity .contact {
+  margin: 0;
 }
 
 .job {
-  margin-bottom: 3.2mm;
-}
-
-/* Everything under a job heading hangs on one rail; spacing is padding so the rail has no gaps. */
-.job > p,
-.job > ul,
-.job > .sub {
-  margin: 0 0 0 3mm;
-  padding: 0.5mm 0 1mm 3mm;
-  border-left: 2px solid var(--rule);
-}
-
-.job > ul {
-  padding-left: 7.5mm;
-}
-
-.job > .sub {
-  padding-top: 1.8mm;
-  padding-bottom: 0;
+  margin-bottom: 2mm;
 }
 
 .job-head {
   break-after: avoid;
 }
 
-.job-org {
-  font-weight: 700;
-  font-size: 10.2pt;
-}
-
-.job-role {
-  color: var(--muted);
-}
-
-.job-period {
-  font-size: 8.2pt;
-  color: var(--faint);
-  white-space: nowrap;
-}
-
-.job-head .job-period {
-  font-family: inherit;
-  font-size: inherit;
-}
-
-.job-head .job-period::before {
-  content: "- ";
-}
-
 .sub {
+  margin-top: 1mm;
   break-inside: avoid;
 }
 
-.sub .job-role {
-  color: var(--ink);
-  font-weight: 600;
+ul {
+  padding-left: 4mm;
+  list-style: none;
 }
 
-.note {
-  color: var(--muted);
-}
-
-.grid {
-  display: grid;
-  grid-template-columns: 30mm 1fr;
-  gap: 1mm 4mm;
-}
-
-.grid dt {
-  color: var(--muted);
-}
-
-.grid dd {
-  margin: 0;
-}
-
-.nowrap {
-  white-space: nowrap;
-}
-
-.two-col {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 6mm;
-  break-inside: avoid;
+li {
+  margin-bottom: 0.5mm;
 }

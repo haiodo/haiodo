@@ -6,6 +6,7 @@
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro build && node scripts/prune-unused-assets.mjs && node scripts/slash-compat.mjs",
+    "cv:build": "./cv/build.sh",
     "preview": "astro preview",
     "astro": "astro"
   },
@@ -19,7 +20,8 @@
     "astro-embed": "^0.13.1",
     "astro-icon": "^1.1.5",
     "sharp": "^0.35.3",
-    "typescript": "^7.0.2"
+    "typescript": "^7.0.2",
+    "yaml": "^2.9.1"
   },
   "pnpm": {
     "onlyBuiltDependencies": [

@@ -1,0 +1,290 @@
+profile:
+  name:
+    ru: Андрей Соболев
+    en: Andrey Sobolev
+  title:
+    ru: Инженер-разработчик / Архитектор / Со-основатель
+    en: Software Engineer / Software Architect / Co-Founder
+  location:
+    ru: Россия
+    en: Russia
+  summary:
+    ru: >-
+      Более 20 лет в разработке программного обеспечения: архитектура распределенных систем,
+      бизнес-платформ, интегрированных сред разработки (IDE) и инструментов разработчика.
+      Ответственность за продукт, техническое руководство командами, промышленная эксплуатация
+      Kubernetes и обеспечение надежности (SRE). Разработка на TypeScript, Go, Java, C++ и Swift.
+    en: >-
+      Software Engineer and Architect with 20+ years of experience in distributed systems,
+      business platforms, IDEs, and developer tools. Product ownership, engineering leadership,
+      production Kubernetes, and SRE. Hands-on development in TypeScript, Go, Java, C++, and Swift.
+
+contacts:
+  - haiodo@gmail.com
+  - https://haiodo.github.io
+  - https://github.com/haiodo
+  - https://www.linkedin.com/in/sobolevandrey
+  - https://t.me/dev_haiodo
+
+headings:
+  pageTitle:
+    ru: Андрей Соболев - резюме
+    en: Andrey Sobolev - CV
+  summary:
+    ru: Профессиональный профиль
+    en: Professional Summary
+  experience:
+    ru: Опыт работы
+    en: Work Experience
+  openSource:
+    ru: Открытые проекты
+    en: Open Source Projects
+  skills:
+    ru: Ключевые навыки
+    en: Key Skills
+  education:
+    ru: Образование
+    en: Education
+  languages:
+    ru: Языки
+    en: Languages
+
+experience:
+  - id: intabia
+    organization:
+      ru: Intabia Fusion
+      en: Intabia Fusion
+    role:
+      ru: Со-основатель
+      en: Co-Founder
+    period:
+      ru: Октябрь 2025 - настоящее время
+      en: October 2025 - Present
+      blog: "2025 -"
+    description:
+      ru: "Развиваю Интабия Платформу, открытое рабочее место для команд: Chat, Tracker, Office, Drive; Web, Desktop, iOS, Android и MCP."
+      en: "Develop Intabia Platform, an open team workspace: Chat, Tracker, Office, and Drive across Web, Desktop, iOS, Android, and MCP."
+    bullets:
+      - ru: Определяю продуктовую стратегию и отвечаю за продукт, управляю промышленной эксплуатацией Kubernetes и надежностью сервисов (SRE), решаю инциденты пользователей.
+        en: Define product strategy and own product delivery, manage production Kubernetes and SRE, and resolve user incidents.
+      - ru: Разрабатываю Helm-чарты и сложную функциональность, администрирую PostgreSQL, оптимизирую производительность.
+        en: Develop Helm charts and complex features, administer PostgreSQL, and optimize performance.
+      - ru: Совершенствую платформу на Svelte/Typescript/Node.js, работаю над клиентом под iOS/Android на go + swift/kotlin и сервисами на Go.
+        en: Improve the platform with Svelte/TypeScript/Node.js, build iOS/Android clients with Go, Swift, and Kotlin, and develop Go services.
+      - ru: Развиваю Интабия Платформу как продолжение Huly.io; исходный проект набрал 28 000 звёзд GitHub до остановки владельцем.
+        en: Develop Intabia Platform as the successor to Huly.io, whose original repository reached 28k GitHub stars before the owner suspended development.
+    positions:
+      - id: intabia-robotics
+        role:
+          ru: Управление роботами на Robot Operating System (ROS)
+          en: Robot Control with Robot Operating System (ROS)
+        period:
+          ru: Март 2026 - Октябрь 2026
+          en: March 2026 - October 2026
+        bullets:
+          - ru: Разработал систему управления роботами на Robot Operating System (ROS) с использованием Go, Java и React.
+            en: Built a robot control system on Robot Operating System (ROS) using Go, Java, and React.
+    blogOrder: 10
+    blogRole: Со-основатель, Интабия Платформа
+    blogDetail: Product ownership, Kubernetes в проде, SRE и поддержка пользователей; Helm, PostgreSQL, оптимизация производительности; Svelte, Node.js, Go, Swift; продолжение Huly.io; управление роботами на ROS с Go, Java и React, март-октябрь 2026
+
+  - id: huly
+    organization:
+      ru: Huly Labs
+      en: Huly Labs
+    role:
+      ru: Инженер-разработчик / Архитектор
+      en: Software Engineer / Software Architect
+    period:
+      ru: Май 2021 - Октябрь 2025 (4 года 6 месяцев)
+      en: May 2021 - October 2025 (4 years 6 months)
+      blog: 2021 - 2025
+    description:
+      ru: "Разработал Huly Platform, открытый фреймворк для бизнес-приложений: чат, управление проектами, CRM, HRM и ATS."
+      en: "Built Huly Platform, an open framework for business applications: Chat, Project Management, CRM, HRM, and ATS."
+    bullets:
+      - ru: Разработал Tracker, GitHub Integration, системные компоненты и компоненты интерфейса; продукты на платформе создавали несколько команд, включая Huly и TraceX.
+        en: Built the Tracker, GitHub Integration, and system and UI components used by several product teams, including Huly and TraceX.
+      - ru: Определял продуктовые решения и отвечал за продукт, управлял промышленной эксплуатацией Kubernetes и надежностью сервисов (SRE), поддерживал 2 000 ежедневных пользователей.
+        en: Owned product decisions, managed production Kubernetes and SRE, and supported a user base of 2k daily users.
+      - ru: Настроил развертывание и оркестрацию MongoDB; выполнил миграцию из MongoDB в PostgreSQL.
+        en: Implemented MongoDB deployment and orchestration; migrated the platform from MongoDB to PostgreSQL.
+      - ru: Оптимизировал производительность PostgreSQL и разрабатывал сложную функциональность на Svelte, Node.js, Go и Swift в большом репозитории TypeScript.
+        en: Optimized PostgreSQL performance and developed complex features with Svelte, Node.js, Go, and Swift in a very large TypeScript repository.
+    blogOrder: 40
+    blogRole: Building Huly
+    blogDetail: Product ownership, Kubernetes и SRE, поддержка 2 000 ежедневных пользователей; MongoDB и миграция на PostgreSQL; Svelte, Node.js, Go, Swift
+
+  - id: nsu-teaching
+    organization:
+      ru: Новосибирский государственный университет
+      en: Novosibirsk State University
+    shortName: НГУ
+    role:
+      ru: Преподаватель
+      en: Lecturer
+    period:
+      ru: 2023 - настоящее время
+      en: 2023 - Present
+      blog: "2023 -"
+    description:
+      ru: Преподаю объектно-ориентированное программирование (ООП) на C++ и Java.
+      en: Teach object-oriented programming (OOP) in C++ and Java.
+    blogOrder: 20
+    blogRole: Преподаю ООП на C++ и Java
+
+  - id: nsm
+    organization:
+      ru: Network Service Mesh
+      en: Network Service Mesh
+    role:
+      ru: Инженер-разработчик
+      en: Software Engineer
+    period:
+      ru: Октябрь 2018 - Сентябрь 2020 (2 года)
+      en: October 2018 - September 2020 (2 years)
+      blog: 2018 - 2020
+    description:
+      ru: Разработал с нуля ядро и интеграции гибридной и мультиоблачной IP-сети сервисов (service mesh) для Kubernetes на Go.
+      en: Built the core and integrations of a hybrid/multi-cloud IP service mesh for Kubernetes from scratch in Go.
+    bullets:
+      - ru: "Стек: Go, gRPC, Protocol Buffers, Kubernetes, client-go, Docker и Kustomize."
+        en: "Stack: Go, gRPC, Protocol Buffers, Kubernetes, client-go, Docker, and Kustomize."
+      - ru: "Сетевые технологии: VPP, SR-IOV, Linux netlink/netns, WireGuard, VLAN и OVS."
+        en: "Networking: VPP, SR-IOV, Linux netlink/netns, WireGuard, VLAN, and OVS."
+      - ru: "Безопасность и наблюдаемость: SPIFFE/SPIRE, OpenTelemetry, Prometheus и Jaeger."
+        en: "Security and observability: SPIFFE/SPIRE, OpenTelemetry, Prometheus, and Jaeger."
+    blogOrder: 50
+    blogRole: Building Kubernetes Hybrid/Multi-cloud IP Service from scratch
+    blogDetail: Go, gRPC, Kubernetes, VPP, SR-IOV, WireGuard, SPIFFE/SPIRE, Docker, Kustomize
+
+  - id: xored
+    organization:
+      ru: Xored Software Inc
+      en: Xored Software Inc
+    shortName: Xored Software
+    role:
+      ru: Новосибирск
+      en: Novosibirsk
+    period:
+      ru: Сентябрь 2005 - Май 2021 (15 лет 9 месяцев)
+      en: September 2005 - May 2021 (15 years 9 months)
+    note:
+      ru: Проекты для Cisco Systems, Spirent Communications, InterSystems Corporation и British Telecom.
+      en: Projects for Cisco Systems, Spirent Communications, InterSystems Corporation, and British Telecom.
+    positions:
+      - id: xored-principal
+        role:
+          ru: Ведущий инженер-разработчик
+          en: Principal Software Engineer
+        period:
+          ru: Март 2013 - Май 2021 (8 лет 3 месяца)
+          en: March 2013 - May 2021 (8 years 3 months)
+          blog: 2013 - 2021
+        bullets:
+          - ru: Проектировал архитектуру высоконагруженных корпоративных продуктов и продуктовых линеек; технически руководил несколькими командами.
+            en: Designed the architecture of enterprise-class, high-performance product lines and provided technical leadership to multiple development teams.
+          - ru: "Руководил разработкой YANG-IDE и корпоративного продукта: координировал команду, развивал интерфейс и серверную часть, оптимизировал производительность."
+            en: "Led YANG-IDE and an enterprise customer product: coordinated the team, developed UI and backend, and improved performance."
+          - ru: Разрабатывал InterSystems Atelier, Eclipse DLTK и Eclipse RCPTT; создал полнофункциональный отладчик ECL.
+            en: Developed InterSystems Atelier, Eclipse DLTK, and Eclipse RCPTT; built a full-featured ECL debugger.
+          - ru: Руководил продуктами на React, Meteor и Node.js с обработкой естественного языка; исследовал Nim, Imba и Cycle.js.
+            en: Led React, Meteor, and Node.js products with natural language processing (NLP); evaluated Nim, Imba, and Cycle.js.
+        blogOrder: 60
+        blogDetail: архитектура продуктовых линеек, руководство несколькими командами; InterSystems Atelier, Q7 / RCPTT и отладчик ECL, YANG-IDE, продукты на React / Meteor / Node.js; проекты для Cisco Systems, Spirent Communications, InterSystems Corporation, British Telecom
+
+      - id: xored-senior
+        role:
+          ru: Старший инженер-разработчик
+          en: Senior Software Engineer
+        period:
+          ru: Сентябрь 2005 - Март 2013 (7 лет 7 месяцев)
+          en: September 2005 - March 2013 (7 years 7 months)
+          blog: 2005 - 2013
+        bullets:
+          - ru: Создал ядро Eclipse DLTK и интегрированные среды разработки для TCL, Ruby и JavaScript как один из первых контрибьюторов.
+            en: Built the Eclipse DLTK core and IDEs for TCL, Ruby, and JavaScript as one of the initial contributors.
+          - ru: Разработал Q7 для автоматизации тестирования интерфейса Eclipse/SWT; оптимизировал среду выполнения записи и воспроизведения до прохождения 1 500+ тестов заказчика.
+            en: Developed Q7 for Eclipse/SWT UI test automation; optimized the record/replay runtime to pass 1,500+ customer test cases.
+          - ru: Разработал Q7 Server с архитектурой клиент/сервер/агент и удаленными вызовами ECL (RPC); развивал командный язык ECL и среду выполнения отладчика.
+            en: Built Q7 Server with a client/server/agent architecture and ECL RPC; developed the ECL command language and debugger runtime.
+          - ru: Создал интегрированную среду разработки F4 для Fantom, движок RCPML на XML/CSS/SVG и редакторы YANG-IDE на EMF/GEF/GMF.
+            en: Built the F4 IDE for Fantom, the RCPML XML/CSS/SVG engine, and YANG-IDE editors with EMF/GEF/GMF.
+        blogOrder: 70
+        blogRole: Sr. Software Engineer
+        blogDetail: Eclipse DLTK (IDE для TCL, Ruby, JavaScript), Q7 и Q7 Server, ECL, F4 - IDE для Fantom, RCPML, YANG-IDE на EMF и GEF/GMF
+
+  - id: novosoft
+    organization:
+      ru: Novosoft LLC
+      en: Novosoft LLC
+    role:
+      ru: Инженер-разработчик
+      en: Software Engineer
+    period:
+      ru: Февраль 2004 - Август 2005 (1 год 7 месяцев)
+      en: February 2004 - August 2005 (1 year 7 months)
+      blog: 2004 - 2005
+    description:
+      ru: Спроектировал серверную и клиентскую архитектуру HandyPassword; разработал автономное приложение и панель инструментов Internet Explorer на C++/MS COM.
+      en: Designed the server and client architecture of HandyPassword; built a standalone application and Internet Explorer toolbar in C++/MS COM.
+    blogOrder: 80
+    blogRole: Software Engineer
+    blogDetail: HandyPassword - менеджер паролей как расширение Internet Explorer, C++ и MS COM
+
+openSource:
+  - name:
+      ru: gowt
+      en: gowt
+    description:
+      ru: "Разработал кроссплатформенный GUI-фреймворк для Go без cgo: нативные виджеты AppKit, Win32 и GTK 3, порт Eclipse SWT с Java на Go."
+      en: "Built a cross-platform GUI toolkit for Go without cgo: native AppKit, Win32, and GTK 3 widgets, with Eclipse SWT translated from Java to Go."
+    link: https://github.com/haiodo/gowt
+  - name:
+      ru: Hum1izer
+      en: Hum1izer
+    description:
+      ru: Разработал инструмент командной строки (CLI) на Go для поиска канцелярита и следов машинной генерации в тексте, комментариях и коммитах.
+      en: Built a Go CLI that finds officialese and AI traces in prose, code comments, and commits.
+    link: https://github.com/haiodo/hum1izer
+  - name:
+      ru: Tenniarb
+      en: Tenniarb
+    description:
+      ru: Разработал редактор диаграмм для macOS на Swift с текстовым форматом документов.
+      en: Built a native macOS diagram editor in Swift with a text-based document format.
+    link: https://github.com/haiodo/tenniarb
+  - name:
+      ru: OAITT
+      en: OAITT
+    description:
+      ru: Создал сервис распознавания речи на GigaAM с API, совместимым с OpenAI, на Python и Swift/MLX, 2025 - 2026.
+      en: Built a GigaAM speech-to-text service with an OpenAI-compatible API in Python and Swift/MLX, 2025 - 2026.
+    link: https://github.com/haiodo/oaitt
+  - name:
+      ru: Eclipse RCPTT и DLTK
+      en: Eclipse RCPTT and DLTK
+    description:
+      ru: Разрабатывал ядро, среду выполнения и компоненты интегрированной среды разработки в открытых проектах Eclipse Foundation.
+      en: Developed the core, runtime, and IDE components of open Eclipse Foundation projects.
+    link: https://eclipse.dev/rcptt, https://eclipse.dev/dltk
+
+skills: TypeScript, JavaScript, Node.js, Svelte, Go, Java, C++, Swift, Kubernetes, Helm, PostgreSQL, MongoDB
+
+education:
+  school:
+    ru: Новосибирский государственный университет
+    en: Novosibirsk State University
+  degrees:
+    - name:
+        ru: Магистр, информационные технологии
+        en: Master's Degree, Information Technologies
+      period: 2005 - 2007
+    - name:
+        ru: Бакалавр, информационные технологии
+        en: Bachelor's Degree, IT
+      period: 2001 - 2005
+
+languageSummary:
+  ru: Русский - родной. Английский - профессиональное владение.
+  en: Russian - native. English - professional working proficiency.
