@@ -4,7 +4,7 @@
 
 Привет, меня зовут Андрей Соболев.
 
-Разработчик и архитектор, со-основатель Intabia Fusion. Люблю изучать новые технологии и делиться знаниями.
+Разработчик и архитектор, сооснователь Intabia Fusion. Люблю изучать новые технологии и делиться знаниями.
 
 Начинал с Java и Eclipse:
 * [DLTK](https://github.com/eclipse-dltk) - [DLTK на eclipse.dev](https://eclipse.dev/dltk/)
@@ -13,7 +13,7 @@
 Продолжил на Go:
 * [Network Service Mesh](https://github.com/networkservicemesh)
 
-Со-автор и со-основатель платформы [Huly](https://github.com/hcengineering/platform), сейчас делаю [Интабия Платформу](https://github.com/intabia-fusion/platform).
+Со-автор и сооснователь платформы [Huly](https://github.com/hcengineering/platform), сейчас делаю [Интабия Платформу](https://github.com/intabia-fusion/platform).
 
 ## Open Source
 

@@ -3,7 +3,7 @@ profile:
     ru: Андрей Соболев
     en: Andrey Sobolev
   title:
-    ru: Инженер-разработчик / Архитектор / Со-основатель
+    ru: Инженер-разработчик / Архитектор / Сооснователь
     en: Software Engineer / Software Architect / Co-Founder
   location:
     ru: Россия
@@ -55,7 +55,7 @@ experience:
       ru: Intabia Fusion
       en: Intabia Fusion
     role:
-      ru: Со-основатель
+      ru: Сооснователь
       en: Co-Founder
     period:
       ru: Октябрь 2025 - настоящее время
@@ -85,7 +85,7 @@ experience:
           - ru: Разработал систему управления роботами на Robot Operating System (ROS) с использованием Go, Java и React.
             en: Built a robot control system on Robot Operating System (ROS) using Go, Java, and React.
     blogOrder: 10
-    blogRole: Со-основатель, Интабия Платформа
+    blogRole: Сооснователь, Интабия Платформа
     blogDetail: Product ownership, Kubernetes в проде, SRE и поддержка пользователей; Helm, PostgreSQL, оптимизация производительности; Svelte, Node.js, Go, Swift; продолжение Huly.io; управление роботами на ROS с Go, Java и React, март-октябрь 2026
 
   - id: huly
