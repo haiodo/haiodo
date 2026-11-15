@@ -42,7 +42,7 @@ Other projects:
 
 ## Support
 
-An a open-source work requires some essential community support, so if you like my work in some case, please helm me on this way:
+An a open-source work requires some essential community support, so if you like my work in some case, please help me on this way:
 
 * https://web.tribute.tg/d/Uag
 * https://boosty.to/haiodo
