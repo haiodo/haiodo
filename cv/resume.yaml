@@ -86,7 +86,9 @@ experience:
             en: Built a robot control system on Robot Operating System (ROS) using Go, Java, and React.
     blogOrder: 10
     blogRole: Сооснователь, Интабия Платформа
+    blogRoleEn: Co-Founder, Intabia Platform
     blogDetail: Product ownership, Kubernetes в проде, SRE и поддержка пользователей; Helm, PostgreSQL, оптимизация производительности; Svelte, Node.js, Go, Swift; продолжение Huly.io; управление роботами на ROS с Go, Java и React, март-октябрь 2026
+    blogDetailEn: Product ownership, production Kubernetes, SRE and user support; Helm, PostgreSQL, performance tuning; Svelte, Node.js, Go, Swift; the successor to Huly.io; robot control on ROS with Go, Java and React, March-October 2026
 
   - id: huly
     organization:
@@ -114,6 +116,7 @@ experience:
     blogOrder: 40
     blogRole: Building Huly
     blogDetail: Product ownership, Kubernetes и SRE, поддержка 2 000 ежедневных пользователей; MongoDB и миграция на PostgreSQL; Svelte, Node.js, Go, Swift
+    blogDetailEn: Product ownership, Kubernetes and SRE, support for 2,000 daily users; MongoDB and migration to PostgreSQL; Svelte, Node.js, Go, Swift
 
   - id: nsu-teaching
     organization:
@@ -132,6 +135,7 @@ experience:
       en: Teach object-oriented programming (OOP) in C++ and Java.
     blogOrder: 20
     blogRole: Преподаю ООП на C++ и Java
+    blogRoleEn: Teaching OOP in C++ and Java
 
   - id: nsm
     organization:
@@ -191,7 +195,9 @@ experience:
           - ru: Руководил продуктами на React, Meteor и Node.js с обработкой естественного языка; исследовал Nim, Imba и Cycle.js.
             en: Led React, Meteor, and Node.js products with natural language processing (NLP); evaluated Nim, Imba, and Cycle.js.
         blogOrder: 60
+        blogRoleEn: Principal Software Engineer
         blogDetail: архитектура продуктовых линеек, руководство несколькими командами; InterSystems Atelier, Q7 / RCPTT и отладчик ECL, YANG-IDE, продукты на React / Meteor / Node.js; проекты для Cisco Systems, Spirent Communications, InterSystems Corporation, British Telecom
+        blogDetailEn: product line architecture, leadership of several teams; InterSystems Atelier, Q7 / RCPTT and the ECL debugger, YANG-IDE, React / Meteor / Node.js products; projects for Cisco Systems, Spirent Communications, InterSystems Corporation, British Telecom
 
       - id: xored-senior
         role:
@@ -213,6 +219,7 @@ experience:
         blogOrder: 70
         blogRole: Sr. Software Engineer
         blogDetail: Eclipse DLTK (IDE для TCL, Ruby, JavaScript), Q7 и Q7 Server, ECL, F4 - IDE для Fantom, RCPML, YANG-IDE на EMF и GEF/GMF
+        blogDetailEn: Eclipse DLTK (IDE for TCL, Ruby, JavaScript), Q7 and Q7 Server, ECL, F4 - the Fantom IDE, RCPML, YANG-IDE on EMF and GEF/GMF
 
   - id: novosoft
     organization:
@@ -231,6 +238,7 @@ experience:
     blogOrder: 80
     blogRole: Software Engineer
     blogDetail: HandyPassword - менеджер паролей как расширение Internet Explorer, C++ и MS COM
+    blogDetailEn: HandyPassword - a password manager as an Internet Explorer extension, C++ and MS COM
 
 openSource:
   - name:

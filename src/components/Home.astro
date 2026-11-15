@@ -1,0 +1,631 @@
+---
+import { getCollection } from "astro:content";
+import { Icon } from "astro-icon/components";
+import { Image } from "astro:assets";
+import me from "../assets/me.jpeg";
+import Base from "../layouts/Base.astro";
+import { projects, projectText } from "../data/projects";
+import { resume } from "../data/resume";
+
+interface Props {
+  lang: "ru" | "en";
+}
+
+const { lang } = Astro.props;
+const en = lang === "en";
+const prefix = en ? "/en" : "";
+
+const posts = (await getCollection(en ? "postsEn" : "posts"))
+  .filter((entry) => entry.id !== "overview")
+  .sort((a, b) => (b.data.date?.getTime() ?? 0) - (a.data.date?.getTime() ?? 0))
+  .slice(0, 5);
+
+const fmtDate = (d?: Date) =>
+  d ? d.toISOString().slice(0, 10) : "";
+
+// Из профиля: чем занимаюсь и с чем работаю.
+const skills = [
+  "Go", "TypeScript / Node.js", "Java", "C++", "Svelte", "React", "Vue",
+  "JavaScript", "HTML / CSS", "TCL", "Ruby", "Kubernetes", "Enterprise Software",
+  en ? "Architecture" : "Архитектура", en ? "OOP" : "ООП",
+  "Test Automation", "Start-up Leadership",
+];
+
+const cv = en
+  ? [
+      { href: "/cv/andrey-sobolev-cv-human-en.pdf", label: "cv.pdf", download: false },
+      { href: "/cv/andrey-sobolev-cv-en.pdf", label: "cv-ats.pdf", download: false },
+      { href: "/cv/andrey-sobolev-cv-en.md", label: "cv.md", download: true },
+    ]
+  : [
+      { href: "/cv/andrey-sobolev-cv-human-ru.pdf", label: "резюме.pdf", download: false },
+      { href: "/cv/andrey-sobolev-cv-human-en.pdf", label: "cv-en.pdf", download: false },
+      { href: "/cv/andrey-sobolev-cv-ru.pdf", label: "резюме-ats.pdf", download: false },
+      { href: "/cv/andrey-sobolev-cv-en.pdf", label: "cv-ats-en.pdf", download: false },
+      { href: "/cv/andrey-sobolev-cv-ru.md", label: "резюме.md", download: true },
+      { href: "/cv/andrey-sobolev-cv-en.md", label: "cv-en.md", download: true },
+    ];
+
+// Родословная платформы: один код, три поколения.
+const lineage = [
+  {
+    name: "Intabia Platform",
+    period: "2025 -",
+    note: en
+      ? "Intabia Fusion, I'm a co-founder. The product branch of the platform I work on today."
+      : "Intabia Fusion, я сооснователь. Продуктовая ветка платформы, над которой работаю сегодня.",
+    links: [{ label: "intabia-fusion/platform - PRs", href: "https://github.com/intabia-fusion/platform/pulls" }],
+  },
+  {
+    name: "Platform Collective",
+    period: "2026 -",
+    note: en
+      ? "The platform continued by the community. Same foundation, open development."
+      : "Продолжение платформы сообществом. Тот же фундамент, открытая разработка.",
+    links: [
+      { label: "Platform-Collective", href: "https://github.com/Platform-Collective" },
+      { label: "Platform-Collective/platform", href: "https://github.com/Platform-Collective/platform" },
+    ],
+  },
+  {
+    name: "Huly",
+    period: "2021 - 2025",
+    note: en
+      ? "Huly Labs. An open platform for applications: Chat, Tracker, HRM, ATS. My work - Tracker, GitHub Integration, system and UI components."
+      : "Huly Labs. Открытая платформа для приложений: Chat, Tracker, HRM, ATS. Мои руки - Tracker, Github Integration, системные и UI-компоненты.",
+    links: [{ label: "hcengineering/platform", href: "https://github.com/hcengineering/platform" }],
+  },
+];
+
+const career = resume.experience.flatMap((job) =>
+  [job, ...(job.positions ?? [])]
+    .filter((position) => position.blogOrder)
+    .map((position) => ({
+      order: position.blogOrder,
+      org: en
+        ? job.organization.en
+        : job.shortName ?? job.organization.ru,
+      role: en
+        ? position.blogRoleEn ?? position.role.en
+        : position.blogRole ?? position.role.ru,
+      period: en
+        ? position.period.blog ?? position.period.en
+        : position.period.blog ?? position.period.ru,
+      detail: en ? position.blogDetailEn : position.blogDetail,
+    })),
+).sort((a, b) => a.order - b.order);
+---
+
+<Base
+  title={en ? "Andrey Sobolev (haiodo)" : "Андрей Соболев (haiodo)"}
+  description={en
+    ? "Software engineer. Notes on technology, projects and development."
+    : "Инженер в ИТ. Заметки о технологиях, проектах и разработке."}
+  lang={lang}
+  alternate={en ? "/" : "/en"}
+>
+  <section class="intro">
+    <Image
+      class="avatar"
+      src={me}
+      alt={en ? "Andrey Sobolev" : "Андрей Соболев"}
+      width={192}
+      height={192}
+      fit="cover"
+      position="top"
+      format="webp"
+      quality={80}
+    />
+    <h1>{en ? "Andrey Sobolev" : "Андрей Соболев"}</h1>
+  </section>
+
+  <section>
+    <h2 class="prompt">whoami</h2>
+    {en ? (
+      <>
+        <p class="about">
+          Software engineer, more than twenty years in development. I write in
+          anything that moves; if it doesn't move, I push it and write in it. I
+          enjoy learning new technologies and sharing what I learn; there isn't
+          always time for the sharing part, but it happens.
+        </p>
+        <p class="about">
+          I've built up an understanding of the technologies, processes and
+          standards that normal development can't happen without: enterprise
+          software, project management, test automation, architecture. I like
+          building tools people then use every day, and getting them to the point
+          where they don't get in the way.
+        </p>
+      </>
+    ) : (
+      <>
+        <p class="about">
+          Инженер в ИТ, больше двух десятков лет в разработке. Пишу на всём, что
+          движется, если не движется - двигаю и пишу. Люблю изучать новые технологии
+          и делиться тем, что узнал, не всегда хватает времени на делиться, но
+          всякое бывает.
+        </p>
+        <p class="about">
+          Накопилось понимание технологий, процессов и стандартов, без которых
+          нормальная разработка не получается: enterprise-софт, управление
+          проектами, автоматизация тестирования, архитектура. Интересно строить
+          инструменты, которыми потом пользуются каждый день, и доводить их до
+          состояния, когда они не раздражают.
+        </p>
+      </>
+    )}
+    <ul class="skills">
+      {skills.map((s) => <li>{s}</li>)}
+    </ul>
+    <p class="about muted">
+      {en
+        ? "Novosibirsk State University: bachelor's (2001 - 2005) and master's (2005 - 2007) in information technology. For three years I've been teaching students object-oriented programming in C++ and Java. Russian is my native language, English is my working language."
+        : "Новосибирский государственный университет: бакалавр (2001 - 2005) и магистр (2005 - 2007) по информационным технологиям. Уже три года помогаю университету - веду у студентов объектно-ориентированное программирование на C++ и Java. Русский - родной, английский - рабочий."}
+    </p>
+    <p class="cv">
+      {cv.map((f) => <a class="cv-link" href={f.href} target={f.download ? undefined : "_blank"} rel="noreferrer" download={f.download}>{f.label}</a>)}
+    </p>
+    <dialog class="cv-dialog">
+      <div class="cv-bar">
+        <span class="cv-title"></span>
+        <a class="cv-download" download>{en ? "↓ download" : "↓ скачать"}</a>
+        <button type="button" class="cv-close" aria-label={en ? "Close" : "Закрыть"}>✕</button>
+      </div>
+      <iframe class="cv-frame" title={en ? "CV" : "Резюме"}></iframe>
+    </dialog>
+  </section>
+  <section>
+    <h2 class="prompt">support</h2>
+    <p class="donations">
+      {en
+        ? "Work on open-source projects often needs support. If you like what I do, please support me:"
+        : "Работа над open-source проектами часто требует поддержки. Если вам нравится то, что я делаю, поддержите меня, пожалуйста:"}
+      <span style="padding:1rem;"><a href='https://web.tribute.tg/d/Uag'>Tribute</a></span>
+      <span ><a href='https://boosty.to/haiodo'>Boosty</a></span>
+    </p>
+
+  </section>
+
+  <section>
+    <h2 class="prompt">history | tail</h2>
+    <ul class="career">
+      {
+        career.map((job, i) => (
+          <li>
+            <span class="tree">{i === career.length - 1 ? "└─" : "├─"}</span>
+            <span class="career-period">{job.period}</span>
+            <span class="career-org">{job.org}</span>
+            <span class="career-role">
+              {job.role}
+              {job.detail && <span class="career-detail">{job.detail}</span>}
+            </span>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+
+  <section>
+    <h2 class="prompt">ls ~/projects</h2>
+    {
+      projects.map((p) => {
+        const t = projectText(p, lang);
+        return (
+          <details class="row project">
+            <summary>
+              <span class="row-head">
+                <span class="row-title">
+                  <span class="caret">▸</span>
+                  {t.name}
+                </span>
+                <span class="row-meta">{p.lang} · {p.years}</span>
+              </span>
+              <p class="row-desc">{t.note}</p>
+            </summary>
+            <div class="project-body">
+              <p class="project-about">{t.about}</p>
+              <span class="project-links">
+                {t.links.map((l) =>
+                  l.icon ? (
+                    <a class="icon-link" href={l.href} target="_blank" rel="noreferrer">
+                      <Icon name="bi:github" />
+                      <span>{l.label}</span>
+                    </a>
+                  ) : l.href.startsWith("http") ? (
+                    <a href={l.href} target="_blank" rel="noreferrer">{l.label}</a>
+                  ) : (
+                    <a href={l.href}>{l.label}</a>
+                  ),
+                )}
+              </span>
+            </div>
+          </details>
+        );
+      })
+    }
+  </section>
+
+  <section>
+    <h2 class="prompt">git log --graph platform</h2>
+    <p class="muted section-note">
+      {en
+        ? "One foundation, three generations - from Huly to what I do now."
+        : "Один фундамент, три поколения - от Huly до того, что делаю сейчас."}
+    </p>
+    <ol class="lineage">
+      {
+        lineage.map((step) => (
+          <li>
+            <span class="lineage-head">
+              <span class="lineage-name">{step.name}</span>
+              <span class="lineage-period">{step.period}</span>
+            </span>
+            <p class="lineage-note">{step.note}</p>
+            <span class="lineage-links">
+              {step.links.map((l) => (
+                <a href={l.href} target="_blank" rel="noreferrer">{l.label}</a>
+              ))}
+            </span>
+          </li>
+        ))
+      }
+    </ol>
+  </section>
+
+  <section>
+    <h2 class="prompt">head -5 posts/</h2>
+    {
+      posts.map((entry) => (
+        <a class="row" href={`${prefix}/posts/${entry.id}`}>
+          <span class="row-head">
+            <span class="row-title">
+              <span class="post-date">{fmtDate(entry.data.date)}</span>
+              {entry.data.title}
+            </span>
+            <span class="row-meta">{en ? "read →" : "читать →"}</span>
+          </span>
+          {entry.data.description && <p class="row-desc">{entry.data.description}</p>}
+        </a>
+      ))
+    }
+    <p class="more"><a href={`${prefix}/posts/overview`}>{en ? "all posts →" : "все статьи →"}</a></p>
+  </section>
+
+  <section>
+    <h2 class="prompt">contact</h2>
+    <pre class="tree-block">├─ email     <a href="mailto:haiodo@gmail.com">haiodo@gmail.com</a>
+├─ email     <a href="mailto:haiodo@yandex.ru">haiodo@yandex.ru</a>
+├─ telegram  <a href="https://t.me/dev_haiodo">t.me/dev_haiodo</a>
+├─ linkedin  <a href="https://www.linkedin.com/in/sobolevandrey">linkedin.com/in/sobolevandrey</a>
+└─ github    <a href="https://github.com/haiodo">github.com/haiodo</a></pre>
+  </section>
+  <script is:inline>
+    // Phones don't render PDF inside an iframe, so there the link just opens a new tab.
+    {
+      const dialog = document.querySelector(".cv-dialog");
+      const frame = dialog.querySelector(".cv-frame");
+      for (const link of document.querySelectorAll(".cv-link")) {
+        link.addEventListener("click", (e) => {
+          if (link.hasAttribute("download") || !matchMedia("(min-width: 48rem)").matches) return;
+          e.preventDefault();
+          dialog.querySelector(".cv-title").textContent = link.textContent;
+          dialog.querySelector(".cv-download").href = link.href;
+          frame.src = link.href;
+          dialog.showModal();
+        });
+      }
+      dialog.querySelector(".cv-close").addEventListener("click", () => dialog.close());
+      dialog.addEventListener("click", (e) => e.target === dialog && dialog.close());
+      dialog.addEventListener("close", () => frame.removeAttribute("src"));
+    }
+  </script>
+</Base>
+
+<style>
+  .intro {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .intro h1 {
+    margin: 0;
+  }
+
+  .avatar {
+    width: 96px;
+    height: 96px;
+    object-fit: cover;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    flex-shrink: 0;
+  }
+
+  section {
+    margin-bottom: 2.5rem;
+  }
+
+  .tree-block {
+    background: none;
+    border: 0;
+    padding: 0;
+    margin: 0;
+    color: var(--fg-faint);
+    font-size: 1rem;
+    line-height: 1.75;
+  }
+
+  .section-note {
+    font-size: 0.9375rem;
+    margin-bottom: 1rem;
+  }
+
+  /* Expandable project row, native <details> - no JS. */
+  .project > summary {
+    cursor: pointer;
+    list-style: none;
+  }
+
+  .project > summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .project:hover {
+    border-color: var(--accent-border);
+  }
+
+  .project:hover .row-title {
+    color: var(--accent-bright);
+  }
+
+  .caret {
+    display: inline-block;
+    color: var(--accent);
+    margin-right: 0.5rem;
+    transition: transform 150ms;
+  }
+
+  .project[open] .caret {
+    transform: rotate(90deg);
+  }
+
+  .project-body {
+    margin-top: 0.9rem;
+    padding-top: 0.9rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .project-about {
+    margin: 0 0 0.75rem;
+    font-size: 0.9375rem;
+    color: var(--fg-muted);
+  }
+
+  .project-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.25rem;
+    font-size: 0.9375rem;
+  }
+
+  .icon-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .about {
+    color: var(--fg-muted);
+    margin-bottom: 0.75rem;
+  }
+
+  .donations {
+      color: var(--fg-muted);
+      margin-top: 0.75rem;
+      margin-bottom: 0.75rem;
+  }
+
+  .skills {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    padding: 0;
+    margin: 0 0 1rem;
+    font-size: 0.875rem;
+  }
+
+  .skills > li {
+    border: 1px solid var(--border);
+    color: var(--fg-dim);
+    padding: 0.1rem 0.5rem;
+  }
+
+  /* Vertical rail with a node per generation. */
+  .lineage {
+    list-style: none;
+    margin: 0;
+    padding: 0 0 0 1.25rem;
+    border-left: 1px solid var(--border);
+  }
+
+  .lineage > li {
+    position: relative;
+    padding-bottom: 1.5rem;
+  }
+
+  .lineage > li::before {
+    content: "";
+    position: absolute;
+    left: calc(-1.25rem - 4px);
+    top: 0.55rem;
+    width: 7px;
+    height: 7px;
+    background: var(--accent);
+  }
+
+  .lineage > li:last-child {
+    padding-bottom: 0;
+  }
+
+  .lineage-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.6rem;
+  }
+
+  .lineage-name {
+    color: var(--accent);
+  }
+
+  .lineage-period {
+    font-size: 1rem;
+    color: var(--fg-faint);
+  }
+
+  .lineage-note {
+    margin: 0.35rem 0 0.5rem;
+    font-size: 0.9375rem;
+    color: var(--fg-muted);
+  }
+
+  .lineage-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    font-size: 1rem;
+  }
+
+  .career {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    font-size: 0.9375rem;
+  }
+
+  .career > li {
+    display: grid;
+    grid-template-columns: 1.5rem 8rem minmax(0, 13rem) 1fr;
+    gap: 0.5rem;
+    align-items: start;
+    padding: 0.15rem 0;
+  }
+
+  .career-period {
+    color: var(--fg-faint);
+  }
+
+  .career-org {
+    color: var(--fg-dim);
+  }
+
+  .career-role {
+    color: var(--fg-muted);
+  }
+
+  .career-detail {
+    display: block;
+    color: var(--fg-faint);
+    font-size: 0.875rem;
+  }
+
+  @media (max-width: 34rem) {
+    .career > li {
+      grid-template-columns: 1.5rem 1fr;
+    }
+
+    .career-period {
+      grid-column: 2;
+    }
+
+    .career-org,
+    .career-role {
+      grid-column: 2;
+    }
+  }
+
+  .cv {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin: 0;
+  }
+
+  .cv-link {
+    border: 1px solid var(--accent-border);
+    color: var(--accent);
+    padding: 0.2rem 0.75rem;
+    font-size: 0.9375rem;
+    text-decoration: none;
+  }
+
+  .cv-link:hover {
+    border-color: var(--accent);
+    color: var(--accent-bright);
+  }
+
+  .cv-dialog {
+    width: min(64rem, 100vw - 2rem);
+    height: calc(100vh - 2rem);
+    max-width: none;
+    max-height: none;
+    padding: 0;
+    border: 1px solid var(--border);
+    background: var(--bg-inset);
+    color: var(--fg);
+  }
+
+  .cv-dialog[open] {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .cv-dialog::backdrop {
+    background: rgb(0 0 0 / 0.6);
+  }
+
+  .cv-bar {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.4rem 0.75rem;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.9375rem;
+  }
+
+  .cv-title {
+    flex: 1;
+    color: var(--fg-dim);
+  }
+
+  .cv-close {
+    background: none;
+    border: 0;
+    color: var(--fg-muted);
+    font: inherit;
+    cursor: pointer;
+  }
+
+  .cv-close:hover {
+    color: var(--accent);
+  }
+
+  .cv-frame {
+    flex: 1;
+    width: 100%;
+    border: 0;
+    background: #fff;
+  }
+
+  .post-date {
+    color: var(--fg-faint);
+    margin-right: 0.6rem;
+  }
+
+  .more {
+    margin-top: 1rem;
+    font-size: 0.9375rem;
+  }
+</style>

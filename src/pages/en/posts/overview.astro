@@ -7,7 +7,7 @@ const posts = (await getCollection("postsEn")).sort(
 );
 ---
 
-<Base title="Posts - Andrey Sobolev" description="English translations of the blog posts" lang="en">
+<Base title="Posts - Andrey Sobolev" description="English translations of the blog posts" lang="en" alternate="/posts/overview">
   <h1 class="prompt">ls -la en/posts/</h1>
   {
     posts.map((entry) => (

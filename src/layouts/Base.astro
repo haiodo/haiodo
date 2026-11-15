@@ -22,7 +22,9 @@ const site = "haiodo.blog";
 const en = lang === "en";
 const author = en ? "Andrey Sobolev" : "Андрей Соболев";
 const locale = en ? "en-US" : "ru-RU";
+const home = en ? "/en" : "/";
 const postsIndex = en ? "/en/posts/overview" : "/posts/overview";
+const projectsIndex = en ? "/en/projects" : "/projects";
 
 // Social crawlers need an absolute URL and don't all speak webp -> emit jpeg.
 const og = await getImage({
@@ -36,9 +38,9 @@ const og = await getImage({
 const ogUrl = new URL(og.src, Astro.site).href;
 
 const nav = [
-  { href: "/", label: "~" },
+  { href: home, label: "~" },
   { href: postsIndex, label: "posts" },
-  { href: "/projects", label: "projects" },
+  { href: projectsIndex, label: "projects" },
 ];
 
 // build.format: 'file' puts .html into the pathname, and the slash twins from
@@ -66,8 +68,8 @@ const jsonLd = {
       "@type": "Blog",
       "@id": new URL("/#blog", Astro.site).href,
       name: site,
-      inLanguage: "ru-RU",
-      url: new URL("/", Astro.site).href,
+      inLanguage: locale,
+      url: new URL(home, Astro.site).href,
       author: { "@id": new URL("/#author", Astro.site).href },
     },
     ...(type === "article"
@@ -177,7 +179,7 @@ const jsonLd = {
   <body>
     <noscript><div><img src="https://mc.yandex.ru/watch/112501617" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
     <header>
-      <a href="/" class="brand prompt cursor">{site}</a>
+      <a href={home} class="brand prompt cursor">{site}</a>
       <nav>
         {
           nav.map((item) => (
@@ -189,6 +191,11 @@ const jsonLd = {
             </a>
           ))
         }
+        {alternate && (
+          <a class="nav-link" href={alternate} hreflang={en ? "ru" : "en"}>
+            {en ? "ru" : "en"}
+          </a>
+        )}
       </nav>
     </header>
 
@@ -196,7 +203,7 @@ const jsonLd = {
       <slot />
     </main>
 
-    <dialog id="lightbox" aria-label="Увеличенное изображение">
+    <dialog id="lightbox" aria-label={en ? "Enlarged image" : "Увеличенное изображение"}>
       <img alt="" />
     </dialog>
 

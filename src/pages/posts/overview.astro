@@ -16,7 +16,7 @@ const posts = (await getCollection("posts"))
 const newestId = posts[0]?.id;
 ---
 
-<Base title="Статьи - Андрей Соболев" description="Все статьи блога">
+<Base title="Статьи - Андрей Соболев" description="Все статьи блога" alternate="/en/posts/overview">
   <h1 class="prompt">ls -la posts/</h1>
   {
     posts.map((entry) => {
