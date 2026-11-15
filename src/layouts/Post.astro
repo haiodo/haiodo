@@ -62,9 +62,22 @@ const heroFull = hero
     </div>
   </header>
   <Content />
+  <section class="support">
+    <h2>{lang === "ru" ? "Поддержать автора" : "Support the author"}</h2>
+    <p>
+      {lang === "ru" ? "Поддержать мою работу можно через" : "You can support my work through"}{" "}
+      <a href="https://web.tribute.tg/d/Uag">Tribute</a> {lang === "ru" ? "или" : "or"}{" "}
+      <a href="https://boosty.to/haiodo">Boosty</a>.
+    </p>
+  </section>
 </Base>
 
 <style>
+  .support {
+    margin-top: 3rem;
+    border-top: 1px solid var(--border);
+  }
+
   .post-header.with-hero {
     display: flex;
     align-items: flex-start;

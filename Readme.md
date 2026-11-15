@@ -39,3 +39,11 @@
 * telegram: https://t.me/dev_haiodo
 * github: https://github.com/haiodo
 * linkedin: https://www.linkedin.com/in/sobolevandrey
+
+
+## Поддержка
+
+Для работы в open-source зачастую требуется поддержка других людей, так что если вам хоть сколько то нравиться, что я делаю поддержите меня пожалуйста:
+
+* https://web.tribute.tg/d/Uag
+* https://boosty.to/haiodo

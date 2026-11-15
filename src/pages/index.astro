@@ -125,6 +125,15 @@ const career = resume.experience.flatMap((job) =>
       <iframe class="cv-frame" title="Резюме"></iframe>
     </dialog>
   </section>
+  <section>
+    <h2 class="prompt">support</h2>
+    <p class="donations">
+      Работа над open-source проектами часто требует поддержки. Если вам нравится то, что я делаю, поддержите меня, пожалуйста:
+      <span style="padding:1rem;"><a href='https://web.tribute.tg/d/Uag'>Tribute</a></span>
+      <span ><a href='https://boosty.to/haiodo'>Boosty</a></span>
+    </p>
+
+  </section>
 
   <section>
     <h2 class="prompt">history | tail</h2>
@@ -353,6 +362,12 @@ const career = resume.experience.flatMap((job) =>
   .about {
     color: var(--fg-muted);
     margin-bottom: 0.75rem;
+  }
+
+  .donations {
+      color: var(--fg-muted);
+      margin-top: 0.75rem;
+      margin-bottom: 0.75rem;
   }
 
   .skills {

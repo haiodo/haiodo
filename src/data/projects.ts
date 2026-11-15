@@ -44,6 +44,17 @@ export const projects: Project[] = [
     ],
   },
   {
+    name: "GOWT",
+    lang: "Go",
+    years: "2026 -",
+    note: "нативный графический интерфейс для Go без cgo",
+    about: "Библиотека для создания приложений на Go с нативными виджетами macOS, Windows и Linux. Go API построен по технологии Eclipse SWT, адаптированной с Java на Go. + Чистые Go подходы.",
+    links: [
+      { label: "github", href: "https://github.com/haiodo/gowt", icon: true },
+      { label: "О пользе генеративного AI, или Как я сделал свой UI-фреймворк", href: "/posts/021_widget_toolkit", icon: true }
+    ],
+  },
+  {
     name: "Hum1izer",
     lang: "Go",
     years: "2026 -",
@@ -148,7 +159,7 @@ export const projects: Project[] = [
     about: "UI-движок для Eclipse RCP: интерфейс описывается на XML и оформляется стилями CSS. Делал ядро, формы и отрисовку на SWT.",
     links: [{ label: "github", href: "https://github.com/haiodo/rcpml", icon: true }],
   },
-// Active projects ("2025 -") go first in the order written; finished ones follow, newest start year first.
+  // Active projects ("2025 -") go first in the order written; finished ones follow, newest start year first.
 ].sort((a, b) => {
   const aActive = a.years.endsWith("-");
   const bActive = b.years.endsWith("-");
