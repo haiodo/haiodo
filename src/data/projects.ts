@@ -51,6 +51,7 @@ export const projects: Project[] = [
     about: "Библиотека для создания приложений на Go с нативными виджетами macOS, Windows и Linux. Go API построен по технологии Eclipse SWT, адаптированной с Java на Go. + Чистые Go подходы.",
     links: [
       { label: "github", href: "https://github.com/haiodo/gowt", icon: true },
+      { label: "история изменений", href: "/projects/GOWT/changelog" },
       { label: "О пользе генеративного AI, или Как я сделал свой UI-фреймворк", href: "/posts/021_widget_toolkit", icon: true }
     ],
   },
