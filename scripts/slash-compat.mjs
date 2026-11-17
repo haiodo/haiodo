@@ -2,6 +2,7 @@
 // GitHub Pages has no redirect rules, so the previously indexed /posts/x/ addresses would
 // start 404-ing. Duplicate each page as x/index.html: the old address answers 200 and its
 // canonical already points back to the slashless one, so the twin never competes in search.
+// Pages is case-sensitive, so a lowercase twin covers hand-typed /posts/009_leavehuly links.
 import { readdir, copyFile, mkdir, readFile, writeFile } from 'node:fs/promises';
 import { join, extname, relative, dirname } from 'node:path';
 
@@ -25,14 +26,18 @@ for (const f of await walk(DIST)) {
   const name = f.split('/').pop();
   if (name === 'index.html' || name === '404.html') continue;
 
-  const twin = join(dirname(f), name.slice(0, -'.html'.length), 'index.html');
-  await mkdir(dirname(twin), { recursive: true });
-  await copyFile(f, twin);
-  copied++;
-  console.log(`  slash twin ${relative(DIST, twin)}`);
+  const rel = relative(DIST, f);
+  const twin = join(dirname(rel), name.slice(0, -'.html'.length), 'index.html');
+  for (const target of new Set([twin, twin.toLowerCase(), rel.toLowerCase()])) {
+    if (target === rel) continue;
+    await mkdir(dirname(join(DIST, target)), { recursive: true });
+    await copyFile(f, join(DIST, target));
+    console.log(`  alias ${target}`);
+    copied++;
+  }
 }
 
-console.log(`slash-compat: ${copied} page(s) also reachable with a trailing slash`);
+console.log(`slash-compat: ${copied} alias(es) for trailing-slash and lowercase URLs`);
 
 // trailingSlash: 'never' strips the slash off the bare origin as well, so the feeds
 // would list the home page as "https://haiodo.github.io" while its canonical says

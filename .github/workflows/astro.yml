@@ -48,10 +48,7 @@ jobs:
         run: pnpm install
         working-directory: ${{ env.BUILD_PATH }}
       - name: Build with Astro
-        run: |
-          pnpm astro build \
-            --site "https://haiodo.github.io" \
-            --base "/"
+        run: pnpm build
         working-directory: ${{ env.BUILD_PATH }}
       - name: Save build files
         uses: actions/upload-artifact@v4
