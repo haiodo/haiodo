@@ -1,4 +1,4 @@
-not-shared/*
+not-shared
 # build output
 dist/
 # generated types
