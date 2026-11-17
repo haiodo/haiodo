@@ -12,12 +12,17 @@ profile:
     ru: >-
       Более 20 лет в разработке программного обеспечения: архитектура распределенных систем,
       бизнес-платформ, интегрированных сред разработки (IDE) и инструментов разработчика.
-      Ответственность за продукт, техническое руководство командами, промышленная эксплуатация
+      Опыт VP и CTO в Xored Software: технологическая стратегия, руководство клиентскими
+      направлениями Cisco, Spirent и InterSystems (около 30 инженеров в Cisco-направлении),
+      планирование релизов и состава команд, работа с заказчиками. Промышленная эксплуатация
       Kubernetes и обеспечение надежности (SRE). Разработка на TypeScript, Go, Java, C++ и Swift.
     en: >-
       Software Engineer and Architect with 20+ years of experience in distributed systems,
-      business platforms, IDEs, and developer tools. Product ownership, engineering leadership,
-      production Kubernetes, and SRE. Hands-on development in TypeScript, Go, Java, C++, and Swift.
+      business platforms, IDEs, and developer tools. Served as VP and CTO at Xored Software:
+      technology strategy, leadership of the Cisco, Spirent, and InterSystems client directions
+      (~30 engineers in the Cisco roster), release and staffing planning, and customer-facing
+      work. Production Kubernetes and SRE. Hands-on development in TypeScript, Go, Java, C++,
+      and Swift.
 
 contacts:
   - haiodo@gmail.com
@@ -71,8 +76,8 @@ experience:
         en: Develop Helm charts and complex features, administer PostgreSQL, and optimize performance.
       - ru: Совершенствую платформу на Svelte/Typescript/Node.js, работаю над клиентом под iOS/Android на go + swift/kotlin и сервисами на Go.
         en: Improve the platform with Svelte/TypeScript/Node.js, build iOS/Android clients with Go, Swift, and Kotlin, and develop Go services.
-      - ru: Развиваю Интабия Платформу как продолжение Huly.io; исходный проект набрал 28 000 звёзд GitHub до остановки владельцем.
-        en: Develop Intabia Platform as the successor to Huly.io, whose original repository reached 28k GitHub stars before the owner suspended development.
+      - ru: Развиваю Интабия Платформу как продолжение Huly.io; исходный проект open-source (EPL2.0) набрал 28 000 звёзд GitHub до остановки финансирования.
+        en: Develop Intabia Platform as the successor to Huly.io, whose original open-source (EPL2.0) repository reached 28k GitHub stars before the owner suspended development.
     positions:
       - id: intabia-robotics
         role:
@@ -102,7 +107,7 @@ experience:
       en: May 2021 - October 2025 (4 years 6 months)
       blog: 2021 - 2025
     description:
-      ru: "Разработал Huly Platform, открытый фреймворк для бизнес-приложений: чат, управление проектами, CRM, HRM и ATS."
+      ru: "Один из авторов Huly Platform, открытый фреймворк для бизнес-приложений: чат, управление проектами, CRM, HRM и ATS."
       en: "Built Huly Platform, an open framework for business applications: Chat, Project Management, CRM, HRM, and ATS."
     bullets:
       - ru: Разработал Tracker, GitHub Integration, системные компоненты и компоненты интерфейса; продукты на платформе создавали несколько команд, включая Huly и TraceX.
@@ -149,7 +154,7 @@ experience:
       en: October 2018 - September 2020 (2 years)
       blog: 2018 - 2020
     description:
-      ru: Разработал с нуля ядро и интеграции гибридной и мультиоблачной IP-сети сервисов (service mesh) для Kubernetes на Go.
+      ru: Соавтор разработанной с нуля ядро и интеграции гибридной и мультиоблачной IP-сети сервисов (service mesh) для Kubernetes на Go.
       en: Built the core and integrations of a hybrid/multi-cloud IP service mesh for Kubernetes from scratch in Go.
     bullets:
       - ru: "Стек: Go, gRPC, Protocol Buffers, Kubernetes, client-go, Docker и Kustomize."
@@ -179,17 +184,23 @@ experience:
     positions:
       - id: xored-principal
         role:
-          ru: Ведущий инженер-разработчик
-          en: Principal Software Engineer
+          ru: Ведущий инженер-разработчик → VP (2014-2016) → CTO (2016-2017) → Principal Engineer
+          en: Principal Software Engineer → VP (2014-2016) → CTO (2016-2017) → Principal Engineer
         period:
           ru: Март 2013 - Май 2021 (8 лет 3 месяца)
           en: March 2013 - May 2021 (8 years 3 months)
           blog: 2013 - 2021
         bullets:
-          - ru: Проектировал архитектуру высоконагруженных корпоративных продуктов и продуктовых линеек; технически руководил несколькими командами.
-            en: Designed the architecture of enterprise-class, high-performance product lines and provided technical leadership to multiple development teams.
-          - ru: "Руководил разработкой YANG-IDE и корпоративного продукта: координировал команду, развивал интерфейс и серверную часть, оптимизировал производительность."
-            en: "Led YANG-IDE and an enterprise customer product: coordinated the team, developed UI and backend, and improved performance."
+          - ru: "Был VP (2014-2016) и CTO (2016-2017) Xored Software: технологическая стратегия компании, архитектура продуктовых линеек, руководство клиентскими направлениями Cisco, Spirent и InterSystems."
+            en: "Served as VP (2014-2016) and CTO (2016-2017) at Xored Software: company technology strategy, product-line architecture, and leadership of the Cisco, Spirent, and InterSystems client directions."
+          - ru: "Руководил командами на проектах Cisco и Spirent: планировал релизы и состав команд, проводил замены и ротацию инженеров, согласовывал headcount и сроки с заказчиком; спланировал ротацию скрам-мастеров для 5 команд и scrum of scrums."
+            en: "Led teams on Cisco and Spirent projects: planned releases and staffing, ran replacements and engineer rotation, and negotiated headcount and schedules with customers; planned scrum master rotation for 5 teams and a scrum of scrums."
+          - ru: "Курировал направления Cisco Prime Infrastructure: telemetry, inventory (модели устройств, сенсоры), SNMP trap receivers, topology, maintenance mode и northbound API (NBI)."
+            en: "Oversaw Cisco Prime Infrastructure directions: telemetry, inventory (device models, sensors), SNMP trap receivers, topology, maintenance mode, and the northbound API (NBI)."
+          - ru: "Руководил разработкой YANG-IDE и корпоративной платформы управления сетевыми устройствами: YANG/NETCONF, SNMP/MIB, SSH, модели данных и драйверы; развивал интерфейс и серверную часть, оптимизировал производительность."
+            en: "Led YANG-IDE and an enterprise network-device management platform: YANG/NETCONF, SNMP/MIB, SSH, data models and drivers; developed UI and backend and improved performance."
+          - ru: "Развивал Spirent iTest/Velocity: удалённые агенты выполнения тестов, сессии Telnet/SSH/serial, SNMP walk и ловушки, телеметрия, longevity-прогоны."
+            en: "Developed Spirent iTest/Velocity: remote test-execution agents, Telnet/SSH/serial sessions, SNMP walk and traps, telemetry, and longevity runs."
           - ru: Разрабатывал InterSystems Atelier, Eclipse DLTK и Eclipse RCPTT; создал полнофункциональный отладчик ECL.
             en: Developed InterSystems Atelier, Eclipse DLTK, and Eclipse RCPTT; built a full-featured ECL debugger.
           - ru: Руководил продуктами на React, Meteor и Node.js с обработкой естественного языка; исследовал Nim, Imba и Cycle.js.
@@ -208,7 +219,7 @@ experience:
           en: September 2005 - March 2013 (7 years 7 months)
           blog: 2005 - 2013
         bullets:
-          - ru: Создал ядро Eclipse DLTK и интегрированные среды разработки для TCL, Ruby и JavaScript как один из первых контрибьюторов.
+          - ru: Соавтор Eclipse DLTK и интегрированные среды разработки для TCL, Ruby и JavaScript как один из первых контрибьюторов.
             en: Built the Eclipse DLTK core and IDEs for TCL, Ruby, and JavaScript as one of the initial contributors.
           - ru: Разработал Q7 для автоматизации тестирования интерфейса Eclipse/SWT; оптимизировал среду выполнения записи и воспроизведения до прохождения 1 500+ тестов заказчика.
             en: Developed Q7 for Eclipse/SWT UI test automation; optimized the record/replay runtime to pass 1,500+ customer test cases.
@@ -277,7 +288,27 @@ openSource:
       en: Developed the core, runtime, and IDE components of open Eclipse Foundation projects.
     link: https://eclipse.dev/rcptt, https://eclipse.dev/dltk
 
-skills: TypeScript, JavaScript, Node.js, Svelte, Go, Java, C++, Swift, Kubernetes, Helm, PostgreSQL, MongoDB
+skills:
+  ru: |-
+    Управление: техническое руководство несколькими командами и направлениями, архитектура продуктовых линеек, планирование релизов и состава команд, ротация и замена инженеров, отбор и наём кандидатов, согласование headcount с заказчиком, Scrum/Kanban, scrum of scrums, code review, CI/CD.
+    Management plane: инвентаризация устройств, модели и сенсоры, телеметрия, SNMP-ловушки, out-of-band-доступ (serial/Telnet/SSH), northbound API.
+    Языки: TypeScript, JavaScript, Node.js, Go, Java, C++, Swift, Kotlin, Python.
+    Веб: Svelte, React.
+    ОС: RHEL 6+, Gentoo (5+ лет), FreeBSD, OpenBSD, Windows 95/NT/2000/..., macOS (15+ лет).
+    Платформы: Kubernetes, Helm, Docker, PostgreSQL, MongoDB, gRPC, ROS/ROS2.
+    Сети и протоколы: NETCONF, YANG, SNMP/MIB, SSH, Telnet/serial, REST, protobuf, TCP/UDP, VPP, SR-IOV, OVS, WireGuard, netlink/netns.
+    Инструменты: Git, Maven/Tycho, Jenkins, GitHub Actions, Eclipse RCP/EMF/GEF, JUnit.
+    Домены: management plane, IDE и инструменты разработчика, распределённые системы, SRE, embedded-инструменты, робототехника.
+  en: |-
+    Management: technical leadership of several teams and directions, product-line architecture, release and staffing planning, engineer rotation and replacement, candidate screening and hiring, headcount negotiation with customers, Scrum/Kanban, scrum of scrums, code review, CI/CD.
+    Management plane: device inventory, models and sensors, telemetry, SNMP traps, out-of-band access (serial/Telnet/SSH), northbound API.
+    Languages: TypeScript, JavaScript, Node.js, Go, Java, C++, Swift, Kotlin, Python.
+    Web: Svelte, React.
+    Operating Systems: RHEL 6+, Gentoo (5+ years), FreeBSD, OpenBSD, Windows 95/NT/2000/..., macOS (15+ years).
+    Platforms: Kubernetes, Helm, Docker, PostgreSQL, MongoDB, gRPC, ROS/ROS2.
+    Networking: NETCONF, YANG, SNMP/MIB, SSH, Telnet/serial, REST, protobuf, TCP/UDP, VPP, SR-IOV, OVS, WireGuard, netlink/netns.
+    Tools: Git, Maven/Tycho, Jenkins, GitHub Actions, Eclipse RCP/EMF/GEF, JUnit.
+    Domains: management plane, IDEs and developer tools, distributed systems, SRE, embedded tooling, robotics.
 
 education:
   school:

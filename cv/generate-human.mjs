@@ -71,7 +71,7 @@ ${resume.openSource.map((project) => `    <dt>${text(project.name, lang)}</dt><d
   <div class="two-col">
     <div>
       <h2>${text(resume.headings.skills, lang)}</h2>
-      <p>${text(resume.skills, lang)}</p>
+      <p>${text(resume.skills, lang).replace(/\n/g, "<br>\n")}</p>
     </div>
     <div>
       <h2>${text(resume.headings.education, lang)}</h2>

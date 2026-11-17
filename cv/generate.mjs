@@ -68,7 +68,7 @@ function markdown(lang) {
     "",
     `## ${plain(resume.headings.skills, lang)}`,
     "",
-    resume.skills,
+    plain(resume.skills, lang),
     "",
     `## ${plain(resume.headings.education, lang)}`,
     "",
@@ -106,7 +106,7 @@ ${resume.experience.map((item) => job(item, lang)).join("\n")}
 ${resume.openSource.map((project) => `  <p>- ${text(project.name, lang)}: ${text(project.description, lang)} ${escapeHtml(project.link)}</p>`).join("\n")}
 
   <h2>${text(resume.headings.skills, lang)}</h2>
-  <p>${text(resume.skills, lang)}</p>
+  <p>${text(resume.skills, lang).replace(/\n/g, "<br>\n")}</p>
 
   <h2>${text(resume.headings.education, lang)}</h2>
   <p>${text(resume.education.school, lang)}</p>

@@ -11,7 +11,7 @@ https://t.me/dev_haiodo
 
 ## Professional Summary
 
-Software Engineer and Architect with 20+ years of experience in distributed systems, business platforms, IDEs, and developer tools. Product ownership, engineering leadership, production Kubernetes, and SRE. Hands-on development in TypeScript, Go, Java, C++, and Swift.
+Software Engineer and Architect with 20+ years of experience in distributed systems, business platforms, IDEs, and developer tools. Served as VP and CTO at Xored Software: technology strategy, leadership of the Cisco, Spirent, and InterSystems client directions (~30 engineers in the Cisco roster), release and staffing planning, and customer-facing work. Production Kubernetes and SRE. Hands-on development in TypeScript, Go, Java, C++, and Swift.
 
 ## Work Experience
 
@@ -21,7 +21,7 @@ Develop Intabia Platform, an open team workspace: Chat, Tracker, Office, and Dri
 - Define product strategy and own product delivery, manage production Kubernetes and SRE, and resolve user incidents.
 - Develop Helm charts and complex features, administer PostgreSQL, and optimize performance.
 - Improve the platform with Svelte/TypeScript/Node.js, build iOS/Android clients with Go, Swift, and Kotlin, and develop Go services.
-- Develop Intabia Platform as the successor to Huly.io, whose original repository reached 28k GitHub stars before the owner suspended development.
+- Develop Intabia Platform as the successor to Huly.io, whose original open-source (EPL2.0) repository reached 28k GitHub stars before the owner suspended development.
 
 #### Robot Control with Robot Operating System (ROS), Intabia Fusion, March 2026 - October 2026
 - Built a robot control system on Robot Operating System (ROS) using Go, Java, and React.
@@ -49,9 +49,12 @@ Built the core and integrations of a hybrid/multi-cloud IP service mesh for Kube
 
 Projects for Cisco Systems, Spirent Communications, InterSystems Corporation, and British Telecom.
 
-#### Principal Software Engineer, Xored Software Inc, March 2013 - May 2021 (8 years 3 months)
-- Designed the architecture of enterprise-class, high-performance product lines and provided technical leadership to multiple development teams.
-- Led YANG-IDE and an enterprise customer product: coordinated the team, developed UI and backend, and improved performance.
+#### Principal Software Engineer → VP (2014-2016) → CTO (2016-2017) → Principal Engineer, Xored Software Inc, March 2013 - May 2021 (8 years 3 months)
+- Served as VP (2014-2016) and CTO (2016-2017) at Xored Software: company technology strategy, product-line architecture, and leadership of the Cisco, Spirent, and InterSystems client directions.
+- Led teams on Cisco and Spirent projects: planned releases and staffing, ran replacements and engineer rotation, and negotiated headcount and schedules with customers; planned scrum master rotation for 5 teams and a scrum of scrums.
+- Oversaw Cisco Prime Infrastructure directions: telemetry, inventory (device models, sensors), SNMP trap receivers, topology, maintenance mode, and the northbound API (NBI).
+- Led YANG-IDE and an enterprise network-device management platform: YANG/NETCONF, SNMP/MIB, SSH, data models and drivers; developed UI and backend and improved performance.
+- Developed Spirent iTest/Velocity: remote test-execution agents, Telnet/SSH/serial sessions, SNMP walk and traps, telemetry, and longevity runs.
 - Developed InterSystems Atelier, Eclipse DLTK, and Eclipse RCPTT; built a full-featured ECL debugger.
 - Led React, Meteor, and Node.js products with natural language processing (NLP); evaluated Nim, Imba, and Cycle.js.
 
@@ -74,7 +77,15 @@ Designed the server and client architecture of HandyPassword; built a standalone
 
 ## Key Skills
 
-TypeScript, JavaScript, Node.js, Svelte, Go, Java, C++, Swift, Kubernetes, Helm, PostgreSQL, MongoDB
+Management: technical leadership of several teams and directions, product-line architecture, release and staffing planning, engineer rotation and replacement, candidate screening and hiring, headcount negotiation with customers, Scrum/Kanban, scrum of scrums, code review, CI/CD.
+Management plane: device inventory, models and sensors, telemetry, SNMP traps, out-of-band access (serial/Telnet/SSH), northbound API.
+Languages: TypeScript, JavaScript, Node.js, Go, Java, C++, Swift, Kotlin, Python.
+Web: Svelte, React.
+Operating Systems: RHEL 6+, Gentoo (5+ years), FreeBSD, OpenBSD, Windows 95/NT/2000/..., macOS (15+ years).
+Platforms: Kubernetes, Helm, Docker, PostgreSQL, MongoDB, gRPC, ROS/ROS2.
+Networking: NETCONF, YANG, SNMP/MIB, SSH, Telnet/serial, REST, protobuf, TCP/UDP, VPP, SR-IOV, OVS, WireGuard, netlink/netns.
+Tools: Git, Maven/Tycho, Jenkins, GitHub Actions, Eclipse RCP/EMF/GEF, JUnit.
+Domains: management plane, IDEs and developer tools, distributed systems, SRE, embedded tooling, robotics.
 
 ## Education
 
