@@ -1,11 +1,11 @@
 ---
 // kind="view": pan/zoom viewer via tenniarb-embed; kind="edit": the editor over the site's document;
 // kind="open": the editor over a .tenn the visitor drops in. Nothing is saved.
-const { kind, element = "", file = "tenniarb.tenn" } = Astro.props;
+const { kind, element = "", file = "tenniarb.tenn", light = false, fill = false } = Astro.props;
 const base = `${import.meta.env.BASE_URL.replace(/\/$/, "")}/tenniarb/`;
 ---
 
-<div class="tn-demo" data-kind={kind} data-base={base} data-element={element} data-file={file}>
+<div class="tn-demo" data-kind={kind} data-base={base} data-element={element} data-file={file} data-light={light ? "1" : undefined} data-fill={fill ? "1" : undefined}>
   {kind === "edit" && <button type="button" class="tn-reset">Сбросить</button>}
   {
     kind === "open" && (
@@ -24,6 +24,7 @@ const base = `${import.meta.env.BASE_URL.replace(/\/$/, "")}/tenniarb/`;
   /* A viewer sizes itself: the embed reads the host's height, and without one it keeps the scene's
      aspect ratio, so the drawing fills the box instead of floating in letterbox. */
   .tn-demo .tn-host { overflow: hidden; border: 1px solid var(--border); margin-bottom: 1rem; }
+  .tn-demo[data-light] .tn-host { background: #fff; }
   .tn-demo[data-kind="edit"] .tn-host,
   .tn-demo[data-kind="open"] .tn-host { height: 680px; }
   .tn-demo .tn-reset,
@@ -48,13 +49,24 @@ const base = `${import.meta.env.BASE_URL.replace(/\/$/, "")}/tenniarb/`;
 
   for (const demo of document.querySelectorAll(".tn-demo:not([data-ready])")) {
     demo.dataset.ready = "";
-    const { kind, base, element, file } = demo.dataset;
+    const { kind, base, element, file, fill } = demo.dataset;
     const host = demo.querySelector(".tn-host");
     const fail = (e) => { console.error("tenniarb demo:", e); host.textContent = e?.message ?? "Не удалось загрузить демо."; };
 
     if (kind === "view") {
       Promise.all([load(base, file), window.Tenniarb ?? script(`${base}tenniarb-embed.min.js`)])
-        .then(([text]) => window.Tenniarb.render(host, text, { element, interactive: true, fontBaseUrl: `${base}fonts/` }))
+        .then(async ([text]) => {
+          const handle = await window.Tenniarb.render(host, text, { element, interactive: true, fontBaseUrl: `${base}fonts/` });
+          if (!fill) return;
+          // The embed pins its box to the scene width and caps fit at 100%, so a small scene floats in
+          // white margin. Widening the box is not enough: the embed refits after the first frame, so
+          // upscale one frame later, or the fit overwrites it.
+          const box = host.firstElementChild;
+          const natural = box.clientWidth;
+          if (natural <= 0 || host.clientWidth <= natural) return;
+          box.style.maxWidth = "none";
+          requestAnimationFrame(() => requestAnimationFrame(() => handle.zoomBy(host.clientWidth / natural)));
+        })
         .catch(fail);
       continue;
     }

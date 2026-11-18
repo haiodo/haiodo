@@ -1,0 +1,851 @@
+// Карта проекта для статьи в блоге: план релиза, цикл фичи, команда и продуктовая модель.
+element "Release plan" {
+    styles {
+        item {
+            font-size 18
+            border-color #000000
+        }
+    }
+    item "Q1" {
+        pos 0 430
+        width 160
+        color #ffffff
+        text-color #111111
+    }
+    item "Q2" {
+        pos 200 430
+        width 160
+        color #ffffff
+        text-color #111111
+    }
+    item "Q3" {
+        pos 400 430
+        width 160
+        color #ffffff
+        text-color #111111
+    }
+    item "Q4" {
+        pos 600 430
+        width 160
+        color #ffffff
+        text-color #111111
+    }
+    link "Q1" "Q2" {
+        display arrow
+        color #333333
+    }
+    link "Q2" "Q3" {
+        display arrow
+        color #333333
+    }
+    link "Q3" "Q4" {
+        display arrow
+        color #333333
+    }
+    item "Dev feature complete" {
+        pos 0 355
+        width 160
+        font-size 16
+        color #A5D6A7
+        text-color #111111
+    }
+    item "2/15" {
+        pos 50 300
+        width 60
+        font-size 16
+        color #ffffff
+        text-color #111111
+    }
+    link "Dev feature complete" "2/15" {
+        display arrow
+        color #333333
+    }
+    item "QA feature complete" {
+        pos 200 355
+        width 160
+        font-size 16
+        color #CE93D8
+        text-color #111111
+    }
+    item "4/15" {
+        pos 250 300
+        width 60
+        font-size 16
+        color #ffffff
+        text-color #111111
+    }
+    link "QA feature complete" "4/15" {
+        display arrow
+        color #333333
+    }
+    item "Code freeze" {
+        pos 400 355
+        width 160
+        font-size 16
+        color #ff00ff
+        text-color #ffffff
+    }
+    item "7/1" {
+        pos 450 300
+        width 60
+        font-size 16
+        color #ffffff
+        text-color #111111
+    }
+    link "Code freeze" "7/1" {
+        display arrow
+        color #333333
+    }
+    item "RC1" {
+        pos 587 355
+        width 66
+        font-size 16
+        color #ffff00
+        text-color #111111
+    }
+    item "7/8" {
+        pos 590 300
+        width 60
+        font-size 16
+        color #ffffff
+        text-color #111111
+    }
+    link "RC1" "7/8" {
+        display arrow
+        color #333333
+    }
+    item "Exit QA" {
+        pos 675 355
+        width 100
+        font-size 16
+        color #0000ff
+        text-color #ffffff
+    }
+    item "9/22" {
+        pos 693 300
+        width 60
+        font-size 16
+        color #ffffff
+        text-color #111111
+    }
+    link "Exit QA" "9/22" {
+        display arrow
+        color #333333
+    }
+    item "AB" {
+        pos -90 220
+        width 60
+        font-size 16
+        font-weight 700
+        color #EEEEEE
+        text-color #111111
+    }
+    item "T-101" {
+        pos 0 220
+        width 160
+        font-size 20
+        color #A5D6A7
+        body "Сессии\nи таймауты"
+        text-color #111111
+    }
+    item "T-102" {
+        pos 200 220
+        width 160
+        font-size 20
+        color #FFF59D
+        body "Аудит\nвхода"
+        text-color #111111
+    }
+    item "SD" {
+        pos -90 125
+        width 60
+        font-size 16
+        font-weight 700
+        color #EEEEEE
+        text-color #111111
+    }
+    item "T-103" {
+        pos 0 125
+        width 160
+        font-size 20
+        color #A5D6A7
+        body "Права\nролей"
+        text-color #111111
+    }
+    item "T-104" {
+        pos 200 125
+        width 160
+        font-size 20
+        color #90CAF9
+        body "Уведомления\nо сбоях"
+        text-color #111111
+    }
+    item "T-105" {
+        pos 400 125
+        width 160
+        font-size 20
+        color #FFF59D
+        body "Экспорт\nотчётов"
+        text-color #111111
+    }
+    item "MK" {
+        pos -90 30
+        width 60
+        font-size 16
+        font-weight 700
+        color #EEEEEE
+        text-color #111111
+    }
+    item "T-106" {
+        pos 0 30
+        width 160
+        font-size 20
+        color #A5D6A7
+        body "Кеш\nсправочников"
+        text-color #111111
+    }
+    item "T-107" {
+        pos 200 30
+        width 160
+        font-size 20
+        color #FFF59D
+        body "Метрики\nпо API"
+        text-color #111111
+    }
+    element "T-101 drill-down" {
+        styles {
+            item {
+                font-size 14
+                border-color #000000
+            }
+        }
+        item "T-101" {
+            pos 460 160
+            body "Разбивка фичи T-101\nна задачи"
+            color #ffffff
+            text-color #111111
+        }
+        item "Схема БД" {
+            pos 0 20
+            color #008000
+            text-color #111111
+        }
+        item "API сессий" {
+            pos 200 20
+            color #ffff00
+            text-color #111111
+        }
+        item "Клиент" {
+            pos 400 20
+            color #ffffff
+            text-color #111111
+        }
+        item "Метрики" {
+            pos 600 20
+            color #ffffff
+            text-color #111111
+        }
+        item "Документация" {
+            pos 800 20
+            color #ffffff
+            text-color #111111
+        }
+        item "Ревью" {
+            pos 1000 20
+            color #ffffff
+            text-color #111111
+        }
+        link "T-101" "Схема БД" {
+            display arrow
+            color #333333
+        }
+        link "T-101" "API сессий" {
+            display arrow
+            color #333333
+        }
+        link "T-101" "Клиент" {
+            display arrow
+            color #333333
+        }
+        link "T-101" "Метрики" {
+            display arrow
+            color #333333
+        }
+        link "T-101" "Документация" {
+            display arrow
+            color #333333
+        }
+        link "T-101" "Ревью" {
+            display arrow
+            color #333333
+        }
+    }
+}
+element "Feature lifecycle" {
+    styles {
+        item {
+            font-size 18
+            border-color #000000
+        }
+    }
+    item "JIRA issue" {
+        pos 0 480
+        width 115
+        color #90CAF9
+        text-color #111111
+    }
+    item "ENG proposal" {
+        pos 0 360
+        width 145
+        color #90CAF9
+        text-color #111111
+    }
+    item "ETA" {
+        pos 0 240
+        width 55
+        color #90CAF9
+        text-color #111111
+    }
+    item "Sign" {
+        pos 0 120
+        width 55
+        color #FFF59D
+        text-color #111111
+    }
+    item "Impl tasks" {
+        width 105
+        color #90CAF9
+        text-color #111111
+    }
+    item "Done" {
+        pos 185 0
+        width 65
+        color #90CAF9
+        text-color #111111
+    }
+    item "Feature page" {
+        pos 185 120
+        width 130
+        color #90CAF9
+        text-color #111111
+    }
+    item "Demo" {
+        pos 185 240
+        width 70
+        color #90CAF9
+        text-color #111111
+    }
+    item "Post-demo improvements" {
+        pos 185 360
+        width 240
+        color #90CAF9
+        text-color #111111
+    }
+    item "Signed" {
+        pos 185 480
+        width 80
+        color #FFF59D
+        text-color #111111
+    }
+    item "Exit dev" {
+        pos 465 480
+        width 95
+        color #FFF59D
+        text-color #111111
+    }
+    item "QA start" {
+        pos 465 360
+        width 95
+        color #90CAF9
+        text-color #111111
+    }
+    item "Test plan" {
+        pos 465 240
+        width 95
+        color #90CAF9
+        text-color #111111
+    }
+    item "Review on dev" {
+        pos 465 120
+        width 140
+        color #90CAF9
+        text-color #111111
+    }
+    item "Exit QA" {
+        pos 465 0
+        width 85
+        color #FFF59D
+        text-color #111111
+    }
+    item "Features development" {
+        pos 645 0
+        width 205
+        color #90CAF9
+        text-color #111111
+    }
+    item "Issues/CI" {
+        pos 645 120
+        width 95
+        color #90CAF9
+        text-color #111111
+    }
+    item "Release" {
+        pos 645 240
+        width 85
+        color #90CAF9
+        text-color #111111
+    }
+    item "Planning" {
+        pos 645 360
+        width 90
+        color #90CAF9
+        text-color #111111
+    }
+    link "JIRA issue" "ENG proposal" {
+        display arrow
+        color #333333
+    }
+    link "ENG proposal" "ETA" {
+        display arrow
+        color #333333
+    }
+    link "ETA" "Sign" {
+        display arrow
+        color #333333
+    }
+    link "Sign" "Impl tasks" {
+        display arrow
+        color #333333
+    }
+    link "Impl tasks" "Done" {
+        display arrow
+        color #333333
+    }
+    link "Done" "Feature page" {
+        display arrow
+        color #333333
+    }
+    link "Feature page" "Demo" {
+        display arrow
+        color #333333
+    }
+    link "Demo" "Post-demo improvements" {
+        display arrow
+        color #333333
+    }
+    link "Post-demo improvements" "Signed" {
+        display arrow
+        color #333333
+    }
+    link "Signed" "Exit dev" {
+        display arrow
+        color #333333
+    }
+    link "Exit dev" "QA start" {
+        display arrow
+        color #333333
+    }
+    link "QA start" "Test plan" {
+        display arrow
+        color #333333
+    }
+    link "Test plan" "Review on dev" {
+        display arrow
+        color #333333
+    }
+    link "Review on dev" "Exit QA" {
+        display arrow
+        color #333333
+    }
+    link "Exit QA" "Features development" {
+        display arrow
+        color #333333
+    }
+    link "Features development" "Issues/CI" {
+        display arrow
+        color #333333
+    }
+    link "Issues/CI" "Release" {
+        display arrow
+        color #333333
+    }
+    link "Release" "Planning" {
+        display arrow
+        color #333333
+    }
+    link "Planning" "JIRA issue" {
+        display arrow
+        color #333333
+        line-style dashed
+    }
+    item "note-1" {
+        pos 0 -55
+        title ""
+        color #ffffff
+        border-color #ffffff
+        text-color #222222
+        font-size 16
+        body "Карта пути фичи: от заявки в JIRA до релиза и следующего планирования."
+    }
+    item "note-2" {
+        pos 0 -87
+        title ""
+        color #ffffff
+        border-color #ffffff
+        text-color #222222
+        font-size 16
+        body "Жёлтым отмечены гейты: Sign, Signed, Exit dev, Exit QA."
+    }
+    item "note-3" {
+        pos 0 -119
+        title ""
+        color #ffffff
+        border-color #ffffff
+        text-color #222222
+        font-size 16
+        body "Planning возвращает поток к JIRA issue: цикл повторяется на следующем релизе."
+    }
+    item "loop-label" {
+        pos 660 410
+        title "следующий релиз"
+        color #ffffff
+        border-color #ffffff
+        text-color #6b7280
+        font-size 14
+    }
+}
+element "Who works on what" {
+    styles {
+        item {
+            font-size 18
+            border-color #000000
+        }
+    }
+    item "AB" {
+        pos 0 260
+        width 80
+        font-weight 700
+        color #EEEEEE
+        text-color #111111
+    }
+    item "AB-P-1" {
+        pos 130 260
+        width 70
+        title "P-1"
+        color #ffffff
+        text-color #111111
+    }
+    item "AB-P-2" {
+        pos 240 260
+        width 70
+        title "P-2"
+        color #ffffff
+        text-color #111111
+    }
+    item "AB-linux" {
+        pos 350 260
+        width 96
+        title "Linux"
+        font-size 16
+        color #F5F5F5
+        text-color #111111
+    }
+    item "AB-mac" {
+        pos 480 260
+        width 96
+        title "Mac"
+        font-size 16
+        color #F5F5F5
+        text-color #111111
+    }
+    link "AB" "AB-P-1" {
+        color #333333
+    }
+    link "AB-P-1" "AB-P-2" {
+        color #333333
+    }
+    link "AB-P-2" "AB-linux" {
+        color #333333
+    }
+    link "AB-linux" "AB-mac" {
+        color #333333
+    }
+    item "SD" {
+        pos 0 180
+        width 80
+        font-weight 700
+        color #EEEEEE
+        text-color #111111
+    }
+    item "SD-P-2" {
+        pos 130 180
+        width 70
+        title "P-2"
+        color #ffffff
+        text-color #111111
+    }
+    item "SD-P-3" {
+        pos 240 180
+        width 70
+        title "P-3"
+        color #ffffff
+        text-color #111111
+    }
+    item "SD-QA" {
+        pos 350 180
+        width 70
+        title "QA"
+        color #ffffff
+        text-color #111111
+    }
+    item "SD-mac" {
+        pos 480 180
+        width 96
+        title "Mac"
+        font-size 16
+        color #F5F5F5
+        text-color #111111
+    }
+    link "SD" "SD-P-2" {
+        color #333333
+    }
+    link "SD-P-2" "SD-P-3" {
+        color #333333
+    }
+    link "SD-P-3" "SD-QA" {
+        color #333333
+    }
+    link "SD-QA" "SD-mac" {
+        color #333333
+    }
+    item "MK" {
+        pos 0 100
+        width 80
+        font-weight 700
+        color #EEEEEE
+        text-color #111111
+    }
+    item "MK-P-3" {
+        pos 130 100
+        width 70
+        title "P-3"
+        color #ffffff
+        text-color #111111
+    }
+    item "MK-P-1" {
+        pos 240 100
+        width 70
+        title "P-1"
+        color #ffffff
+        text-color #111111
+    }
+    item "MK-windows" {
+        pos 350 100
+        width 96
+        title "Windows"
+        font-size 16
+        color #F5F5F5
+        text-color #111111
+    }
+    link "MK" "MK-P-3" {
+        color #333333
+    }
+    link "MK-P-3" "MK-P-1" {
+        color #333333
+    }
+    link "MK-P-1" "MK-windows" {
+        color #333333
+    }
+    item "IV" {
+        pos 0 20
+        width 80
+        font-weight 700
+        color #EEEEEE
+        text-color #111111
+    }
+    item "IV-P-1" {
+        pos 130 20
+        width 70
+        title "P-1"
+        color #ffffff
+        text-color #111111
+    }
+    item "IV-QA" {
+        pos 240 20
+        width 70
+        title "QA"
+        color #ffffff
+        text-color #111111
+    }
+    item "IV-linux" {
+        pos 350 20
+        width 96
+        title "Linux"
+        font-size 16
+        color #F5F5F5
+        text-color #111111
+    }
+    item "IV-windows" {
+        pos 480 20
+        width 96
+        title "Windows"
+        font-size 16
+        color #F5F5F5
+        text-color #111111
+    }
+    link "IV" "IV-P-1" {
+        color #333333
+    }
+    link "IV-P-1" "IV-QA" {
+        color #333333
+    }
+    link "IV-QA" "IV-linux" {
+        color #333333
+    }
+    link "IV-linux" "IV-windows" {
+        color #333333
+    }
+    item "note-1" {
+        pos 0 -50
+        title ""
+        color #ffffff
+        border-color #ffffff
+        text-color #222222
+        font-size 16
+        body "P-1 Биллинг, P-2 Портал, P-3 Мобильный клиент, QA общая проверка."
+    }
+}
+element "Product model" {
+    styles {
+        item {
+            font-size 18
+            border-color #000000
+        }
+    }
+    item "Product" {
+        pos 0 60
+        width 150
+        color #ffffff
+        text-color #111111
+    }
+    item "Initiative" {
+        pos 230 60
+        width 150
+        color #ffffff
+        text-color #111111
+    }
+    item "Epic" {
+        pos 460 60
+        width 150
+        color #ffffff
+        text-color #111111
+    }
+    item "Story" {
+        pos 690 60
+        width 150
+        color #ffffff
+        text-color #111111
+    }
+    item "Task" {
+        pos 920 60
+        width 150
+        color #ffffff
+        text-color #111111
+    }
+    item "Team" {
+        pos 230 -80
+        width 150
+        color #ffffff
+        text-color #111111
+    }
+    item "Project" {
+        pos 460 -80
+        width 150
+        color #ffffff
+        text-color #111111
+    }
+    item "Sprint" {
+        pos 690 -80
+        width 150
+        color #ffffff
+        text-color #111111
+    }
+    item "Milestone" {
+        pos 920 -80
+        width 150
+        color #ffffff
+        text-color #111111
+    }
+    link "Product" "Initiative" {
+        display arrow
+        color #333333
+    }
+    link "Initiative" "Epic" {
+        display arrow
+        color #333333
+    }
+    link "Epic" "Story" {
+        display arrow
+        color #333333
+    }
+    link "Story" "Task" {
+        display arrow
+        color #333333
+    }
+    link "Product" "Project" {
+        display arrow
+        color #333333
+    }
+    link "Project" "Sprint" {
+        display arrow
+        color #333333
+    }
+    link "Sprint" "Milestone" {
+        display arrow
+        color #333333
+    }
+    link "Team" "Project" {
+        display arrow
+        color #333333
+    }
+    link "Story" "Project" {
+        display arrow
+        color #333333
+        line-style dashed
+    }
+    item "link-label" {
+        pos 700 -30
+        title "реализуется в"
+        color #ffffff
+        border-color #ffffff
+        text-color #6b7280
+        font-size 16
+    }
+    item "note-1" {
+        pos 230 -130
+        title ""
+        color #ffffff
+        border-color #ffffff
+        text-color #222222
+        font-size 16
+        body "Продукт реализуют несколько проектов. Эпик и стори могут жить в нескольких проектах."
+    }
+    item "note-2" {
+        pos 230 -162
+        title ""
+        color #ffffff
+        border-color #ffffff
+        text-color #222222
+        font-size 16
+        body "Стори разбивается на задачи и подзадачи."
+    }
+    item "note-3" {
+        pos 230 -194
+        title ""
+        color #ffffff
+        border-color #ffffff
+        text-color #222222
+        font-size 16
+        body "Проект может не принадлежать продукту: его заводят под внешнее требование."
+    }
+}
